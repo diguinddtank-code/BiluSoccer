@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bisa-navy: #022c22;
+  --color-bisa-navy-light: #034032;
+  --color-bisa-navy-dark: #0a1f14;
+  --color-bisa-gold: #ccff00;
+  --color-bisa-white: #FFFFFF;
+  
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background-color: var(--color-bisa-navy-dark);
+  color: var(--color-bisa-white);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
+}
