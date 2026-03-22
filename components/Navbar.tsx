@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence, Variants } from 'motion/react';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight, Globe } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,10 +33,10 @@ export default function Navbar() {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Programs', href: '/programs' },
-    { name: 'Tryouts', href: '/tryouts' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: t('nav.programs'), href: '/programs' },
+    { name: t('nav.tryouts'), href: '/tryouts' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.contact'), href: '/contact' },
   ];
 
   const menuVariants: Variants = {
@@ -66,6 +68,32 @@ export default function Navbar() {
     open: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
   };
 
+  const LanguageSelector = () => (
+    <div className="flex items-center gap-2 bg-bisa-navy-light/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
+      <button 
+        onClick={() => setLanguage('en')}
+        className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'en' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
+        title="English"
+      >
+        <Image src="https://flagcdn.com/w40/us.png" alt="English" fill className="object-cover" unoptimized />
+      </button>
+      <button 
+        onClick={() => setLanguage('pt')}
+        className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'pt' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
+        title="Português"
+      >
+        <Image src="https://flagcdn.com/w40/br.png" alt="Português" fill className="object-cover" unoptimized />
+      </button>
+      <button 
+        onClick={() => setLanguage('es')}
+        className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'es' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
+        title="Español"
+      >
+        <Image src="https://flagcdn.com/w40/es.png" alt="Español" fill className="object-cover" unoptimized />
+      </button>
+    </div>
+  );
+
   return (
     <>
       <motion.header
@@ -80,7 +108,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-20 md:h-24">
             {/* Logo */}
             <Link href="/" className="relative z-50 flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-              <div className="relative w-32 h-16 md:w-48 md:h-24 transition-transform duration-300 hover:scale-105">
+              <div className="relative w-32 h-12 md:w-48 md:h-16 transition-transform duration-300 hover:scale-105">
                 <Image 
                   src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
                   alt="BILU International Soccer Academy" 
@@ -92,7 +120,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -103,29 +131,41 @@ export default function Navbar() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-bisa-gold transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               ))}
+              
+              {/* Desktop Language Selector */}
+              <div className="pl-4 border-l border-white/20">
+                <LanguageSelector />
+              </div>
+
               <Link
                 href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc0NzQzMzA1N3xkS2RTeERnQ0d4TlNqcEVlWnI3M1EzRnRQeThEd28xSGx4WFdVWkhYTWVFPQ=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-bisa-gold text-bisa-navy px-6 py-2.5 rounded font-bold uppercase tracking-wide hover:bg-white transition-colors hover:scale-105 active:scale-95"
               >
-                Register
+                {t('nav.register')}
               </Link>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden relative z-50 p-2 text-bisa-white hover:text-bisa-gold transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <motion.div
-                animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-                transition={{ duration: 0.2 }}
+            {/* Mobile Controls */}
+            <div className="flex items-center gap-4 md:hidden relative z-50">
+              {/* Mobile Language Selector (only visible when menu is closed to save space, or always visible) */}
+              {!isMobileMenuOpen && <LanguageSelector />}
+              
+              {/* Mobile Menu Button */}
+              <button
+                className="p-2 text-bisa-white hover:text-bisa-gold transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
               >
-                {isMobileMenuOpen ? <X size={32} className="text-bisa-gold" /> : <Menu size={32} />}
-              </motion.div>
-            </button>
+                <motion.div
+                  animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isMobileMenuOpen ? <X size={32} className="text-bisa-gold" /> : <Menu size={32} />}
+                </motion.div>
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
@@ -153,6 +193,11 @@ export default function Navbar() {
               exit="closed"
               className="flex flex-col space-y-6 relative z-10"
             >
+              {/* Language Selector inside mobile menu */}
+              <motion.div variants={linkVariants} className="flex justify-center mb-4">
+                <LanguageSelector />
+              </motion.div>
+
               {navLinks.map((link) => (
                 <motion.div key={link.name} variants={linkVariants}>
                   <Link
@@ -174,7 +219,7 @@ export default function Navbar() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="flex items-center justify-center w-full bg-bisa-gold text-bisa-navy px-8 py-5 rounded-lg font-black text-xl uppercase tracking-wider hover:bg-white transition-colors active:scale-95"
                 >
-                  Register Now
+                  {t('nav.register')}
                 </Link>
               </motion.div>
             </motion.nav>

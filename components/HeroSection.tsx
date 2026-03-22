@@ -3,8 +3,12 @@
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
+import AcademyHeroVisual from './AcademyHeroVisual';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -41,44 +45,56 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 w-full">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl"
-        >
-          <motion.h1 
-            variants={itemVariants}
-            className="text-5xl sm:text-7xl md:text-8xl font-black text-bisa-white uppercase tracking-tighter leading-[0.9] mb-6"
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-3xl"
           >
-            Where Champions <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-bisa-gold to-white">Are Built</span>
-          </motion.h1>
-          
-          <motion.p 
-            variants={itemVariants}
-            className="text-lg sm:text-xl md:text-2xl text-bisa-white/80 font-medium tracking-wide mb-10 max-w-2xl border-l-4 border-bisa-gold pl-4"
-          >
-            Elite youth soccer development in Metro Charleston, SC
-          </motion.p>
-          
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc0NzQzMzA1N3xkS2RTeERnQ0d4TlNqcEVlWnI3M1EzRnRQeThEd28xSGx4WFdVWkhYTWVFPQ=="
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-bisa-gold text-bisa-navy px-8 py-4 rounded font-black uppercase tracking-widest text-center hover:bg-white transition-colors"
+            <motion.h1 
+              variants={itemVariants}
+              className="text-5xl sm:text-7xl md:text-8xl font-black text-bisa-white uppercase tracking-tighter leading-[0.9] mb-6"
             >
-              Register Now
-            </Link>
-            <Link
-              href="/programs"
-              className="bg-transparent border-2 border-bisa-white text-bisa-white px-8 py-4 rounded font-black uppercase tracking-widest text-center hover:bg-bisa-white hover:text-bisa-navy transition-colors"
+              {t('hero.title1')} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-bisa-gold to-white">{t('hero.title2')}</span>
+            </motion.h1>
+            
+            <motion.p 
+              variants={itemVariants}
+              className="text-lg sm:text-xl md:text-2xl text-bisa-white/80 font-medium tracking-wide mb-10 max-w-2xl border-l-4 border-bisa-gold pl-4"
             >
-              View Programs
-            </Link>
+              {t('hero.subtitle')}
+            </motion.p>
+            
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc0NzQzMzA1N3xkS2RTeERnQ0d4TlNqcEVlWnI3M1EzRnRQeThEd28xSGx4WFdVWkhYTWVFPQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-bisa-gold text-bisa-navy px-8 py-4 rounded font-black uppercase tracking-widest text-center hover:bg-white transition-colors"
+              >
+                {t('hero.cta.primary')}
+              </Link>
+              <Link
+                href="/programs"
+                className="bg-transparent border-2 border-bisa-white text-bisa-white px-8 py-4 rounded font-black uppercase tracking-widest text-center hover:bg-bisa-white hover:text-bisa-navy transition-colors"
+              >
+                {t('hero.cta.secondary')}
+              </Link>
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* Right Side: Academy Visual Composition */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:flex relative w-full aspect-square max-w-[600px] mx-auto items-center justify-center"
+          >
+            <AcademyHeroVisual />
+          </motion.div>
+        </div>
       </div>
 
       {/* Infinite Marquee */}
@@ -91,17 +107,17 @@ export default function HeroSection() {
           {/* Duplicate content for seamless loop */}
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex items-center space-x-8 px-4">
-              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">Junior Academy</span>
+              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">{t('hero.marquee.1')}</span>
               <span className="text-bisa-navy/50 font-black">·</span>
-              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">Select</span>
+              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">{t('hero.marquee.2')}</span>
               <span className="text-bisa-navy/50 font-black">·</span>
-              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">Elite</span>
+              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">{t('hero.marquee.3')}</span>
               <span className="text-bisa-navy/50 font-black">·</span>
-              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">Futsal</span>
+              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">{t('hero.marquee.4')}</span>
               <span className="text-bisa-navy/50 font-black">·</span>
-              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">Summer Camps</span>
+              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">{t('hero.marquee.5')}</span>
               <span className="text-bisa-navy/50 font-black">·</span>
-              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">U4 TO U18</span>
+              <span className="text-bisa-navy font-black text-sm md:text-base uppercase tracking-widest">{t('hero.marquee.6')}</span>
               <span className="text-bisa-navy/50 font-black">·</span>
             </div>
           ))}
