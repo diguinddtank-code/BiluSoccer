@@ -7,6 +7,7 @@ import TryoutsCTA from '@/components/TryoutsCTA';
 import ExperienceStrip from '@/components/ExperienceStrip';
 import ClubGallery from '@/components/ClubGallery';
 import LocationsSection from '@/components/LocationsSection';
+import LeadForm from '@/components/LeadForm';
 import FinalCTA from '@/components/FinalCTA';
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <CoachesGrid />
       <LocationsSection />
       <TryoutsCTA />
+      <LeadForm />
       <FinalCTA />
     </>
   );

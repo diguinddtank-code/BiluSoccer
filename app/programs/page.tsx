@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import ProgramsGrid from '@/components/ProgramsGrid';
+import LeadForm from '@/components/LeadForm';
 import FinalCTA from '@/components/FinalCTA';
 
 export default function ProgramsPage() {
@@ -25,6 +26,7 @@ export default function ProgramsPage() {
       </section>
       
       <ProgramsGrid />
+      <LeadForm />
       <FinalCTA />
     </div>
   );

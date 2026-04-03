@@ -38,6 +38,24 @@ const translations: Translations = {
     'visual.card1.title': 'Elite',
     'visual.card1.subtitle': 'Training',
     'visual.card3.title': 'Pro Pathway',
+    
+    // Lead Form
+    'form.title': 'Get in Touch',
+    'form.subtitle': 'Interested in joining Bilu Soccer Academy? Fill out the form below and our team will get back to you.',
+    'form.parentName': 'Parent/Guardian Name',
+    'form.email': 'Email Address',
+    'form.phone': 'Phone Number',
+    'form.playerName': 'Player Name',
+    'form.birthYear': 'Player Birth Year',
+    'form.program': 'Program of Interest',
+    'form.program.notSure': 'Not Sure Yet',
+    'form.message': 'Message / Questions',
+    'form.messagePlaceholder': 'How can we help you?',
+    'form.submit': 'Send Message',
+    'form.success.title': 'Message Sent!',
+    'form.success.message': 'Thank you for reaching out. We will contact you shortly.',
+    'form.success.button': 'Send another message',
+    'form.error': 'There was an error sending your message. Please try again later.',
   },
   pt: {
     // Navbar
@@ -66,6 +84,24 @@ const translations: Translations = {
     'visual.card1.title': 'Treinamento',
     'visual.card1.subtitle': 'de Elite',
     'visual.card3.title': 'Caminho Profissional',
+    
+    // Lead Form
+    'form.title': 'Entre em Contato',
+    'form.subtitle': 'Interessado em se juntar à Bilu Soccer Academy? Preencha o formulário abaixo e nossa equipe entrará em contato.',
+    'form.parentName': 'Nome do Responsável',
+    'form.email': 'Endereço de E-mail',
+    'form.phone': 'Número de Telefone',
+    'form.playerName': 'Nome do Jogador',
+    'form.birthYear': 'Ano de Nascimento do Jogador',
+    'form.program': 'Programa de Interesse',
+    'form.program.notSure': 'Ainda não tenho certeza',
+    'form.message': 'Mensagem / Dúvidas',
+    'form.messagePlaceholder': 'Como podemos ajudar?',
+    'form.submit': 'Enviar Mensagem',
+    'form.success.title': 'Mensagem Enviada!',
+    'form.success.message': 'Obrigado por entrar em contato. Retornaremos em breve.',
+    'form.success.button': 'Enviar outra mensagem',
+    'form.error': 'Houve um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.',
   },
   es: {
     // Navbar
@@ -94,6 +130,24 @@ const translations: Translations = {
     'visual.card1.title': 'Entrenamiento',
     'visual.card1.subtitle': 'de Élite',
     'visual.card3.title': 'Camino Profesional',
+    
+    // Lead Form
+    'form.title': 'Ponte en Contacto',
+    'form.subtitle': '¿Interesado en unirte a Bilu Soccer Academy? Completa el formulario a continuación y nuestro equipo se comunicará contigo.',
+    'form.parentName': 'Nombre del Padre/Tutor',
+    'form.email': 'Correo Electrónico',
+    'form.phone': 'Número de Teléfono',
+    'form.playerName': 'Nombre del Jugador',
+    'form.birthYear': 'Año de Nacimiento del Jugador',
+    'form.program': 'Programa de Interés',
+    'form.program.notSure': 'Aún no estoy seguro',
+    'form.message': 'Mensaje / Preguntas',
+    'form.messagePlaceholder': '¿Cómo podemos ayudarte?',
+    'form.submit': 'Enviar Mensaje',
+    'form.success.title': '¡Mensaje Enviado!',
+    'form.success.message': 'Gracias por contactarnos. Nos comunicaremos contigo en breve.',
+    'form.success.button': 'Enviar otro mensaje',
+    'form.error': 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.',
   }
 };
 

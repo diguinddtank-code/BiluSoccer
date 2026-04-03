@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import TryoutDatesCard from '@/components/TryoutDatesCard';
+import LeadForm from '@/components/LeadForm';
 
 export default function TryoutsPage() {
   return (
@@ -78,6 +79,8 @@ export default function TryoutsPage() {
           </div>
         </div>
       </section>
+
+      <LeadForm />
 
       {/* Final CTA */}
       <section className="py-32 bg-bisa-navy-dark text-center">

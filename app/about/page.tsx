@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import ExperienceStrip from '@/components/ExperienceStrip';
 import CoachesGrid from '@/components/CoachesGrid';
+import LeadForm from '@/components/LeadForm';
 import FinalCTA from '@/components/FinalCTA';
 
 export default function AboutPage() {
@@ -51,6 +52,7 @@ export default function AboutPage() {
 
       <CoachesGrid />
       <ExperienceStrip />
+      <LeadForm />
       <FinalCTA />
     </div>
   );
