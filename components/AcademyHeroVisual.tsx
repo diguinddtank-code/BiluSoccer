@@ -26,7 +26,7 @@ export default function AcademyHeroVisual() {
   }, []);
 
   return (
-    <div className="relative w-full aspect-square max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] mx-auto flex items-center justify-center mt-8 lg:mt-0">
+    <div className="relative w-full aspect-square max-w-[350px] sm:max-w-[450px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[600px] mx-auto flex items-center justify-center mt-8 lg:mt-0">
       {/* Background glow */}
       <div className="absolute inset-0 bg-bisa-gold/20 blur-[80px] sm:blur-[100px] rounded-full" />
 
@@ -68,14 +68,14 @@ export default function AcademyHeroVisual() {
         initial={{ opacity: 0, x: 50, y: -20 }}
         animate={{ opacity: 1, x: 0, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-        className="absolute top-[5%] sm:top-[10%] right-0 sm:-right-[2%] bg-white/10 backdrop-blur-md border border-white/20 p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex items-center gap-3 sm:gap-4 hover:bg-white/20 transition-colors cursor-default z-10 scale-90 sm:scale-100 origin-top-right"
+        className="absolute top-[5%] right-0 bg-white/10 backdrop-blur-md border border-white/20 p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex items-center gap-2 sm:gap-4 hover:bg-white/20 transition-colors cursor-default z-10 scale-90 sm:scale-100 origin-top-right"
       >
         <div className="bg-bisa-gold p-2 sm:p-3 rounded-full text-bisa-navy">
-          <Trophy size={20} className="sm:w-6 sm:h-6" />
+          <Trophy size={18} className="sm:w-6 sm:h-6" />
         </div>
         <div>
-          <p className="text-white font-black text-lg sm:text-xl">{t('visual.card1.title')}</p>
-          <p className="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wider">{t('visual.card1.subtitle')}</p>
+          <p className="text-white font-black text-base sm:text-xl leading-tight">{t('visual.card1.title')}</p>
+          <p className="text-white/70 text-[10px] sm:text-sm font-medium uppercase tracking-wider">{t('visual.card1.subtitle')}</p>
         </div>
       </motion.div>
 
@@ -84,7 +84,7 @@ export default function AcademyHeroVisual() {
         initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ duration: 0.8, delay: 0.5, type: "spring", bounce: 0.4 }}
-        className="absolute bottom-[25%] sm:bottom-[30%] left-0 sm:-left-[2%] bg-bisa-navy/80 backdrop-blur-md border border-bisa-gold/30 w-20 h-20 sm:w-28 sm:h-28 rounded-full shadow-[0_0_30px_rgba(242,169,0,0.3)] flex items-center justify-center p-3 sm:p-4 z-10 scale-90 sm:scale-100 origin-center hover:scale-105 transition-transform"
+        className="absolute bottom-[25%] sm:bottom-[30%] left-0 sm:-left-[2%] bg-bisa-navy/80 backdrop-blur-md border border-bisa-gold/30 w-16 h-16 sm:w-28 sm:h-28 rounded-full shadow-[0_0_30px_rgba(242,169,0,0.3)] flex items-center justify-center p-2 sm:p-4 z-10 scale-90 sm:scale-100 origin-center hover:scale-105 transition-transform"
       >
         <div className="relative w-full h-full">
           <Image 
@@ -101,10 +101,10 @@ export default function AcademyHeroVisual() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-        className="absolute bottom-[2%] sm:bottom-[5%] right-[5%] sm:right-[10%] bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl flex items-center gap-2 sm:gap-3 hover:bg-white/20 transition-colors cursor-default z-10 scale-90 sm:scale-100"
+        className="absolute bottom-[2%] sm:bottom-[5%] right-[5%] sm:right-[10%] bg-white/10 backdrop-blur-md border border-white/20 px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl flex items-center gap-2 sm:gap-3 hover:bg-white/20 transition-colors cursor-default z-10 scale-90 sm:scale-100"
       >
-        <Target size={16} className="text-bisa-gold sm:w-5 sm:h-5" />
-        <span className="text-white font-bold tracking-wide text-sm sm:text-base">{t('visual.card3.title')}</span>
+        <Target size={14} className="text-bisa-gold sm:w-5 sm:h-5" />
+        <span className="text-white font-bold tracking-wide text-xs sm:text-base">{t('visual.card3.title')}</span>
       </motion.div>
     </div>
   );

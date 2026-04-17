@@ -26,7 +26,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] flex flex-col justify-center overflow-hidden bg-bisa-navy-dark">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-bisa-navy-dark pt-28 pb-16">
       {/* Dynamic Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-bisa-navy-dark">
         <video
@@ -44,8 +44,8 @@ export default function HeroSection() {
         <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-bisa-navy-dark/90 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 w-full mt-8 md:mt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -54,7 +54,7 @@ export default function HeroSection() {
           >
             <motion.h1 
               variants={itemVariants}
-              className="text-5xl sm:text-7xl md:text-8xl font-black text-bisa-white uppercase tracking-tighter leading-[0.9] mb-6"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-black text-bisa-white uppercase tracking-tighter leading-[1.05] mb-4 sm:mb-6"
             >
               {t('hero.title1')} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-bisa-gold to-white">{t('hero.title2')}</span>
@@ -62,7 +62,7 @@ export default function HeroSection() {
             
             <motion.p 
               variants={itemVariants}
-              className="text-lg sm:text-xl md:text-2xl text-bisa-white/80 font-medium tracking-wide mb-10 max-w-2xl border-l-4 border-bisa-gold pl-4"
+              className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-2xl text-bisa-white/80 font-medium tracking-wide mb-8 sm:mb-10 max-w-2xl border-l-4 border-bisa-gold pl-4"
             >
               {t('hero.subtitle')}
             </motion.p>
@@ -72,13 +72,13 @@ export default function HeroSection() {
                 href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc0NzQzMzA1N3xkS2RTeERnQ0d4TlNqcEVlWnI3M1EzRnRQeThEd28xSGx4WFdVWkhYTWVFPQ=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-bisa-gold text-bisa-navy px-8 py-4 rounded font-black uppercase tracking-widest text-center hover:bg-white transition-colors"
+                className="bg-bisa-gold text-bisa-navy px-6 py-3 md:px-8 md:py-4 rounded font-black text-sm md:text-base uppercase tracking-widest text-center hover:bg-white transition-colors"
               >
                 {t('hero.cta.primary')}
               </Link>
               <Link
                 href="/programs"
-                className="bg-transparent border-2 border-bisa-white text-bisa-white px-8 py-4 rounded font-black uppercase tracking-widest text-center hover:bg-bisa-white hover:text-bisa-navy transition-colors"
+                className="bg-transparent border-2 border-bisa-white text-bisa-white px-6 py-3 md:px-8 md:py-4 rounded font-black text-sm md:text-base uppercase tracking-widest text-center hover:bg-bisa-white hover:text-bisa-navy transition-colors"
               >
                 {t('hero.cta.secondary')}
               </Link>
@@ -90,7 +90,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:flex relative w-full aspect-square max-w-[600px] mx-auto items-center justify-center"
+            className="hidden lg:flex relative w-full aspect-square max-w-[450px] xl:max-w-[600px] mx-auto items-center justify-center"
           >
             <AcademyHeroVisual />
           </motion.div>
