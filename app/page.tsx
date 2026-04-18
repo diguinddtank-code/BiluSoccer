@@ -8,6 +8,8 @@ import ExperienceStrip from '@/components/ExperienceStrip';
 import ClubGallery from '@/components/ClubGallery';
 import LocationsSection from '@/components/LocationsSection';
 import LeadForm from '@/components/LeadForm';
+import SponsorsSection from '@/components/SponsorsSection';
+import ProjetoBiluCTA from '@/components/ProjetoBiluCTA';
 import FinalCTA from '@/components/FinalCTA';
 
 export default function Home() {
@@ -23,6 +25,8 @@ export default function Home() {
       <LocationsSection />
       <TryoutsCTA />
       <LeadForm />
+      <SponsorsSection />
+      <ProjetoBiluCTA />
       <FinalCTA />
     </>
   );
