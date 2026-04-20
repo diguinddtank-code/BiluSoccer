@@ -69,7 +69,7 @@ export default function ElitePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
                 <div className="bg-white/5 p-6 border-l-2 border-bisa-gold">
                   <h3 className="text-xl font-bold text-bisa-white mb-2 uppercase tracking-wide">Showcases</h3>
-                  <p className="text-bisa-white/60 text-sm">Participation in the country's top showcase tournaments for college recruiting.</p>
+                  <p className="text-bisa-white/60 text-sm">Participation in the country&apos;s top showcase tournaments for college recruiting.</p>
                 </div>
                 <div className="bg-white/5 p-6 border-l-2 border-bisa-gold">
                   <h3 className="text-xl font-bold text-bisa-white mb-2 uppercase tracking-wide">Recruiting</h3>

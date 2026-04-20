@@ -7,6 +7,33 @@ import { motion, AnimatePresence, Variants } from 'motion/react';
 import { Menu, X, ChevronRight, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+// Language Selector Component (Extracted to prevent creation during render)
+const LanguageSelector = ({ language, setLanguage }: { language: string, setLanguage: (l: 'en' | 'pt' | 'es') => void }) => (
+  <div className="flex items-center gap-2 bg-bisa-navy-light/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
+    <button 
+      onClick={() => setLanguage('en')}
+      className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'en' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
+      title="English"
+    >
+      <Image src="https://flagcdn.com/w40/us.png" alt="English" fill className="object-cover" unoptimized />
+    </button>
+    <button 
+      onClick={() => setLanguage('pt')}
+      className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'pt' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
+      title="Português"
+    >
+      <Image src="https://flagcdn.com/w40/br.png" alt="Português" fill className="object-cover" unoptimized />
+    </button>
+    <button 
+      onClick={() => setLanguage('es')}
+      className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'es' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
+      title="Español"
+    >
+      <Image src="https://flagcdn.com/w40/es.png" alt="Español" fill className="object-cover" unoptimized />
+    </button>
+  </div>
+);
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -68,32 +95,6 @@ export default function Navbar() {
     open: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
   };
 
-  const LanguageSelector = () => (
-    <div className="flex items-center gap-2 bg-bisa-navy-light/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
-      <button 
-        onClick={() => setLanguage('en')}
-        className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'en' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
-        title="English"
-      >
-        <Image src="https://flagcdn.com/w40/us.png" alt="English" fill className="object-cover" unoptimized />
-      </button>
-      <button 
-        onClick={() => setLanguage('pt')}
-        className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'pt' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
-        title="Português"
-      >
-        <Image src="https://flagcdn.com/w40/br.png" alt="Português" fill className="object-cover" unoptimized />
-      </button>
-      <button 
-        onClick={() => setLanguage('es')}
-        className={`relative w-6 h-4 rounded-sm overflow-hidden transition-transform ${language === 'es' ? 'ring-2 ring-bisa-gold scale-110' : 'opacity-50 hover:opacity-100'}`}
-        title="Español"
-      >
-        <Image src="https://flagcdn.com/w40/es.png" alt="Español" fill className="object-cover" unoptimized />
-      </button>
-    </div>
-  );
-
   return (
     <>
       <motion.header
@@ -104,11 +105,11 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
           <div className="flex justify-between items-center h-20 md:h-24">
             {/* Logo */}
-            <Link href="/" className="relative z-50 flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-              <div className="relative w-32 h-12 md:w-48 md:h-16 transition-transform duration-300 hover:scale-105">
+            <Link href="/" className="relative z-50 flex items-center shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+              <div className="relative w-24 h-10 md:w-36 md:h-12 lg:w-48 lg:h-16 transition-transform duration-300 hover:scale-105 mt-2 md:mt-0">
                 <Image 
                   src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
                   alt="BILU International Soccer Academy" 
@@ -120,12 +121,12 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+            <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-bold uppercase tracking-wider text-bisa-white hover:text-bisa-gold transition-colors relative group"
+                  className="text-[11px] lg:text-sm font-bold uppercase tracking-wider text-bisa-white hover:text-bisa-gold transition-colors relative group whitespace-nowrap"
                 >
                   {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-bisa-gold transition-all duration-300 group-hover:w-full"></span>
@@ -133,24 +134,26 @@ export default function Navbar() {
               ))}
               
               {/* Desktop Language Selector */}
-              <div className="pl-4 border-l border-white/20">
-                <LanguageSelector />
+              <div className="pl-2 lg:pl-4 border-l border-white/20">
+                <LanguageSelector language={language} setLanguage={setLanguage as any} />
               </div>
 
               <Link
                 href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc0NzQzMzA1N3xkS2RTeERnQ0d4TlNqcEVlWnI3M1EzRnRQeThEd28xSGx4WFdVWkhYTWVFPQ=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-bisa-gold text-bisa-navy px-6 py-2.5 rounded font-bold uppercase tracking-wide hover:bg-white transition-colors hover:scale-105 active:scale-95"
+                className="bg-bisa-gold text-bisa-navy px-4 py-2 lg:px-6 lg:py-2.5 rounded font-bold uppercase tracking-wide hover:bg-white transition-colors hover:scale-105 active:scale-95 text-[11px] lg:text-sm whitespace-nowrap"
               >
                 {t('nav.register')}
               </Link>
             </nav>
 
             {/* Mobile Controls */}
-            <div className="flex items-center gap-4 md:hidden relative z-50">
-              {/* Mobile Language Selector (only visible when menu is closed to save space, or always visible) */}
-              {!isMobileMenuOpen && <LanguageSelector />}
+            <div className="flex items-center gap-3 md:hidden relative z-50">
+              {/* Mobile Language Selector */}
+              <div className="scale-95 origin-right">
+                <LanguageSelector language={language} setLanguage={setLanguage as any} />
+              </div>
               
               {/* Mobile Menu Button */}
               <button
@@ -193,11 +196,6 @@ export default function Navbar() {
               exit="closed"
               className="flex flex-col space-y-6 relative z-10"
             >
-              {/* Language Selector inside mobile menu */}
-              <motion.div variants={linkVariants} className="flex justify-center mb-4">
-                <LanguageSelector />
-              </motion.div>
-
               {navLinks.map((link) => (
                 <motion.div key={link.name} variants={linkVariants}>
                   <Link
