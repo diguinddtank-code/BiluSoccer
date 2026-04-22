@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Tryouts & Registration | BILU International Soccer Academy',
-  description: 'Register for upcoming soccer tryouts at BILU International Soccer Academy in Charleston, SC. Secure your spot for U8-U18 competitive teams.',
+  title: 'Tryouts & Registration | BISA',
+  description: 'Register for upcoming soccer tryouts at BISA in Charleston, SC. Secure your spot for U8-U18 competitive teams.',
   openGraph: {
-    title: 'Tryouts & Registration | BILU International Soccer Academy',
-    description: 'Register for upcoming soccer tryouts at BILU International Soccer Academy in Charleston, SC.',
+    title: 'Tryouts & Registration | BISA',
+    description: 'Register for upcoming soccer tryouts at BISA in Charleston, SC.',
     url: 'https://bilusoccer.com/tryouts',
   },
 };

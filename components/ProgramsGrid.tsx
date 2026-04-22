@@ -6,27 +6,33 @@ import { ArrowRight } from 'lucide-react';
 
 const programs = [
   {
-    title: 'High Performance',
-    age: 'U13–U18',
-    desc: 'High-intensity training for performance-focused athletes.',
-    href: '/programs/high-performance',
+    title: 'Academy Development',
+    age: 'U4–U14',
+    desc: 'High-quality foundational and progressive training for performance-focused athletes.',
+    href: '/programs/academy-development',
+  },
+  {
+    title: 'Junior Academy',
+    age: 'U8–U12',
+    desc: 'Accelerated development program focused on technical mastery and game intelligence.',
+    href: '/programs/junior-academy',
   },
   {
     title: 'Elite',
     age: 'U15–U18',
-    desc: 'Top-tier development for elite athletes.',
+    desc: 'Top-tier development and college/pro exposure for elite athletes.',
     href: '/programs/elite',
   },
   {
     title: 'Futsal',
     age: 'All Ages',
-    desc: 'Small court. Big skills. Focus on technique.',
+    desc: 'Small court. Big skills. Intensive focus on technique and decision making.',
     href: '/programs/futsal',
   },
   {
     title: 'Summer Camps',
     age: 'Seasonal',
-    desc: 'A full summer of soccer, development, and fun.',
+    desc: 'A full summer of soccer, development, and fun at Sangaree Middle School.',
     href: '/programs/summer-camps',
   },
 ];

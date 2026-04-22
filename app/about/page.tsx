@@ -43,7 +43,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl font-black text-bisa-gold uppercase tracking-tighter mb-4">Our Philosophy</h2>
               <p className="text-xl text-bisa-white/90 font-medium leading-relaxed">
-                Rooted in Brazilian methodology, we believe in developing the complete player. We prioritize technical mastery, creative problem-solving, and competitive spirit within a positive, growth-oriented environment.
+                Rooted in Global Elite Methodology, we believe in developing the complete player. We prioritize technical mastery, creative problem-solving, and competitive spirit within a positive, growth-oriented environment.
               </p>
             </div>
           </motion.div>

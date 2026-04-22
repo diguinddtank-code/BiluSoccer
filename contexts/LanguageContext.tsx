@@ -41,7 +41,7 @@ const translations: Translations = {
     
     // Lead Form
     'form.title': 'Get in Touch',
-    'form.subtitle': 'Interested in joining Bilu Soccer Academy? Fill out the form below and our team will get back to you.',
+    'form.subtitle': 'Interested in joining BISA? Fill out the form below and our team will get back to you.',
     'form.parentName': 'Parent/Guardian Name',
     'form.email': 'Email Address',
     'form.phone': 'Phone Number',
@@ -57,7 +57,7 @@ const translations: Translations = {
     'form.success.button': 'Send another message',
     'form.error': 'There was an error sending your message. Please try again later.',
 
-    // Projeto Bilu
+    // Projeto BILU
     'projetobilu.label': '// SOCIAL PROJECT',
     'projetobilu.title': 'Football That Transforms Lives',
     'projetobilu.subtitle': 'Projeto BILU is a global humanitarian initiative that uses football as a tool for social transformation, present in 10 countries and impacting children worldwide.',
@@ -75,7 +75,7 @@ const translations: Translations = {
     'sponsors.comingSoon': 'Coming Soon',
     'sponsors.becomePartner': 'Become a Partner',
 
-    // Projeto Bilu Page
+    // Projeto BILU Page
     'pb.hero.sub1': 'Football as an instrument of',
     'pb.hero.sub2': 'human transformation',
     'pb.scroll': 'Discover',
@@ -121,7 +121,7 @@ const translations: Translations = {
 
     // Summer Camps Page
     'sc.hero.badge': 'JUNE & JULY · SANGAREE MIDDLE SCHOOL',
-    'sc.hero.title1': 'BILU',
+    'sc.hero.title1': 'BISA',
     'sc.hero.title2': 'SUMMER CAMPS',
     'sc.hero.subtitle': 'Two trainings per week. An intramural tournament. A summer your child will never forget.',
     'sc.hero.btn1': 'SECURE YOUR SPOT \u2192',
@@ -229,7 +229,7 @@ const translations: Translations = {
     
     // Lead Form
     'form.title': 'Entre em Contato',
-    'form.subtitle': 'Interessado em se juntar à Bilu Soccer Academy? Preencha o formulário abaixo e nossa equipe entrará em contato.',
+    'form.subtitle': 'Interessado em se juntar à BISA? Preencha o formulário abaixo e nossa equipe entrará em contato.',
     'form.parentName': 'Nome do Responsável',
     'form.email': 'Endereço de E-mail',
     'form.phone': 'Número de Telefone',
@@ -245,7 +245,7 @@ const translations: Translations = {
     'form.success.button': 'Enviar outra mensagem',
     'form.error': 'Houve um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.',
 
-    // Projeto Bilu
+    // Projeto BILU
     'projetobilu.label': '// PROJETO SOCIAL',
     'projetobilu.title': 'O Futebol Que Transforma Vidas',
     'projetobilu.subtitle': 'Projeto BILU é uma iniciativa humanitária global que usa o futebol como ferramenta de transformação social, presente em 10 países e impactando crianças em todo o mundo.',
@@ -263,7 +263,7 @@ const translations: Translations = {
     'sponsors.comingSoon': 'Em Breve',
     'sponsors.becomePartner': 'Seja um Parceiro',
 
-    // Projeto Bilu Page
+    // Projeto BILU Page
     'pb.hero.sub1': 'Futebol como instrumento de',
     'pb.hero.sub2': 'transformação humana',
     'pb.scroll': 'Descubra',
@@ -309,7 +309,7 @@ const translations: Translations = {
 
     // Summer Camps Page
     'sc.hero.badge': 'JUNHO E JULHO · SANGAREE MIDDLE SCHOOL',
-    'sc.hero.title1': 'BILU',
+    'sc.hero.title1': 'BISA',
     'sc.hero.title2': 'SUMMER CAMPS',
     'sc.hero.subtitle': 'Dois treinos por semana. Um torneio interno. Um verão que seu filho nunca esquecerá.',
     'sc.hero.btn1': 'GARANTA SUA VAGA \u2192',
@@ -417,7 +417,7 @@ const translations: Translations = {
     
     // Lead Form
     'form.title': 'Ponte en Contacto',
-    'form.subtitle': '¿Interesado en unirte a Bilu Soccer Academy? Completa el formulario a continuación y nuestro equipo se comunicará contigo.',
+    'form.subtitle': '¿Interesado en unirte a BISA? Completa el formulario a continuación y nuestro equipo se comunicará contigo.',
     'form.parentName': 'Nombre del Padre/Tutor',
     'form.email': 'Correo Electrónico',
     'form.phone': 'Número de Teléfono',
@@ -433,7 +433,7 @@ const translations: Translations = {
     'form.success.button': 'Enviar otro mensaje',
     'form.error': 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.',
 
-    // Projeto Bilu
+    // Projeto BILU
     'projetobilu.label': '// PROYECTO SOCIAL',
     'projetobilu.title': 'El Fútbol Que Transforma Vidas',
     'projetobilu.subtitle': 'Proyecto BILU es una iniciativa humanitaria global que usa el fútbol como herramienta de transformación social, presente en 10 países e impactando niños en todo el mundo.',
@@ -451,7 +451,7 @@ const translations: Translations = {
     'sponsors.comingSoon': 'Próximamente',
     'sponsors.becomePartner': 'Conviértete en Socio',
 
-    // Projeto Bilu Page
+    // Projeto BILU Page
     'pb.hero.sub1': 'El fútbol como instrumento de',
     'pb.hero.sub2': 'transformación humana',
     'pb.scroll': 'Descubre',
@@ -497,7 +497,7 @@ const translations: Translations = {
 
     // Summer Camps Page
     'sc.hero.badge': 'JUNIO Y JULIO · SANGAREE MIDDLE SCHOOL',
-    'sc.hero.title1': 'BILU',
+    'sc.hero.title1': 'BISA',
     'sc.hero.title2': 'SUMMER CAMPS',
     'sc.hero.subtitle': 'Dos entrenamientos por semana. Un torneo interno. Un verano que tu hijo nunca olvidará.',
     'sc.hero.btn1': 'ASEGURA TU LUGAR \u2192',

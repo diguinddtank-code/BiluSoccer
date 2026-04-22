@@ -69,7 +69,7 @@ export default function HeroSection() {
             
             <motion.div variants={itemVariants} className="flex flex-col w-full max-w-md mx-auto lg:mx-0 sm:flex-row gap-4 px-2 lg:px-0">
               <Link
-                href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc0NzQzMzA1N3xkS2RTeERnQ0d4TlNqcEVlWnI3M1EzRnRQeThEd28xSGx4WFdVWkhYTWVFPQ=="
+                href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-bisa-gold text-bisa-navy px-6 py-5 md:px-8 md:py-4 rounded font-black text-[1.1rem] md:text-base uppercase tracking-widest text-center hover:bg-white transition-colors w-full sm:w-auto shadow-lg shadow-bisa-gold/20"

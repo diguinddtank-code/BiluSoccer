@@ -16,7 +16,7 @@ export default function ExperienceStrip() {
           <polygon points="12,9 15,11 14,14 10,14 9,11" fill="currentColor" opacity="0.2" />
         </svg>
       ),
-      title: 'Brazilian Methodology',
+      title: 'Global Elite Methodology',
       desc: 'Technical excellence rooted in South American soccer culture',
     },
     {

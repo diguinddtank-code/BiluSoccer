@@ -17,20 +17,20 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: 'BILU International Soccer Academy (BISA) | Best Soccer Club in Charleston, SC',
-  description: 'Rated the best soccer club and academy in Charleston & Summerville, SC. BISA provides elite youth soccer development, Brazilian methodology, and summer camps for U4-U18.',
-  keywords: 'best soccer club in Charleston SC, top soccer academy Summerville, youth soccer Charleston, Goose Creek soccer, Brazilian soccer training, BISA, BILU International Soccer Academy, competitive soccer, soccer tryouts, summer soccer camps',
+  title: 'BISA (BISA) | Best Soccer Club in Charleston, SC',
+  description: 'Rated the best soccer club and academy in Charleston & Summerville, SC. BISA provides elite youth soccer development, Global Elite Methodology, and summer camps for U4-U18.',
+  keywords: 'best soccer club in Charleston SC, top soccer academy Summerville, youth soccer Charleston, Goose Creek soccer, Global Elite soccer training, BISA, BISA, competitive soccer, soccer tryouts, summer soccer camps',
   openGraph: {
-    title: 'BILU International Soccer Academy | Best Soccer Club in Charleston, SC',
-    description: 'Rated the best youth soccer development program in Charleston & Summerville, SC. Expert professional coaching and elite Brazilian methodology.',
+    title: 'BISA | Best Soccer Club in Charleston, SC',
+    description: 'Rated the best youth soccer development program in Charleston & Summerville, SC. Expert professional coaching and elite Global Elite Methodology.',
     url: 'https://bilusoccer.com',
-    siteName: 'BILU International Soccer Academy',
+    siteName: 'BISA',
     images: [
       {
         url: 'https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png',
         width: 1200,
         height: 630,
-        alt: 'BILU International Soccer Academy Logo',
+        alt: 'BISA Logo',
       },
     ],
     locale: 'en_US',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BILU International Soccer Academy | BISA',
+    title: 'BISA | BISA',
     description: 'Elite youth soccer development in Metro Charleston, SC.',
     images: ['https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png'],
   },
@@ -60,12 +60,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     {
       '@context': 'https://schema.org',
       '@type': 'SportsClub',
-      name: 'BILU International Soccer Academy',
+      name: 'BISA',
       alternateName: 'BISA',
       url: 'https://bilusoccer.com',
       logo: 'https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png',
       image: 'https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png',
-      description: 'Recognized as the best youth soccer academy in Charleston and Summerville, SC. BILU International Soccer Academy (BISA) provides elite Brazilian methodology training for U4-U18 boys and girls.',
+      description: 'Recognized as the best youth soccer academy in Charleston and Summerville, SC. BISA (BISA) provides elite Global Elite Methodology training for U4-U18 boys and girls.',
       telephone: '+1-843-304-9414',
       email: 'info@bilusoccer.com',
       address: {
@@ -104,7 +104,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           name: "What is the best soccer academy in Charleston, SC?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "BILU International Soccer Academy (BISA) is widely considered one of the best soccer academies in the Charleston, SC area, serving Summerville, Goose Creek, and Mt. Pleasant. BISA specializes in elite Brazilian methodology, providing professional coaching for U4-U18 youth players focusing on technical development, character building, and international pathways."
+            text: "BISA (BISA) is widely considered one of the best soccer academies in the Charleston, SC area, serving Summerville, Goose Creek, and Mt. Pleasant. BISA specializes in elite Global Elite Methodology, providing professional coaching for U4-U18 youth players focusing on technical development, character building, and international pathways."
           }
         },
         {
@@ -112,7 +112,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           name: "Where are the best summer soccer camps in Charleston?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "BILU International Soccer Academy offers top-tier summer soccer camps in the Charleston area, specifically hosted at Sangaree Middle School. Their immersive camps run during June and July, featuring a World Cup style format, intense technical training, and an active global community."
+            text: "BISA offers top-tier summer soccer camps in the Charleston area, specifically hosted at Sangaree Middle School. Their immersive camps run during June and July, featuring a World Cup style format, intense technical training, and an active global community."
           }
         }
       ]

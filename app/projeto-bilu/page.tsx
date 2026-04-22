@@ -140,7 +140,7 @@ export default function ProjetoBiluPage() {
         </motion.div>
       </section>
 
-      {/* 2. O QUE É O PROJETO BILU */}
+      {/* 2. O QUE É O Projeto BILU */}
       <section className="py-24 md:py-32 relative">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-16">
           <motion.div 

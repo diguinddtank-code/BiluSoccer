@@ -183,7 +183,7 @@ export default function WorldLanguages() {
 
           <div className="flex flex-col gap-8">
             <p className="text-lg sm:text-xl leading-relaxed font-medium text-bisa-white/90 drop-shadow-md">
-              Bilu International Soccer Academy is built on global experience. Led by Sports Director Paulo, who has coached athletes from over 19 nations, BISA brings a world-class methodology to the Charleston metro area.
+              BISA is built on global experience. Led by Sports Director Paulo, who has coached athletes from over 19 nations, BISA brings a world-class methodology to the Charleston metro area.
             </p>
           </div>
         </div>

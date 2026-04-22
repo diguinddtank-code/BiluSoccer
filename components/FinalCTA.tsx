@@ -38,7 +38,7 @@ export default function FinalCTA() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
-              href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc0NzQzMzA1N3xkS2RTeERnQ0d4TlNqcEVlWnI3M1EzRnRQeThEd28xSGx4WFdVWkhYTWVFPQ=="
+              href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ=="
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-bisa-gold text-bisa-navy px-10 py-5 rounded font-black text-xl uppercase tracking-widest hover:bg-white transition-colors shadow-[0_0_30px_rgba(245,166,35,0.3)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]"

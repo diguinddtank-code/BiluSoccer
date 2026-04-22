@@ -1,3 +1,11 @@
+import * as fs from 'fs';
+import * as path from 'path';
+
+// Load base template from summer-camps to see the structure, 
+// but we will generate completely independent TSX files below.
+
+const generateProgramPage = (config: any) => {
+  return `
 'use client';
 
 import { useState } from 'react';
@@ -8,17 +16,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const REGISTER_URL = "https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ==";
 
-// --- Subcomponents ---
-
 function Ticker() {
-  const { t } = useLanguage();
   const items = [
-    t('sc.ticker.1'), 
-    t('sc.ticker.2'), 
-    t('sc.ticker.3'), 
-    t('sc.ticker.4'), 
-    t('sc.ticker.5'), 
-    t('sc.ticker.6')
+    "${config.ticker[0]}", 
+    "${config.ticker[1]}", 
+    "${config.ticker[2]}", 
+    "${config.ticker[3]}", 
+    "${config.ticker[4]}", 
+    "${config.ticker[5]}"
   ];
   const tripleItems = [...items, ...items, ...items];
 
@@ -77,152 +82,88 @@ function FAQItem({ question, answer }: { question: string, answer: string }) {
   );
 }
 
-// --- Data ---
-const programCards = [
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg>,
-    title: "June & July",
-    desc: "Two full months of elite soccer development"
-  },
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>,
-    title: "Sangaree Middle School",
-    desc: "Convenient, safe, and familiar location"
-  },
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
-    title: "2x Per Week",
-    desc: "Consistent training rhythm that builds real skills"
-  },
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M18.75 4.236c.982.143 1.954.317 2.916.52a6.003 6.003 0 01-5.395 4.972m0 0a8.001 8.001 0 00-1.027-3.238 8.001 8.001 0 00-3.92-3.238 8.001 8.001 0 00-1.027 3.238 8.001 8.001 0 003.92 3.238" /></svg>,
-    title: "Intramural Tournament",
-    desc: "Compete, win, grow — all within the camp community"
-  }
-];
-
-const features = [
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>,
-    title: "Elite Coaching",
-    desc: "Certified coaches with international experience and real passion for player development"
-  },
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
-    title: "Skill Development",
-    desc: "Technical, tactical, and physical training adapted to every age and level"
-  },
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>,
-    title: "Team Culture",
-    desc: "Build friendships, learn to communicate, and grow as part of a real team"
-  },
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M18.75 4.236c.982.143 1.954.317 2.916.52a6.003 6.003 0 01-5.395 4.972m0 0a8.001 8.001 0 00-1.027-3.238 8.001 8.001 0 00-3.92-3.238 8.001 8.001 0 00-1.027 3.238 8.001 8.001 0 003.92 3.238" /></svg>,
-    title: "Intramural Tournament",
-    desc: "Every player competes in our internal championship — the highlight of the camp"
-  },
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>,
-    title: "Safe Environment",
-    desc: "Full supervision, inclusive atmosphere, and care for every individual"
-  },
-  {
-    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>,
-    title: "Summer Memories",
-    desc: "Games, laughs, growth — an experience that goes way beyond the pitch"
-  }
-];
-
 const flags = ["br","us","mx","co","hn","gt","ec","pe","pt","fr","ng","ma","jp","de","ar","uy","cr","pa","do","ve","cu","cl","gb"];
 
-export default function SummerCampsPage() {
-  const { t } = useLanguage();
-
+export default function ${config.componentName}() {
   const programCards = [
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg>,
-      title: t('sc.ov.1.title'),
-      desc: t('sc.ov.1.desc')
+      title: "${config.overview[0].title}",
+      desc: "${config.overview[0].desc}"
     },
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>,
-      title: t('sc.ov.2.title'),
-      desc: t('sc.ov.2.desc')
+      title: "${config.overview[1].title}",
+      desc: "${config.overview[1].desc}"
     },
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
-      title: t('sc.ov.3.title'),
-      desc: t('sc.ov.3.desc')
+      title: "${config.overview[2].title}",
+      desc: "${config.overview[2].desc}"
     },
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M18.75 4.236c.982.143 1.954.317 2.916.52a6.003 6.003 0 01-5.395 4.972m0 0a8.001 8.001 0 00-1.027-3.238 8.001 8.001 0 00-3.92-3.238 8.001 8.001 0 00-1.027 3.238 8.001 8.001 0 003.92 3.238" /></svg>,
-      title: t('sc.ov.4.title'),
-      desc: t('sc.ov.4.desc')
+      title: "${config.overview[3].title}",
+      desc: "${config.overview[3].desc}"
     }
   ];
 
   const features = [
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>,
-      title: t('sc.feat.1.title'),
-      desc: t('sc.feat.1.desc')
+      title: "${config.features[0].title}",
+      desc: "${config.features[0].desc}"
     },
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
-      title: t('sc.feat.2.title'),
-      desc: t('sc.feat.2.desc')
+      title: "${config.features[1].title}",
+      desc: "${config.features[1].desc}"
     },
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>,
-      title: t('sc.feat.3.title'),
-      desc: t('sc.feat.3.desc')
+      title: "${config.features[2].title}",
+      desc: "${config.features[2].desc}"
     },
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M18.75 4.236c.982.143 1.954.317 2.916.52a6.003 6.003 0 01-5.395 4.972m0 0a8.001 8.001 0 00-1.027-3.238 8.001 8.001 0 00-3.92-3.238 8.001 8.001 0 00-1.027 3.238 8.001 8.001 0 003.92 3.238" /></svg>,
-      title: t('sc.feat.4.title'),
-      desc: t('sc.feat.4.desc')
+      title: "${config.features[3].title}",
+      desc: "${config.features[3].desc}"
     },
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>,
-      title: t('sc.feat.5.title'),
-      desc: t('sc.feat.5.desc')
+      title: "${config.features[4].title}",
+      desc: "${config.features[4].desc}"
     },
     {
       icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>,
-      title: t('sc.feat.6.title'),
-      desc: t('sc.feat.6.desc')
+      title: "${config.features[5].title}",
+      desc: "${config.features[5].desc}"
     }
   ];
 
   const steps = [
-    { num: t('sc.step.1.num'), title: t('sc.step.1.title'), desc: t('sc.step.1.desc') },
-    { num: t('sc.step.2.num'), title: t('sc.step.2.title'), desc: t('sc.step.2.desc') },
-    { num: t('sc.step.3.num'), title: t('sc.step.3.title'), desc: t('sc.step.3.desc') },
-    { num: t('sc.step.4.num'), title: t('sc.step.4.title'), desc: t('sc.step.4.desc') },
+    { num: "${config.steps[0].num}", title: "${config.steps[0].title}", desc: "${config.steps[0].desc}" },
+    { num: "${config.steps[1].num}", title: "${config.steps[1].title}", desc: "${config.steps[1].desc}" },
+    { num: "${config.steps[2].num}", title: "${config.steps[2].title}", desc: "${config.steps[2].desc}" },
+    { num: "${config.steps[3].num}", title: "${config.steps[3].title}", desc: "${config.steps[3].desc}" }
   ];
 
   const faqs = [
-    { q: t('sc.faq.1.q'), a: t('sc.faq.1.a') },
-    { q: t('sc.faq.2.q'), a: t('sc.faq.2.a') },
-    { q: t('sc.faq.3.q'), a: t('sc.faq.3.a') },
-    { q: t('sc.faq.4.q'), a: t('sc.faq.4.a') },
-    { q: t('sc.faq.5.q'), a: t('sc.faq.5.a') },
-    { q: t('sc.faq.6.q'), a: t('sc.faq.6.a') },
+    { q: "${config.faqs[0].q}", a: "${config.faqs[0].a}" },
+    { q: "${config.faqs[1].q}", a: "${config.faqs[1].a}" },
+    { q: "${config.faqs[2].q}", a: "${config.faqs[2].a}" },
+    { q: "${config.faqs[3].q}", a: "${config.faqs[3].a}" }
   ];
+
   return (
     <main className="text-white selection:bg-[#CCFF00] selection:text-black">
       
       {/* 1. HERO */}
       <section className="relative min-h-[100svh] lg:min-h-screen pt-20 lg:pt-32 pb-20 flex flex-col justify-center items-center text-center px-4 overflow-hidden bg-black">
-        
-        {/* Grain overlay via inline style */}
         <div 
           className="absolute inset-0 z-0 pointer-events-none opacity-20"
-          style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" }}
+          style={{ backgroundImage: "url(\\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\\")" }}
         />
-        
-        {/* Grid pattern */}
         <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#CCFF00_1px,transparent_1px),linear-gradient(to_bottom,#CCFF00_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.03]" />
         
         <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center mt-6 lg:mt-0">
@@ -250,7 +191,7 @@ export default function SummerCampsPage() {
             className="border border-[#CCFF00]/40 rounded-full px-4 py-1.5 md:px-6 md:py-2 mb-6 md:mb-8 bg-black/50 backdrop-blur-sm"
           >
             <span className="text-[#CCFF00] font-bold text-[10px] sm:text-xs md:text-sm tracking-[0.3em] uppercase">
-              {t('sc.hero.badge')}
+              ${config.hero.badge}
             </span>
           </motion.div>
 
@@ -261,8 +202,8 @@ export default function SummerCampsPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="w-full flex-col font-bebas flex mb-4 sm:mb-6 md:mb-8 leading-[0.85]"
           >
-            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-white w-full tracking-tighter m-0 p-0 break-words">{t('sc.hero.title1')}</h1>
-            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-[#CCFF00] w-full tracking-tighter m-0 p-0 break-words">{t('sc.hero.title2')}</h1>
+            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-white w-full tracking-tighter m-0 p-0 break-words">${config.hero.title1}</h1>
+            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-[#CCFF00] w-full tracking-tighter m-0 p-0 break-words">${config.hero.title2}</h1>
           </motion.div>
 
           <motion.p
@@ -272,7 +213,7 @@ export default function SummerCampsPage() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto font-medium mb-12 px-4"
           >
-            {t('sc.hero.subtitle')}
+            ${config.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -288,13 +229,13 @@ export default function SummerCampsPage() {
               rel="noopener noreferrer"
               className="bg-[#CCFF00] text-black px-10 py-5 rounded-sm font-black uppercase tracking-widest text-lg hover:bg-white transition-colors duration-300 flex items-center justify-center whitespace-nowrap"
             >
-              {t('sc.hero.btn1')}
+              SECURE YOUR SPOT \u2192
             </Link>
             <Link 
               href="#program"
               className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-sm font-black uppercase tracking-widest text-lg hover:bg-white hover:text-black transition-colors duration-300 flex items-center justify-center whitespace-nowrap"
             >
-              {t('sc.hero.btn2')}
+              SEE PROGRAM DETAILS
             </Link>
           </motion.div>
         </div>
@@ -324,10 +265,10 @@ export default function SummerCampsPage() {
             className="text-center mb-16"
           >
             <span className="text-[#CCFF00] font-bold text-sm tracking-[0.3em] uppercase block mb-4">
-              {t('sc.overview.badge')}
+              The Program
             </span>
             <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-widest uppercase">
-              {t('sc.overview.title')}
+              PROGRAM OVERVIEW
             </h2>
           </motion.div>
 
@@ -363,7 +304,7 @@ export default function SummerCampsPage() {
             className="text-center mb-16"
           >
             <h2 className="font-bebas text-4xl md:text-6xl text-white tracking-widest uppercase">
-              {t('sc.features.title')}
+              WHAT YOUR CHILD WILL EXPERIENCE
             </h2>
           </motion.div>
 
@@ -399,45 +340,29 @@ export default function SummerCampsPage() {
             className="mb-12"
           >
             <h2 className="font-bebas text-4xl md:text-5xl text-white tracking-widest uppercase mb-4">
-              {t('sc.global.title1')} <span className="text-[#CCFF00]">{t('sc.global.title2')}</span>
+              BISA <span className="text-[#CCFF00]">GLOBAL DNA</span>
             </h2>
             <p className="text-gray-400 text-lg">
-              {t('sc.global.desc')}
+              Our methodology draws from the best soccer cultures around the world.
             </p>
           </motion.div>
         </div>
 
-                <div 
-          className="relative w-full overflow-hidden mt-8 max-w-[100vw] mx-auto flex flex-col gap-4"
+        <div 
+          className="relative w-full overflow-hidden mt-8 max-w-[100vw] mx-auto"
           style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
         >
           <motion.div
-            className="flex w-max gap-4 py-2"
+            className="flex w-max gap-4 py-4"
             animate={{ x: ["0%", "-50%"] }}
             transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
           >
             {[...flags, ...flags].map((code, i) => (
-              <div key={"row1-" + code + "-" + i} className="shrink-0">
+              <div key={\`\${code}-\${i}\`} className="shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src={"https://flagcdn.com/w80/" + code + ".png"} 
-                  alt={code + " flag"}
-                  className="w-16 h-11 md:w-20 md:h-14 object-cover rounded shadow-lg filter hover:brightness-125 hover:scale-105 transition-all"
-                />
-              </div>
-            ))}
-          </motion.div>
-          <motion.div
-            className="flex w-max gap-4 py-2"
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
-          >
-            {[...[...flags].reverse(), ...[...flags].reverse()].map((code, i) => (
-              <div key={"row2-" + code + "-" + i} className="shrink-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src={"https://flagcdn.com/w80/" + code + ".png"} 
-                  alt={code + " flag"}
+                  src={\`https://flagcdn.com/w80/\${code}.png\`} 
+                  alt={\`\${code} flag\`}
                   className="w-16 h-11 md:w-20 md:h-14 object-cover rounded shadow-lg filter hover:brightness-125 hover:scale-105 transition-all"
                 />
               </div>
@@ -457,7 +382,7 @@ export default function SummerCampsPage() {
             className="text-center mb-20"
           >
             <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-widest uppercase">
-              {t('sc.join.title1')} <span className="text-[#CCFF00]">{t('sc.join.title2')}</span>
+              BECOME A <span className="text-[#CCFF00]">CHAMPION</span>
             </h2>
           </motion.div>
 
@@ -500,7 +425,7 @@ export default function SummerCampsPage() {
               rel="noopener noreferrer"
               className="bg-[#CCFF00] text-black px-16 py-6 rounded-sm font-black uppercase tracking-widest text-xl hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(204,255,0,0.2)]"
             >
-              {t('sc.join.btn')}
+              REGISTER FOR ${config.hero.title2}
             </Link>
           </motion.div>
         </div>
@@ -516,8 +441,8 @@ export default function SummerCampsPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="font-bebas text-4xl md:text-6xl text-white tracking-widest uppercase">
-              {t('sc.faq.title')}
+            <h2 className="font-bebas text-5xl md:text-6xl text-white tracking-widest uppercase">
+              STILL HAVE QUESTIONS?
             </h2>
           </motion.div>
 
@@ -534,42 +459,193 @@ export default function SummerCampsPage() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-16 text-center"
+          >
+            <p className="text-gray-400 text-lg">
+              Contact us directly at <a href="mailto:info@bilusoccer.com" className="text-[#CCFF00] hover:underline hover:text-white transition-colors">info@bilusoccer.com</a>
+            </p>
+          </motion.div>
         </div>
       </section>
-
-      {/* 8. CTA FINAL */}
-      <section className="bg-[#CCFF00] py-32 px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-5xl mx-auto flex flex-col items-center"
-        >
-          <span className="text-black/50 font-bold text-sm tracking-[0.3em] uppercase mb-6 block">
-            {t('sc.cta.badge')}
-          </span>
-          <h2 className="font-bebas text-[clamp(2.5rem,8vw,6rem)] text-black uppercase tracking-tighter leading-[0.9] mb-6">
-            {t('sc.cta.title')}
-          </h2>
-          <p className="text-xl md:text-2xl text-black/80 font-medium max-w-2xl mx-auto mb-12 px-4">
-            {t('sc.cta.subtitle')}
-          </p>
-          
-          <Link 
-            href={REGISTER_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-black text-[#CCFF00] px-14 py-5 rounded-sm font-black uppercase tracking-widest text-2xl hover:bg-[#111] hover:-translate-y-1 hover:shadow-2xl transition-all"
-          >
-            {t('sc.cta.btn')}
-          </Link>
-          <p className="mt-6 text-black/40 text-xs tracking-widest uppercase font-bold">
-            {t('sc.cta.micro')}
-          </p>
-        </motion.div>
-      </section>
-
     </main>
   );
 }
+`;
+};
+
+const pages = [
+  {
+    path: 'academy-development',
+    config: {
+      componentName: 'AcademyDevelopmentPage',
+      hero: {
+        badge: 'U4 TO U14 · HIGH QUALITY FOUNDATIONAL TRAINING',
+        title1: 'ACADEMY',
+        title2: 'DEVELOPMENT',
+        subtitle: 'High-quality foundational and progressive training for performance-focused athletes.',
+      },
+      ticker: ['Academy Development', 'U4 to U14', 'Skill Building', 'Game Understanding', 'Professional Coaching', 'Open Registration'],
+      overview: [
+        {title: 'U4–U14 Program', desc: 'Age-appropriate modules designed for steady progression.'},
+        {title: 'Professional Environment', desc: 'Training designed to maximize touches, skills, and decision making.'},
+        {title: 'Multiple Venues', desc: 'Convenient training locations in Metro Charleston area.'},
+        {title: 'Pathway to Elite', desc: 'The fundamental stepping stone towards highest competitive level.'}
+      ],
+      features: [
+        {title: 'Progressive Curriculum', desc: 'Step-by-step methodology building on fundamentals into advanced play.'},
+        {title: 'Technical Mastery', desc: 'Deep focus on 1v1 skills, passing, receiving, and first touch.'},
+        {title: 'Tactical Awareness', desc: 'Learning structural play and positional awareness on the field.'},
+        {title: 'Physical Conditioning', desc: 'Age-specific athletic development to build agility and stamina.'},
+        {title: 'Psychological Growth', desc: 'Fostering winning mentalities, resilience, and sportsmanship.'},
+        {title: 'Holistic Development', desc: 'Creating excellent athletes and outstanding individuals off the field.'}
+      ],
+      steps: [
+        {num: '01', title: 'Register Online', desc: 'Complete our secure Playmetrics registration.'},
+        {num: '02', title: 'Evaluation', desc: 'Initial placement to ensure right competitive challenge.'},
+        {num: '03', title: 'Orientation', desc: 'Meet the coaches and learn the BISA methodology.'},
+        {num: '04', title: 'Start Training', desc: 'Join the sessions and begin your elite journey.'}
+      ],
+      faqs: [
+        {q: 'What ages does Academy Development cover?', a: 'This program is tailored specifically for boys and girls from U4 up to U14.'},
+        {q: 'Do I need previous experience?', a: 'Players should have a passion for the game, we will evaluate skill level to place them correctly.'},
+        {q: 'What is the commitment?', a: 'Trainings are held multiple times a week with weekend game opportunities depending on the group.'},
+        {q: 'How are teams formed?', a: 'Teams and training pools are formed objectively based on technical, tactical, physical, and psychological traits.'}
+      ]
+    }
+  },
+  {
+    path: 'junior-academy',
+    config: {
+      componentName: 'JuniorAcademyPage',
+      hero: {
+        badge: 'U8 TO U12 · ACCELERATED TECHNICAL DEVELOPMENT',
+        title1: 'JUNIOR',
+        title2: 'ACADEMY',
+        subtitle: 'Accelerated development program focused on technical mastery and game intelligence.',
+      },
+      ticker: ['Junior Academy', 'U8 to U12', 'Accelerated Growth', 'Elite Environment', 'Technical Mastery', 'Tactical IQ'],
+      overview: [
+        {title: 'U8–U12 Age Groups', desc: 'The golden age of learning and technical acquisition.'},
+        {title: 'Intensive Training', desc: 'Designed to challenge players out of their comfort zone safely.'},
+        {title: 'Game Intelligence', desc: 'Teaching players not just how to kick, but how to think.'},
+        {title: 'Competitive Play', desc: 'Regular matches against top regional opponents.'}
+      ],
+      features: [
+        {title: 'Elite Coaching Staff', desc: 'Specialized youth coaches who understand the psychological needs of U8-U12.'},
+        {title: 'Advanced Technique', desc: 'Mastery of complex movements, turns, and striking techniques.'},
+        {title: 'Small Sided Games', desc: 'Extensive use of small-sided play to maximize decision making.'},
+        {title: 'Video Analysis', desc: 'Introduction to tactical reviews to enhance game understanding.'},
+        {title: 'Growth Mindset', desc: 'Fostering an environment where mistakes are seen as learning opportunities.'},
+        {title: 'Next Level Prep', desc: 'Direct pathway and preparation for the BISA Elite program.'}
+      ],
+      steps: [
+        {num: '01', title: 'Apply Now', desc: 'Fill out the Playmetrics registration to express interest.'},
+        {num: '02', title: 'Tryout/Eval', desc: 'Attend a session to be evaluated by our technical directors.'},
+        {num: '03', title: 'Program Invite', desc: 'Receive your formal invitation to join the Junior Academy.'},
+        {num: '04', title: 'Accelerate', desc: 'Start training with like-minded, ambitious players.'}
+      ],
+      faqs: [
+        {q: 'How does this differ from Academy Development?', a: 'Junior Academy is an accelerated track for players demonstrating high potential and commitment at U8-U12.'},
+        {q: 'What if my child is not selected?', a: 'They can continue developing in our Academy program until they are ready to step up.'},
+        {q: 'Is travel required?', a: 'Yes, some regional travel is expected for standardized competitive matches.'},
+        {q: 'Can girls join?', a: 'Absolutely. We have comprehensive tracks for both boys and girls.'}
+      ]
+    }
+  },
+  {
+    path: 'elite',
+    config: {
+      componentName: 'EliteProgramPage',
+      hero: {
+        badge: 'U15 TO U18 · PROFESSIONAL AND COLLEGE PREPARATION',
+        title1: 'BISA',
+        title2: 'ELITE',
+        subtitle: 'Top-tier development and college/pro exposure for elite athletes.',
+      },
+      ticker: ['Elite Program', 'U15 to U18', 'College Pathways', 'Pro Exposure', 'Showcase Events', 'High Performance'],
+      overview: [
+        {title: 'U15–U18 Roster', desc: 'The pinnacle of BISA development for young adults.'},
+        {title: 'Showcase Access', desc: 'Participation in premier regional and national showcases.'},
+        {title: 'College Prep', desc: 'Guidance and support for NCAA recruitment.'},
+        {title: 'Professional Environment', desc: 'Standards mapped directly to professional soccer academies.'}
+      ],
+      features: [
+        {title: 'Tactical Periodization', desc: 'Advanced global elite methodology designed for peak performance.'},
+        {title: 'Strength & Conditioning', desc: 'Integrated athletic training to withstand demanding schedules.'},
+        {title: 'Recruitment Support', desc: 'Direct liaison with college networks and scouting databases.'},
+        {title: 'High Level Competition', desc: 'Playing against the best to bring out the best.'},
+        {title: 'Performance Analysis', desc: 'In-depth video breakdowns and situational analysis.'},
+        {title: 'Leadership Dev', desc: 'Building captains on the field and leaders off it.'}
+      ],
+      steps: [
+        {num: '01', title: 'Submit Profile', desc: 'Register your player profile and background.'},
+        {num: '02', title: 'Tryout', desc: 'Participate in rigorous assessment sessions.'},
+        {num: '03', title: 'Selection', desc: 'Accept your roster spot in the Elite squad.'},
+        {num: '04', title: 'Commitment', desc: 'Sign on for the season and begin intense preparation.'}
+      ],
+      faqs: [
+        {q: 'Is this only for players wanting to go pro?', a: 'No, it is for any highly committed player looking to maximize their potential, whether for college or professional levels.'},
+        {q: 'How many showcases do we attend?', a: 'Typically 2-4 major showcases a year, dependent on team level and exact age group.'},
+        {q: 'Do you help with college recruiting?', a: 'Yes! We actively guide players on putting together highlight reels and communicating with coaches.'},
+        {q: 'What is the practice intensity?', a: 'High. Training requires maximum focus and physical readiness, mirroring collegiate requirements.'}
+      ]
+    }
+  },
+  {
+    path: 'futsal',
+    config: {
+      componentName: 'FutsalProgramPage',
+      hero: {
+        badge: 'ALL AGES · SMALL COURT, HUGE IMPACT',
+        title1: 'BISA',
+        title2: 'FUTSAL',
+        subtitle: 'Small court. Big skills. Intensive focus on technique and decision making.',
+      },
+      ticker: ['Futsal', 'All Ages', 'Fast Paced', 'Technical Edge', 'Quick Decisions', 'Global Elite Secret'],
+      overview: [
+        {title: 'Indoor Surface', desc: 'Hard courts that enforce rapid ball movement.'},
+        {title: 'Heavier Ball', desc: 'Low-bounce ball demands precise control and passing.'},
+        {title: 'Tight Spaces', desc: 'Forces players to think quickly and escape pressure.'},
+        {title: 'All-Year Supplement', desc: 'The perfect complement to outdoor team training.'}
+      ],
+      features: [
+        {title: '1v1 Dominance', desc: 'Creates players comfortable beating defenders in tight areas.'},
+        {title: 'Quick Thinking', desc: 'Speeds up cognitive processing and decision making.'},
+        {title: 'Creative Flair', desc: 'Unlocks the global elite flair of imaginative play.'},
+        {title: 'Ball Mastery', desc: 'Extreme repetition of sole control and intricate touches.'},
+        {title: 'Transitional Play', desc: 'Constant shifting from attack to defense builds stamina and tactical awareness.'},
+        {title: 'Fun Factor', desc: 'High scoring, fast-moving games that players love.'}
+      ],
+      steps: [
+        {num: '01', title: 'Find a Session', desc: 'Check our schedule for current Futsal blocks.'},
+        {num: '02', title: 'Register', desc: 'Sign up via Playmetrics to secure a spot on the court.'},
+        {num: '03', title: 'Gear Up', desc: 'Bring your flat-soled indoor shoes.'},
+        {num: '04', title: 'Play Fast', desc: 'Jump in and transform your game.'}
+      ],
+      faqs: [
+        {q: 'Can anyone join Futsal?', a: 'Yes! Futsal is for all BISA players looking to sharpen their skills.'},
+        {q: 'Do I need special shoes?', a: 'Yes, mandatory indoor flat-soled soccer shoes (no cleats on the court!).'},
+        {q: 'Is it a massive difference from outdoor?', a: 'The principles of the game carry over, but the speed of thought required is much higher.'},
+        {q: 'Why do elite players play Futsal?', a: 'The brightest global stars started in Futsal—it forces technical perfection under extreme pressure.'}
+      ]
+    }
+  }
+];
+
+pages.forEach(p => {
+  const dirPath = path.join(process.cwd(), 'app', 'programs', p.path);
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+  const filePath = path.join(dirPath, 'page.tsx');
+  fs.writeFileSync(filePath, generateProgramPage(p.config));
+  console.log('Created: ', filePath);
+});
+
+console.log('Program pages generated successfully.');

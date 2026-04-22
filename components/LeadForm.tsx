@@ -31,7 +31,7 @@ export default function LeadForm() {
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #0a192f; padding: 20px; text-align: center;">
-          <h2 style="color: #D4AF37; margin: 0;">New Website Lead - Bilu Soccer Academy</h2>
+          <h2 style="color: #D4AF37; margin: 0;">New Website Lead - BISA</h2>
         </div>
         <div style="padding: 20px; background-color: #ffffff; color: #333333;">
           <p style="margin-bottom: 10px;"><strong>Parent/Guardian Name:</strong> ${formData.parentName}</p>
@@ -103,7 +103,7 @@ export default function LeadForm() {
             {t('form.title') || 'Get in Touch'}
           </h2>
           <p className="text-lg text-bisa-white/70 max-w-2xl mx-auto">
-            {t('form.subtitle') || 'Interested in joining Bilu Soccer Academy? Fill out the form below and our team will get back to you.'}
+            {t('form.subtitle') || 'Interested in joining BISA? Fill out the form below and our team will get back to you.'}
           </p>
         </motion.div>
 

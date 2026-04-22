@@ -12,7 +12,7 @@ export default function Footer() {
             <Link href="/" className="relative w-56 h-28 mb-6 transition-transform hover:scale-105">
               <Image 
                 src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
-                alt="BILU International Soccer Academy Logo" 
+                alt="BISA Logo" 
                 fill 
                 className="object-contain object-left" 
                 unoptimized
@@ -20,7 +20,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-bisa-white/70 font-medium tracking-wide text-sm mb-6" itemProp="description">
-              Elite youth soccer development in Metro Charleston, SC. Developing champions on and off the field through Brazilian methodology and professional coaching.
+              Elite youth soccer development in Metro Charleston, SC. Developing champions on and off the field through Global Elite Methodology and professional coaching.
             </p>
             <div className="flex space-x-4">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-bisa-white/50 hover:text-bisa-gold transition-colors" aria-label="Instagram">
@@ -104,7 +104,7 @@ export default function Footer() {
               <div className="flex items-start" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                 <MapPin className="w-5 h-5 text-bisa-gold mr-3 shrink-0 mt-0.5" />
                 <div>
-                  <span className="block text-bisa-white font-bold mb-1" itemProp="name">BILU International Soccer Academy</span>
+                  <span className="block text-bisa-white font-bold mb-1" itemProp="name">BISA</span>
                   <span itemProp="streetAddress">Metro Charleston Area</span><br />
                   <span itemProp="addressLocality">Goose Creek</span>, <span itemProp="addressRegion">SC</span> <span itemProp="postalCode">29445</span>
                 </div>
@@ -129,7 +129,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-bisa-white/50 text-xs font-medium uppercase tracking-wider text-center md:text-left">
-            © {new Date().getFullYear()} BILU International Soccer Academy. All Rights Reserved.
+            © {new Date().getFullYear()} BISA. All Rights Reserved.
           </p>
           <div className="flex space-x-6 text-xs font-medium uppercase tracking-wider text-bisa-white/50">
             <Link href="/privacy" className="hover:text-bisa-gold transition-colors">Privacy Policy</Link>

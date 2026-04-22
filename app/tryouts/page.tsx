@@ -94,7 +94,7 @@ export default function TryoutsPage() {
               Ready to Work?
             </h2>
             <Link
-              href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc0NzQzMzA1N3xkS2RTeERnQ0d4TlNqcEVlWnI3M1EzRnRQeThEd28xSGx4WFdVWkhYTWVFPQ=="
+              href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ=="
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-bisa-gold text-bisa-navy px-12 py-6 rounded font-black text-2xl uppercase tracking-widest hover:bg-white transition-colors"
