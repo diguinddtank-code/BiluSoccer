@@ -116,12 +116,25 @@ export default function ElitePathway() {
                 Reigning Supreme in the President's Cup. Our U15 squad demonstrated unmatched tactical discipline and technical mastery to claim the State Title.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4 md:pt-2">
-                <div className="flex gap-1.5">
-                  {[1,2,3,4,5].map((s) => <Star key={s} className="w-5 h-5 md:w-6 md:h-6 text-bisa-gold fill-bisa-gold filter drop-shadow" />)}
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pt-4 md:pt-2">
+                <div className="relative group shrink-0 transition-transform duration-700 hover:scale-110 flex items-center justify-center">
+                  {/* Logo Container */}
+                  <div className="relative w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] md:w-[150px] md:h-[150px] z-10 flex items-center justify-center">
+                    <Image 
+                      src="https://i.imgur.com/3Pb5Djj.png"
+                      alt="USYS Presidents Cup"
+                      fill
+                      className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)] md:drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
+                    />
+                  </div>
                 </div>
-                <div className="hidden sm:block h-px w-10 sm:w-16 bg-white/30" />
-                <span className="text-bisa-white/80 font-bold uppercase tracking-widest text-xs sm:text-sm">Elite Squad</span>
+                <div className="hidden sm:block h-12 w-px bg-white/30" />
+                <div className="flex flex-col items-center sm:items-start gap-2">
+                  <div className="flex gap-1.5">
+                    {[1,2,3,4,5].map((s) => <Star key={s} className="w-5 h-5 md:w-6 md:h-6 text-bisa-gold fill-bisa-gold filter drop-shadow" />)}
+                  </div>
+                  <span className="text-bisa-white/80 font-bold uppercase tracking-widest text-xs sm:text-sm pt-1">USYS Presidents Cup<br className="sm:hidden" /> <span className="hidden sm:inline">•</span> Elite Squad</span>
+                </div>
               </div>
             </div>
           </div>

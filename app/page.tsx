@@ -1,6 +1,7 @@
 import HeroSection from '@/components/HeroSection';
 import StatsBar from '@/components/StatsBar';
 import ElitePathway from '@/components/ElitePathway';
+import OfficialLeagues from '@/components/OfficialLeagues';
 import WorldLanguages from '@/components/WorldLanguages';
 import ProgramsGrid from '@/components/ProgramsGrid';
 import CoachesGrid from '@/components/CoachesGrid';
@@ -19,6 +20,7 @@ export default function Home() {
       <HeroSection />
       <StatsBar />
       <ElitePathway />
+      <OfficialLeagues />
       <ExperienceStrip />
       <ClubGallery />
       <ProgramsGrid />
