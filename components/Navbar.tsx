@@ -9,24 +9,24 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 // Language Selector Component
 const LanguageSelector = ({ language, setLanguage }: { language: string, setLanguage: (l: 'en' | 'pt' | 'es') => void }) => (
-  <div className="flex items-center gap-1.5 lg:gap-2.5 bg-bisa-navy-light/50 backdrop-blur-sm px-2 py-1.5 lg:px-4 lg:py-2 rounded-full border border-white/10 shadow-lg">
+  <div className="flex items-center gap-2 sm:gap-3 lg:gap-2.5 bg-bisa-navy-light/50 backdrop-blur-sm px-3 py-2 sm:px-4 sm:py-3 lg:px-4 lg:py-2 rounded-full border border-white/10 shadow-lg">
     <button 
       onClick={() => setLanguage('en')}
-      className={`relative w-5 h-3.5 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'en' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
+      className={`relative w-7 h-5 sm:w-9 sm:h-6 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'en' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
       title="English"
     >
       <Image src="https://flagcdn.com/w40/us.png" alt="English" fill className="object-cover" unoptimized />
     </button>
     <button 
       onClick={() => setLanguage('pt')}
-      className={`relative w-5 h-3.5 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'pt' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
+      className={`relative w-7 h-5 sm:w-9 sm:h-6 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'pt' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
       title="Português"
     >
       <Image src="https://flagcdn.com/w40/br.png" alt="Português" fill className="object-cover" unoptimized />
     </button>
     <button 
       onClick={() => setLanguage('es')}
-      className={`relative w-5 h-3.5 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'es' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
+      className={`relative w-7 h-5 sm:w-9 sm:h-6 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'es' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
       title="Español"
     >
       <Image src="https://flagcdn.com/w40/es.png" alt="Español" fill className="object-cover" unoptimized />
@@ -124,7 +124,7 @@ export default function Navbar() {
             <div className="flex items-center gap-4 relative z-50">
               {/* Mobile Language Selector (Hidden when menu is open) */}
               {!isMobileMenuOpen && (
-                <div className="flex items-center scale-90 origin-right">
+                <div className="flex items-center">
                   <LanguageSelector language={language} setLanguage={setLanguage as any} />
                 </div>
               )}

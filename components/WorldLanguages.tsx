@@ -139,17 +139,27 @@ export default function WorldLanguages() {
         </p>
 
         {/* Marquee de Bandeiras */}
-        <div className="w-full overflow-hidden flex flex-col gap-4 mb-16 relative"
+        <div className="w-full overflow-hidden flex flex-col gap-4 sm:gap-6 mb-16 relative"
              style={{
                opacity: isIntersecting ? 1 : 0,
                transform: isIntersecting ? 'translateY(0)' : 'translateY(20px)',
                transition: 'all 1s ease-out 400ms'
              }}>
-          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-32 bg-bisa-gold/10 blur-[50px] -z-10 pointer-events-none" />
+          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-40 bg-bisa-gold/10 blur-[50px] -z-10 pointer-events-none" />
           
-          <div className="flex whitespace-nowrap animate-marquee py-4" style={{ animationDuration: '40s' }}>
+          {/* Row 1: Normal Marquee */}
+          <div className="flex whitespace-nowrap animate-marquee py-2" style={{ animationDuration: '40s' }}>
             {[...flags1, ...flags1].map((flag, i) => (
-              <div key={i} className="mx-6 sm:mx-10 relative w-12 h-8 sm:w-20 sm:h-12 flex-shrink-0 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+              <div key={i} className="mx-4 sm:mx-8 relative w-12 h-8 sm:w-20 sm:h-12 flex-shrink-0 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                <Image src={flag.src} alt={flag.alt} fill className="object-cover rounded-sm" unoptimized />
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2: Reverse Marquee */}
+          <div className="flex whitespace-nowrap animate-marquee-reverse py-2" style={{ animationDuration: '45s' }}>
+            {[...flags1].reverse().concat([...flags1].reverse()).map((flag, i) => (
+              <div key={i} className="mx-4 sm:mx-8 relative w-12 h-8 sm:w-20 sm:h-12 flex-shrink-0 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
                 <Image src={flag.src} alt={flag.alt} fill className="object-cover rounded-sm" unoptimized />
               </div>
             ))}

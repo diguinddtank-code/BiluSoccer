@@ -61,60 +61,68 @@ export default function ElitePathway() {
 
         {/* Feature: State Champions Highlight */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-3xl overflow-hidden bg-black border border-white/10 shadow-2xl mb-24 group"
+          className="relative rounded-[2rem] overflow-hidden bg-[#0A1020] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] mb-24 group flex flex-col md:block"
         >
-          <div className="absolute inset-0">
-            {/* Mobile Image */}
+          {/* ---- MOBILE LAYOUT ---- */}
+          {/* Mobile Image Banner (Only visible on small screens) */}
+          <div className="relative h-[300px] sm:h-[400px] w-full md:hidden">
             <Image 
               src="https://i.imgur.com/JBYxTIU.png"
               alt="BISA State Champions Mobile"
               fill
-              className="object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700 md:hidden object-top"
+              className="object-cover object-top"
             />
-            {/* Desktop Image */}
+            {/* Soft gradient into the background color */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1020] via-transparent to-transparent" />
+
+            {/* Mobile Badge Overlay */}
+            <div className="absolute top-6 left-6 right-6 flex justify-center z-20">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-bisa-gold text-bisa-navy-dark rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_4px_15px_rgba(235,171,4,0.3)]">
+                <ShieldCheck className="w-4 h-4" />
+                Current Title Holders
+              </div>
+            </div>
+          </div>
+
+          {/* ---- DESKTOP LAYOUT Background ---- */}
+          <div className="absolute inset-0 z-0 hidden md:block">
             <Image 
               src="https://i.imgur.com/wZZMCRa.png"
               alt="BISA State Champions Desktop"
               fill
-              className="object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-700 hidden md:block object-right"
+              className="object-cover opacity-90 object-[70%_top] lg:object-right transition-transform duration-1000 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-bisa-navy-dark/95 via-bisa-navy-dark/80 md:via-bisa-navy-dark/40 to-transparent md:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A1020] via-[#0A1020]/90 lg:via-[#0A1020]/40 to-transparent" />
           </div>
           
-          <div className="relative z-10 p-8 md:p-14 lg:p-20 flex flex-col md:flex-row items-center gap-10">
-            <div className="flex-1 space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-bisa-gold text-bisa-navy-dark rounded-full font-bold text-xs md:text-sm uppercase tracking-widest mb-2 shadow-[0_0_15px_rgba(235,171,4,0.4)]">
+          <div className="relative z-10 px-6 pb-10 pt-0 md:p-14 lg:p-20 flex flex-col md:flex-row md:items-center gap-6 md:gap-14 lg:gap-20">
+            {/* Text Content */}
+            <div className="flex-1 space-y-5 sm:space-y-6 md:space-y-8 text-center md:text-left w-full flex flex-col items-center md:items-start z-10">
+              <div className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-bisa-gold text-bisa-navy-dark rounded-xl font-black text-sm uppercase tracking-widest shadow-[0_4px_15px_rgba(235,171,4,0.3)] mt-2 md:mt-0">
                 <ShieldCheck className="w-5 h-5" />
                 Current Title Holders
               </div>
-              <h4 className="text-5xl md:text-7xl font-black text-bisa-white uppercase tracking-tighter leading-none drop-shadow-lg">
-                U15 State <br /> <span className="text-bisa-gold">Champions</span>
+              
+              <h4 className="text-[2.75rem] sm:text-6xl md:text-7xl font-black text-bisa-white uppercase tracking-tighter leading-[0.95] drop-shadow-lg">
+                U15 State <br className="hidden md:block" /> 
+                <span className="text-bisa-gold drop-shadow-[0_0_20px_rgba(235,171,4,0.3)]">Champions</span>
               </h4>
-              <p className="text-xl md:text-2xl text-bisa-white/90 font-medium max-w-xl leading-relaxed">
+              
+              <p className="text-base sm:text-lg md:text-2xl text-bisa-white/90 font-medium max-w-xl leading-relaxed drop-shadow-md">
                 Reigning Supreme in the President's Cup. Our U15 squad demonstrated unmatched tactical discipline and technical mastery to claim the State Title.
               </p>
               
-              <div className="flex items-center gap-4 pt-4">
-                <div className="flex gap-1">
-                  {[1,2,3,4,5].map((s) => <Star key={s} className="w-5 h-5 text-bisa-gold fill-bisa-gold" />)}
+              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4 md:pt-2">
+                <div className="flex gap-1.5">
+                  {[1,2,3,4,5].map((s) => <Star key={s} className="w-5 h-5 md:w-6 md:h-6 text-bisa-gold fill-bisa-gold filter drop-shadow" />)}
                 </div>
-                <div className="h-px w-16 bg-white/20" />
-                <span className="text-bisa-white/60 font-bold uppercase tracking-widest text-sm">Elite Squad</span>
+                <div className="hidden sm:block h-px w-10 sm:w-16 bg-white/30" />
+                <span className="text-bisa-white/80 font-bold uppercase tracking-widest text-xs sm:text-sm">Elite Squad</span>
               </div>
-            </div>
-
-            {/* Achievement Badge */}
-            <div className="w-[200px] h-[200px] md:w-[280px] md:h-[280px] shrink-0 relative bg-bisa-navy rounded-full border-4 border-bisa-gold flex items-center justify-center shadow-[0_0_50px_rgba(235,171,4,0.3)]">
-               <div className="absolute inset-2 border border-bisa-gold/30 rounded-full border-dashed animate-spin-slow" />
-               <div className="text-center p-6">
-                 <Trophy className="w-20 h-20 md:w-28 md:h-28 text-bisa-gold mx-auto mb-2 drop-shadow-lg" />
-                 <span className="block font-black text-white text-xl md:text-2xl uppercase tracking-tighter">President's</span>
-                 <span className="block font-bold text-white/80 text-sm md:text-base uppercase tracking-widest">Cup</span>
-               </div>
             </div>
           </div>
         </motion.div>
