@@ -150,62 +150,47 @@ export default function ElitePathway() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-10 mt-12">
           {leagues.map((league, index) => (
             <motion.div
               key={league.name}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="relative group bg-bisa-navy rounded-3xl p-8 border border-white/5 hover:border-bisa-gold/30 transition-all shadow-xl hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden"
+              className="relative group bg-bisa-navy/40 backdrop-blur-xl rounded-3xl p-6 sm:p-8 lg:p-10 border border-white/10 hover:border-bisa-gold/50 transition-colors duration-500 flex flex-col z-10"
             >
-              {/* Background gradient on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
+              {/* Premium Glow Effect on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-bisa-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
+              
               <div className="relative z-10 flex flex-col h-full">
-                {/* Visual Header / Logo Area */}
-                <div className="flex items-center justify-between mb-8">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${league.color} flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
-                    {league.icon}
+                {/* Header */}
+                <div className="flex flex-row justify-between items-start mb-8 gap-4">
+                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br ${league.color} flex items-center justify-center shadow-lg shrink-0 transform group-hover:scale-110 transition-transform duration-500`}>
+                    <div className="text-bisa-navy-dark scale-125 sm:scale-150">
+                      {league.icon}
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <span className="inline-block px-3 py-1 bg-black/40 text-bisa-white/80 rounded-full text-xs font-bold uppercase tracking-widest border border-white/10">
-                      {league.age}
-                    </span>
-                  </div>
+                  
+                  <span className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-black/50 backdrop-blur-md rounded-full text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-widest border border-white/10 whitespace-nowrap">
+                    <span className="text-bisa-gold mr-1.5 sm:mr-2 text-lg sm:text-xl leading-none">•</span> {league.age}
+                  </span>
                 </div>
 
                 <div className="mb-4">
-                  <h4 className="text-4xl font-black text-white tracking-tighter mb-1">
+                  <h4 className="text-4xl sm:text-5xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-white/70 tracking-tighter uppercase mb-3">
                     {league.name}
                   </h4>
                   {league.name === 'N1L' && (
-                    <span className="inline-block text-[#CCFF00] font-bold text-xs uppercase tracking-widest bg-[#CCFF00]/10 px-2 py-1 rounded">
+                    <span className="inline-block text-bisa-navy-dark font-black text-[10px] sm:text-xs uppercase tracking-widest bg-[#CCFF00] px-3 py-1.5 rounded-full shadow-[0_0_15px_rgba(204,255,0,0.4)]">
                       Recently Qualified
                     </span>
                   )}
                 </div>
-
-                <p className="text-white/70 font-medium leading-relaxed mb-8 flex-grow">
+                
+                <p className="text-white/70 font-medium leading-relaxed text-base sm:text-lg mt-auto">
                   {league.description}
                 </p>
-
-                {/* Progress / Next level indicator */}
-                {index < leagues.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-5 lg:-right-6 w-10 h-10 lg:w-12 lg:h-12 bg-bisa-navy border-4 border-bisa-navy-dark rounded-full items-center justify-center z-20 translate-x-1/2 -translate-y-1/2">
-                    <ChevronRight className="w-6 h-6 text-white/50" />
-                  </div>
-                )}
-                <div className="pt-6 mt-auto border-t border-white/10 flex items-center justify-between group-hover:border-white/20 transition-colors">
-                  <span className="text-sm font-bold text-white/50 uppercase tracking-widest group-hover:text-white transition-colors">
-                    Official League
-                  </span>
-                  {/* Small circular logo placeholder */}
-                  <div className="w-10 h-10 rounded-full bg-white/5 relative overflow-hidden border border-white/20 flex items-center justify-center">
-                     <span className="text-[10px] font-black text-white/80">{league.name}</span>
-                  </div>
-                </div>
               </div>
             </motion.div>
           ))}
