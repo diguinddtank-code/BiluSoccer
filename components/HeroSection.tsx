@@ -50,11 +50,11 @@ export default function HeroSection() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-3xl lg:pr-4 flex flex-col items-center lg:items-start justify-center text-center lg:text-left mt-[-6vh] md:mt-0"
+            className="max-w-3xl lg:pr-4 flex flex-col items-center lg:items-start justify-center text-center lg:text-left mt-[-2vh] md:mt-0"
           >
             <motion.h1 
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-bisa-white uppercase tracking-tighter leading-[1.05] mb-4 lg:break-words pt-4 md:pt-0"
+              className="text-[12vw] leading-[1.1] sm:text-6xl md:text-7xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-bisa-white uppercase tracking-tighter mb-4 lg:break-words pt-4 md:pt-0 drop-shadow-md"
             >
               {t('hero.title1')} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-bisa-gold to-white">{t('hero.title2')}</span>
@@ -62,23 +62,23 @@ export default function HeroSection() {
             
             <motion.p 
               variants={itemVariants}
-              className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl 2xl:text-2xl text-bisa-white/80 font-medium tracking-wide mb-8 sm:mb-10 max-w-xl border-l-0 lg:border-l-4 border-bisa-gold px-2 lg:pl-4"
+              className="text-lg sm:text-xl md:text-2xl text-bisa-white/90 font-medium tracking-wide mb-8 sm:mb-12 max-w-xl border-l-0 lg:border-l-4 border-bisa-gold px-4 lg:pl-4 drop-shadow"
             >
               {t('hero.subtitle')}
             </motion.p>
             
-            <motion.div variants={itemVariants} className="flex flex-col w-full max-w-md mx-auto lg:mx-0 sm:flex-row gap-4 px-2 lg:px-0">
+            <motion.div variants={itemVariants} className="flex flex-col w-full max-w-md mx-auto lg:mx-0 sm:flex-row gap-4 px-4 lg:px-0">
               <Link
                 href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-bisa-gold text-bisa-navy px-6 py-5 md:px-8 md:py-4 rounded font-black text-[1.1rem] md:text-base uppercase tracking-widest text-center hover:bg-white transition-colors w-full sm:w-auto shadow-lg shadow-bisa-gold/20"
+                className="flex items-center justify-center min-h-[56px] bg-bisa-gold text-bisa-navy px-6 py-4 rounded-xl font-black text-base uppercase tracking-widest text-center hover:bg-white transition-colors w-full sm:w-auto shadow-[0_8px_20px_rgba(235,171,4,0.3)] hover:-translate-y-1"
               >
                 {t('hero.cta.primary')}
               </Link>
               <Link
                 href="/programs"
-                className="bg-bisa-navy/40 backdrop-blur-sm border-2 border-bisa-white text-bisa-white px-6 py-5 md:px-8 md:py-4 rounded font-black text-[1.1rem] md:text-base uppercase tracking-widest text-center hover:bg-bisa-white hover:text-bisa-navy transition-colors w-full sm:w-auto"
+                className="flex items-center justify-center min-h-[56px] bg-bisa-navy/60 backdrop-blur-md border border-white/20 text-bisa-white px-6 py-4 rounded-xl font-black text-base uppercase tracking-widest text-center hover:bg-white hover:text-bisa-navy transition-all w-full sm:w-auto hover:-translate-y-1"
               >
                 {t('hero.cta.secondary')}
               </Link>

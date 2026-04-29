@@ -85,9 +85,10 @@ export default function ProgramsGrid() {
               </p>
               <Link 
                 href={program.href} 
-                className="relative z-10 inline-flex items-center text-bisa-gold font-bold uppercase tracking-widest text-xs sm:text-sm hover:text-white transition-colors mt-auto w-max"
+                className="relative z-10 flex items-center justify-between text-bisa-white hover:text-bisa-navy bg-white/5 hover:bg-bisa-gold font-bold uppercase tracking-widest text-xs sm:text-sm px-4 py-4 rounded-lg mt-auto transition-colors border border-white/10 hover:border-transparent min-h-[56px]"
               >
-                Learn More <ArrowRight className="ml-1.5 w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
+                <span>Learn More</span>
+                <ArrowRight className="ml-1.5 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
           ))}

@@ -10,7 +10,7 @@ export default function FinalCTA() {
       {/* Dramatic Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="https://images.unsplash.com/photo-1518605368461-1ee7c532066d?q=80&w=2000&auto=format&fit=crop" 
+          src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
           alt="Soccer Stadium Lights" 
           fill 
           className="object-cover object-center opacity-30 mix-blend-luminosity"
@@ -36,18 +36,18 @@ export default function FinalCTA() {
             Applications open for all programs. Take the first step.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <Link
               href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ=="
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-bisa-gold text-bisa-navy px-10 py-5 rounded font-black text-xl uppercase tracking-widest hover:bg-white transition-colors shadow-[0_0_30px_rgba(245,166,35,0.3)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]"
+              className="w-full sm:w-auto flex items-center justify-center bg-bisa-gold text-bisa-navy px-10 py-5 rounded-xl font-black text-lg md:text-xl uppercase tracking-widest hover:bg-white transition-all shadow-[0_8px_30px_rgba(245,166,35,0.3)] hover:-translate-y-1 min-h-[56px]"
             >
               Register Now
             </Link>
             <Link
               href="/contact"
-              className="text-bisa-white font-bold uppercase tracking-widest hover:text-bisa-gold transition-colors flex items-center bg-white/5 backdrop-blur-sm px-8 py-5 rounded border border-white/10 hover:border-bisa-gold/50"
+              className="w-full sm:w-auto flex items-center justify-center text-bisa-white font-bold uppercase tracking-widest hover:text-bisa-navy hover:bg-bisa-white transition-all bg-white/5 backdrop-blur-sm px-8 py-5 rounded-xl border border-white/20 hover:border-transparent min-h-[56px]"
             >
               Contact Us <span className="ml-2 text-xl">→</span>
             </Link>

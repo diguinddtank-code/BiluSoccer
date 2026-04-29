@@ -34,19 +34,19 @@ export default function TryoutsCTA() {
           
           <Link
             href="/tryouts"
-            className="block w-full md:inline-block md:w-auto bg-bisa-gold text-bisa-navy px-8 py-4 md:px-12 md:py-5 rounded font-black text-lg md:text-xl uppercase tracking-widest hover:bg-white transition-colors mb-8 md:mb-10"
+            className="flex items-center justify-center w-full md:inline-flex md:w-auto bg-bisa-gold text-bisa-navy px-8 py-5 rounded-xl font-black text-lg md:text-xl uppercase tracking-widest hover:bg-white transition-all hover:-translate-y-1 shadow-[0_8px_20px_rgba(235,171,4,0.3)] mb-8 md:mb-10 min-h-[56px]"
           >
             Secure Your Spot
           </Link>
 
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
-            <span className="bg-white/10 border border-white/20 text-bisa-white px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider whitespace-nowrap">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
+            <span className="bg-white/10 border border-white/20 text-bisa-white px-4 py-3 sm:py-2 md:px-4 md:py-2 rounded-lg sm:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider text-center">
               Mon Apr 28 · 6:30 PM
             </span>
-            <span className="bg-white/10 border border-white/20 text-bisa-white px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider whitespace-nowrap">
+            <span className="bg-white/10 border border-white/20 text-bisa-white px-4 py-3 sm:py-2 md:px-4 md:py-2 rounded-lg sm:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider text-center">
               Wed Apr 30 · 6:30 PM
             </span>
-            <span className="bg-white/10 border border-white/20 text-bisa-white px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider whitespace-nowrap">
+            <span className="bg-white/10 border border-white/20 text-bisa-white px-4 py-3 sm:py-2 md:px-4 md:py-2 rounded-lg sm:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider text-center">
               Sat May 3 · 3:00 PM
             </span>
           </div>

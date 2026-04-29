@@ -1,16 +1,9 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { MapPin } from 'lucide-react';
+import { MapPin, Navigation } from 'lucide-react';
 
 export default function LocationsSection() {
-  const locations = [
-    { name: 'Dogwood Park', city: 'Goose Creek' },
-    { name: 'Foster Creek Park', city: 'Goose Creek' },
-    { name: 'Clayburne Field', city: 'Liberty Hall' },
-    { name: 'Tom Conley Park', city: 'Ladson' },
-  ];
-
   return (
     <section className="py-24 bg-bisa-navy relative overflow-hidden">
       {/* Topographic SVG Background */}
@@ -25,43 +18,58 @@ export default function LocationsSection() {
       {/* Glowing Orbs */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-bisa-gold/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-bisa-gold/10 text-bisa-gold rounded-full font-bold text-xs uppercase tracking-widest mb-4 border border-bisa-gold/20">
+            <MapPin className="w-4 h-4" />
+            Official Training Ground
+          </div>
           <h2 className="text-4xl md:text-5xl font-black text-bisa-white uppercase tracking-tighter">
-            Train Close to Home
+            Our Home
           </h2>
           <div className="w-24 h-1 bg-bisa-gold mx-auto mt-6 shadow-[0_0_15px_rgba(245,166,35,0.5)]" />
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {locations.map((loc, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group relative bg-bisa-navy-light/80 backdrop-blur-sm border border-white/10 p-8 flex flex-col items-center text-center hover:border-bisa-gold transition-colors overflow-hidden rounded-xl shadow-xl"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="group relative bg-[#0a1120]/80 backdrop-blur-md border border-white/10 p-6 sm:p-10 md:p-14 overflow-hidden rounded-3xl shadow-2xl flex flex-col md:flex-row items-center gap-8 md:gap-10"
+        >
+          {/* Hover Glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-bisa-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          
+          <div className="h-32 w-32 md:h-40 md:w-40 rounded-full bg-bisa-navy flex items-center justify-center shrink-0 border-4 border-bisa-gold/30 group-hover:border-bisa-gold transition-colors duration-500 shadow-[0_0_30px_rgba(245,166,35,0.15)] relative">
+            <div className="absolute inset-2 border border-bisa-gold/20 rounded-full border-dashed animate-spin-slow" />
+            <MapPin className="w-12 h-12 md:w-16 md:h-16 text-bisa-gold drop-shadow-lg transform group-hover:scale-110 transition-transform duration-500" />
+          </div>
+
+          <div className="text-center md:text-left flex-1">
+            <h3 className="text-3xl md:text-4xl font-black text-bisa-white uppercase tracking-tighter mb-3 relative z-10 drop-shadow-md">
+              Sangaree Middle School
+            </h3>
+            <p className="text-bisa-white/70 font-medium text-lg md:text-xl mb-8 relative z-10 max-w-lg">
+              1050 Discovery Dr, Ladson, SC 29456
+            </p>
+            
+            <a 
+              href="https://maps.google.com/?q=1050+Discovery+Dr,+Ladson,+SC+29456" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex justify-center items-center gap-2 bg-bisa-gold hover:bg-yellow-400 text-bisa-navy-dark px-8 py-4 rounded-xl font-black uppercase tracking-widest transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(235,171,4,0.4)] relative z-10 w-full md:w-auto min-h-[56px]"
             >
-              {/* Hover Glow */}
-              <div className="absolute inset-0 bg-gradient-to-b from-bisa-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
-              <MapPin className="w-10 h-10 text-bisa-gold mb-5 transform group-hover:-translate-y-1 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(245,166,35,0.3)]" />
-              <h3 className="text-xl font-black text-bisa-white uppercase tracking-tight mb-2 relative z-10">
-                {loc.name}
-              </h3>
-              <span className="text-bisa-white/60 font-bold text-xs uppercase tracking-widest relative z-10">
-                {loc.city}
-              </span>
-            </motion.div>
-          ))}
-        </div>
+              Get Directions
+              <Navigation className="w-5 h-5" />
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
