@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import SmoothScrolling from '@/components/SmoothScrolling';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -128,13 +129,15 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         />
       </head>
       <body className="bg-bisa-navy-dark text-bisa-white antialiased flex flex-col min-h-screen" suppressHydrationWarning>
-        <LanguageProvider>
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </LanguageProvider>
+        <SmoothScrolling>
+          <LanguageProvider>
+            <Navbar />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </LanguageProvider>
+        </SmoothScrolling>
       </body>
     </html>
   );

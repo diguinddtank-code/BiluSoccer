@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, Variants } from 'motion/react';
 import { Menu, X, ChevronRight, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -38,6 +39,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,6 +60,10 @@ export default function Navbar() {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
+
+  if (pathname === '/sponsorship') {
+    return null;
+  }
 
   const navLinks = [
     { name: t('nav.programs'), href: '/programs' },

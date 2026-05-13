@@ -1,8 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
 
 export default function Footer() {
+  const pathname = usePathname();
+  
+  if (pathname === '/sponsorship') {
+    return null;
+  }
+  
   return (
     <footer className="bg-bisa-navy pt-20 pb-8 border-t border-white/5" itemScope itemType="https://schema.org/SportsClub">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">

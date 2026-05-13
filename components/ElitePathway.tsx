@@ -113,7 +113,7 @@ export default function ElitePathway() {
               </h4>
               
               <p className="text-base sm:text-lg md:text-2xl text-bisa-white/90 font-medium max-w-xl leading-relaxed drop-shadow-md">
-                Reigning Supreme in the President's Cup. Our U15 squad demonstrated unmatched tactical discipline and technical mastery to claim the State Title.
+                Reigning Supreme in the President&apos;s Cup. Our U15 squad demonstrated unmatched tactical discipline and technical mastery to claim the State Title.
               </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pt-4 md:pt-2">
