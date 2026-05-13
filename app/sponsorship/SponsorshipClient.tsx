@@ -256,7 +256,7 @@ export default function SponsorshipClient() {
               ))}
               {/* Bar 1 */}
               <div className="relative flex flex-col items-center justify-end h-full w-[22%] max-w-20 group">
-                <div className="absolute -top-7 text-xs font-bold text-[#1B3A8C] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">$7,214</div>
+                <div className="absolute -top-7 text-xs font-bold text-[#1B3A8C] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap">$7,214</div>
                 <motion.div
                   className="w-full bg-[#1B3A8C] rounded-t-lg"
                   initial={{ height: 0 }}
@@ -268,7 +268,7 @@ export default function SponsorshipClient() {
               </div>
               {/* Bar 2 */}
               <div className="relative flex flex-col items-center justify-end h-full w-[22%] max-w-20 group">
-                <div className="absolute -top-7 text-xs font-bold text-[#1B3A8C] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">$16,243</div>
+                <div className="absolute -top-7 text-xs font-bold text-[#1B3A8C] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap">$16,243</div>
                 <motion.div
                   className="w-full bg-[#1B3A8C] rounded-t-lg"
                   initial={{ height: 0 }}
@@ -280,7 +280,7 @@ export default function SponsorshipClient() {
               </div>
               {/* Bar 3 stacked */}
               <div className="relative flex flex-col items-center justify-end h-full w-[22%] max-w-20 group">
-                <div className="absolute -top-7 text-xs font-bold text-[#22C55E] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">$50,153</div>
+                <div className="absolute -top-7 text-xs font-bold text-[#22C55E] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap">$50,153</div>
                 <motion.div
                   className="w-full flex flex-col justify-end rounded-t-lg overflow-hidden"
                   initial={{ height: 0 }}
@@ -313,80 +313,79 @@ export default function SponsorshipClient() {
       {/* ═══════════════════════════════════════════════
           SECTION 4 — BANNER SPONSORSHIP
       ═══════════════════════════════════════════════ */}
-      <section className="bg-white py-20 md:py-32 px-6 overflow-hidden">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch min-h-[560px] rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-
-            {/* Left — text */}
+      <section className="bg-white py-16 md:py-24 px-4 md:px-6 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch min-h-[580px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 bg-[#F8F9FC]">
+            
+            {/* Left — Text Side */}
             <motion.div
-              className="flex flex-col justify-center p-8 md:p-12 bg-[#F8F9FC] order-2 md:order-1"
+              className="flex flex-col justify-center p-8 md:p-14 order-2 md:order-1"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="inline-block bg-[#22C55E]/10 text-[#22C55E] text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full mb-4 self-start">
-                🏟️ Sponsorship Opportunity
+              <span className="inline-flex items-center gap-2 bg-[#1B3A8C]/5 text-[#1B3A8C] text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6 self-start border border-[#1B3A8C]/10">
+                <span className="w-2 h-2 rounded-full bg-[#1B3A8C] animate-pulse" />
+                Sponsorship Opportunity
               </span>
-              <h2 className="font-[family-name:var(--font-bebas)] text-[#1B3A8C] text-5xl md:text-6xl mb-4 tracking-wide leading-none">
+              <h2 className="font-[family-name:var(--font-bebas)] text-[#1B3A8C] text-5xl md:text-7xl mb-4 tracking-wide leading-none">
                 Banner<br />Sponsorship
               </h2>
-              <p className="text-gray-500 mb-7 font-medium leading-relaxed text-sm">
+              <p className="text-gray-500 mb-8 font-medium leading-relaxed max-w-md">
                 Strategically positioned 8&apos; x 4&apos; banner at our training field, seen daily by parents, athletes, and the whole local community.
               </p>
-              <ul className="space-y-3 mb-8">
+              <ul className="grid grid-cols-1 gap-4 mb-10">
                 {[
                   "Banner – 8' x 4' size",
-                  'Strategically positioned at the training field',
-                  'Seen daily by athletes, parents, and visitors',
-                  'QR Code included, providing direct access to your website',
-                  'Your brand associated with sports, health, and youth development',
+                  'Strategically positioned at the field',
+                  'Seen daily by parents and visitors',
+                  'QR Code for direct website access',
+                  'Association with youth development',
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <GreenCheck />
-                    <span className="text-gray-700 font-medium leading-tight pt-0.5 text-sm">{item}</span>
+                  <li key={item} className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E] shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span className="text-gray-700 font-semibold text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="rounded-full bg-[#1B3A8C] text-white px-6 py-3 inline-block font-bold shadow-lg shadow-blue-900/20 self-start text-sm hover:bg-blue-800 transition-colors">
-                Initial: $1,500 · Annual Renewal: $1,000
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="rounded-2xl bg-[#1B3A8C] text-white px-8 py-4 font-bold shadow-lg shadow-blue-900/20 text-center hover:scale-[1.02] transition-transform cursor-default">
+                  <div className="text-[10px] uppercase opacity-70 mb-0.5 tracking-tighter">Packages starting at</div>
+                  <div className="text-xl">$1,500 / Season</div>
+                </div>
               </div>
             </motion.div>
 
-            {/* Right — banner image over field bg */}
+            {/* Right — Immersive Mockup Side */}
             <motion.div
-              className="relative order-1 md:order-2 min-h-[320px]"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="relative order-1 md:order-2 min-h-[420px] md:min-h-0 overflow-hidden bg-white flex items-center justify-center p-6 md:p-12"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
             >
-              {/* Blue divider */}
-              <div className="hidden md:block absolute left-0 top-8 bottom-8 w-[3px] bg-[#1B3A8C]/15 z-10" />
-              {/* Field background */}
-              <div className="absolute inset-0 overflow-hidden">
+              {/* Subtle background element */}
+              <div className="absolute inset-0 bg-[#1B3A8C]/[0.02] pointer-events-none" />
+              
+              {/* Mockup Integration */}
+              <motion.div
+                className="relative z-10 w-full max-w-[480px]"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <img
-                  src="https://i.imgur.com/0uPLpLd.png"
-                  alt=""
-                  className="w-full h-full object-cover object-center blur-[1px] opacity-60"
-                  aria-hidden="true"
+                  src="https://i.imgur.com/6BQ7rrA.png"
+                  alt="Banner Mockup"
+                  className="w-full h-auto object-contain transition-transform duration-700 hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-white/20" />
-              </div>
-              {/* Banner centered */}
-              <div className="relative z-10 flex items-center justify-center h-full py-12 px-6">
-                <motion.div 
-                  className="bg-white p-2 md:p-3 rounded-xl shadow-2xl border-4 md:border-6 border-white transform rotate-1"
-                  whileHover={{ scale: 1.05, rotate: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <img
-                    src="https://i.imgur.com/6BQ7rrA.png"
-                    alt="Banner sponsorship mockup"
-                    className="w-full h-auto object-cover rounded-sm"
-                  />
-                </motion.div>
-              </div>
+                {/* Visual shadow anchor */}
+                <div className="absolute -bottom-6 left-[10%] right-[10%] h-8 bg-[#1B3A8C]/5 blur-2xl rounded-full z-0" />
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -395,61 +394,81 @@ export default function SponsorshipClient() {
       {/* ═══════════════════════════════════════════════
           SECTION 5 — FLAG SPONSORSHIP
       ═══════════════════════════════════════════════ */}
-      <section className="bg-[#F3F4F6] py-20 md:py-32 px-6 overflow-hidden">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="inline-block bg-[#22C55E]/10 text-[#22C55E] text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
-              🚩 Sponsorship Opportunity
-            </span>
-            <h2 className="font-[family-name:var(--font-bebas)] text-[#1B3A8C] text-5xl md:text-7xl tracking-wide leading-none mb-8">
-              Flag Sponsorship
-            </h2>
-            <ul className="text-left max-w-xl mx-auto space-y-4 mb-8">
-              {[
-                'Professionally designed with your company logo in full display',
-                'Installed at the training center and taken to games and official events',
-                'Continuous exposure to parents, families, and the local community',
-                'QR Code printed directly on the flag, linking to your website',
-                'Your brand associated with inclusion, sports development, and social impact',
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <GreenCheck />
-                  <span className="text-gray-700 font-medium leading-tight pt-0.5">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="rounded-full bg-[#1B3A8C] text-white px-8 py-3 inline-block font-bold shadow-md text-sm hover:bg-blue-800 transition-colors">
-              Initial: $2,500 · Annual Renewal: $2,000
-            </div>
-          </motion.div>
+      <section className="bg-[#F3F4F6] py-16 md:py-24 px-4 md:px-6 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch min-h-[580px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200 bg-white">
+            
+            {/* Left — Immersive Mockup Side */}
+            <motion.div
+              className="relative min-h-[420px] md:min-h-0 overflow-hidden bg-white flex items-center justify-center p-8 md:p-16"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              {/* Subtle background element */}
+              <div className="absolute inset-0 bg-[#1B3A8C]/[0.02] pointer-events-none" />
+              
+              {/* Mockup Integration */}
+              <motion.div
+                className="relative z-10 h-full flex flex-col items-center justify-center"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <img
+                  src="https://i.imgur.com/aYHpbOS.png"
+                  alt="Flag Mockup"
+                  className="h-full max-h-[480px] w-auto object-contain transition-transform duration-700 hover:scale-[1.03]"
+                />
+                {/* Visual shadow anchor */}
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-40 h-10 bg-[#1B3A8C]/5 blur-3xl rounded-full z-0" />
+              </motion.div>
+            </motion.div>
 
-          <motion.div
-            className="w-full rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden border-4 md:border-8 border-white bg-blue-900/10 flex justify-center items-center py-12 md:py-20 relative"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <img
-              src="https://i.imgur.com/0uPLpLd.png"
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover opacity-30"
-              aria-hidden="true"
-            />
-            <motion.img
-              src="https://i.imgur.com/aYHpbOS.png"
-              alt="Flag sponsorship mockup"
-              className="relative z-10 h-full max-h-[400px] w-auto object-contain drop-shadow-2xl"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-            />
-          </motion.div>
+            {/* Right — Text Side */}
+            <motion.div
+              className="flex flex-col justify-center p-8 md:p-14 bg-white"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="inline-flex items-center gap-2 bg-[#22C55E]/5 text-[#22C55E] text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6 self-start border border-[#22C55E]/10">
+                <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
+                Premium Branding
+              </span>
+              <h2 className="font-[family-name:var(--font-bebas)] text-[#1B3A8C] text-5xl md:text-7xl mb-4 tracking-wide leading-none">
+                Flag<br />Sponsorship
+              </h2>
+              <p className="text-gray-500 mb-8 font-medium leading-relaxed max-w-md">
+                A high-visibility vertical flag featuring your brand, prominently displayed at the training center and taken to every club match.
+              </p>
+              <ul className="grid grid-cols-1 gap-4 mb-10">
+                {[
+                  'Full-color professional logo design',
+                  'Present at all official academy events',
+                  'Taken to every club game (high mobility)',
+                  'Direct link via integrated QR Code',
+                  'Social impact brand association',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E] shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span className="text-gray-700 font-semibold text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="rounded-2xl bg-[#1B3A8C] text-white px-8 py-4 font-bold shadow-lg shadow-blue-900/20 text-center hover:scale-[1.02] transition-transform cursor-default">
+                  <div className="text-[10px] uppercase opacity-90 mb-0.5 tracking-tighter">Investment value</div>
+                  <div className="text-xl">$2,500 / Season</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -638,40 +657,111 @@ export default function SponsorshipClient() {
       {/* ═══════════════════════════════════════════════
           SECTION 8 — WHY BECOME A SPONSOR?
       ═══════════════════════════════════════════════ */}
-      <section className="bg-[#F3F4F6] py-20 md:py-32 px-6 overflow-hidden">
-        <div className="max-w-5xl mx-auto">
-          <motion.h2
-            className="text-center font-[family-name:var(--font-bebas)] text-[#1B3A8C] text-5xl md:text-7xl mb-14 tracking-wide leading-none"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.9 }}
-          >
-            Why Become a Sponsor?
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="relative py-24 md:py-32 px-6 overflow-hidden bg-[#1B3A8C]">
+        {/* Background Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img src="https://i.imgur.com/0uPLpLd.png" alt="" className="w-full h-full object-cover opacity-20 grayscale" aria-hidden="true" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1B3A8C] via-[#1B3A8C]/90 to-[#1B3A8C]" />
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10 px-4">
+          <div className="text-center mb-16 md:mb-20">
+            <span className="inline-block bg-[#22C55E]/10 text-[#22C55E] text-xs font-black uppercase tracking-[0.2em] px-5 py-2 rounded-full mb-6 border border-[#22C55E]/20">
+              Community & Growth
+            </span>
+            <motion.h2
+              className="font-[family-name:var(--font-bebas)] text-white text-6xl md:text-8xl tracking-tight leading-none"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              Why Partner With <span className="text-[#22C55E]">BISA?</span>
+            </motion.h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { text: 'Gain local brand exposure all season long', delay: 0.1 },
-              { text: 'Show your support for youth development', delay: 0.2 },
-              { text: 'Connect your business with families and the community', delay: 0.3 },
-              { text: 'Exclusive promotional opportunity — limited spaces available!', delay: 0.4, highlight: true },
+              {
+                title: 'High Exposure',
+                desc: 'Gain local brand exposure all season long to hundreds of families.',
+                icon: '🚀',
+                delay: 0.1
+              },
+              {
+                title: 'Youth Impact',
+                desc: 'Support the athletic and social development of a diverse community.',
+                icon: '⚽',
+                delay: 0.2
+              },
+              {
+                title: 'Family Network',
+                desc: 'Connect your business directly with motivated parents and local leaders.',
+                icon: '👨‍👩‍👧‍👦',
+                delay: 0.3
+              },
+              {
+                title: 'Exclusive Access',
+                desc: 'Limited sponsorship slots ensure your brand remains prominent.',
+                icon: '💎',
+                delay: 0.4,
+                highlight: true
+              }
             ].map((card) => (
               <motion.div
-                key={card.text}
-                className={`bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow duration-300 p-8 flex flex-col items-center text-center gap-5 border ${card.highlight ? 'border-[#22C55E]/30 ring-2 ring-[#22C55E]/10' : 'border-gray-100'}`}
-                initial={{ opacity: 0, y: 30 }}
+                key={card.title}
+                className={`group relative p-8 rounded-[2rem] transition-all duration-500 overflow-hidden ${
+                  card.highlight 
+                    ? 'bg-[#22C55E] text-white shadow-[0_20px_50px_rgba(34,197,94,0.3)]' 
+                    : 'bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 text-white shadow-xl'
+                }`}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.7, delay: card.delay }}
-                whileHover={{ y: -4 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: card.delay }}
+                whileHover={{ y: -8, scale: 1.02 }}
               >
-                <div className="w-14 h-14 rounded-full bg-[#22C55E]/10 flex items-center justify-center">
-                  <span className="text-[#22C55E] text-2xl font-black">✓</span>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-inner ${
+                  card.highlight ? 'bg-white/20' : 'bg-[#22C55E]/20'
+                }`}>
+                  {card.icon}
                 </div>
-                <p className="text-[#1B3A8C] text-xl font-bold leading-snug">{card.text}</p>
+                <h3 className="font-bold text-2xl mb-4 tracking-tight">{card.title}</h3>
+                <p className={`text-lg leading-relaxed ${card.highlight ? 'text-white/90' : 'text-gray-300'}`}>
+                  {card.desc}
+                </p>
+                
+                {/* Decorative glow */}
+                {!card.highlight && (
+                  <div className="absolute -bottom-10 -right-10 w-24 h-24 bg-[#22C55E]/10 rounded-full blur-2xl group-hover:bg-[#22C55E]/20 transition-colors" />
+                )}
               </motion.div>
             ))}
           </div>
+
+          {/* KPI Highlight */}
+          <motion.div 
+            className="mt-16 bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2.5rem] p-8 md:p-12 text-center"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.5 }}
+          >
+            <p className="text-white font-[family-name:var(--font-bebas)] text-3xl md:text-5xl tracking-wide mb-2 opacity-50">BY THE NUMBERS</p>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+              {[
+                { label: 'Athletes', val: '250+' },
+                { label: 'Families', val: '400+' },
+                { label: 'Weekly Reach', val: '2k+' },
+                { label: 'Social Coverage', val: '100%' },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center">
+                  <span className="text-[#22C55E] text-4xl md:text-6xl font-black mb-1 drop-shadow-sm">{stat.val}</span>
+                  <span className="text-white/60 text-xs md:text-sm font-black uppercase tracking-widest">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
