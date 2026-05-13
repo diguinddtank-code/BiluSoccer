@@ -61,10 +61,6 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  if (pathname === '/sponsorship') {
-    return null;
-  }
-
   const navLinks = [
     { name: t('nav.programs'), href: '/programs' },
     { name: t('nav.tryouts'), href: '/tryouts' },
