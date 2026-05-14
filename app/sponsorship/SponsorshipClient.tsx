@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'mot
 import { useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-import { Monitor, Layout, Flag as FlagIcon, ChevronDown, Rocket, Trophy, Users, ShieldCheck, CheckCircle2, ChevronUp } from 'lucide-react';
+import { Monitor, Layout, Flag as FlagIcon, ChevronDown, Rocket, Trophy, Users, ShieldCheck, CheckCircle2, ChevronUp, X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import WorldLanguages from '@/components/WorldLanguages';
 
@@ -39,6 +39,30 @@ export default function SponsorshipClient() {
   const heroOpacity = useTransform(heroScroll, [0, 0.8], [1, 0]);
 
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedPack, setSelectedPack] = useState('');
+  const [formData, setFormData] = useState({ name: '', phone: '', email: '' });
+
+  const openModal = (pack: string) => {
+    setSelectedPack(pack);
+    setModalOpen(true);
+    setFormData({ name: '', phone: '', email: '' });
+  };
+
+  const handleModalSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Sponsorship Inquiry: ${selectedPack}`);
+    const body = encodeURIComponent(
+      `Hello,\n\nI am interested in the ${selectedPack}.\n\n` +
+      `Here is my contact information:\n` +
+      `Name: ${formData.name}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Email: ${formData.email}\n\n` +
+      `Please let me know the next steps.\n\nThank you.`
+    );
+    window.location.href = `mailto:amoreira@bilusoccer.com?subject=${subject}&body=${body}`;
+    setModalOpen(false);
+  };
 
   const bundleAssets = [
     {
@@ -47,23 +71,23 @@ export default function SponsorshipClient() {
       title: t('sp.bundle.benefit.hudl'),
       desc: t('sp.hudl.desc').split('.')[0] + '.',
       img: 'https://i.imgur.com/AwXm3Ku.png',
-      checklist: [t('sp.bundle.benefit.hudl'), t('sp.hudl.badge'), t('sp.bundle.benefit.hudl'), t('sp.bundle.benefit.hudl')]
-    },
-    {
-      id: 'banner',
-      icon: <Layout className="w-8 h-8" />,
-      title: t('sp.banner.title').split(' ')[0] + ' Banner',
-      desc: t('sp.banner.desc').split('.')[0] + '.',
-      img: 'https://i.imgur.com/6BQ7rrA.png',
-      checklist: [t('sp.bundle.benefit.banner'), t('sp.banner.badge'), t('sp.banner.badge'), t('sp.banner.badge')]
+      checklist: [t('sp.bundle.hudl.chk1'), t('sp.bundle.hudl.chk2'), t('sp.bundle.hudl.chk3'), t('sp.bundle.hudl.chk4')]
     },
     {
       id: 'flag',
       icon: <FlagIcon className="w-8 h-8" />,
-      title: t('sp.flag.title'),
+      title: t('sp.bundle.benefit.flag'),
       desc: t('sp.flag.desc').split('.')[0] + '.',
       img: 'https://i.imgur.com/xCvtLP7.png',
-      checklist: [t('sp.bundle.benefit.flag'), t('sp.flag.badge'), t('sp.flag.badge'), t('sp.flag.badge')]
+      checklist: [t('sp.bundle.flag.chk1'), t('sp.bundle.flag.chk2'), t('sp.bundle.flag.chk3'), t('sp.bundle.flag.chk4')]
+    },
+    {
+      id: 'banner',
+      icon: <Layout className="w-8 h-8" />,
+      title: t('sp.bundle.benefit.banner'),
+      desc: t('sp.banner.desc').split('.')[0] + '.',
+      img: 'https://i.imgur.com/6BQ7rrA.png',
+      checklist: [t('sp.bundle.banner.chk1'), t('sp.bundle.banner.chk2'), t('sp.bundle.banner.chk3'), t('sp.bundle.banner.chk4')]
     }
   ];
 
@@ -175,8 +199,8 @@ export default function SponsorshipClient() {
           {/* Images */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
             {[
-              { src: '/images/sponsorship/kids-playing.jpg', alt: 'Children playing soccer at BISA', delay: 0.1 },
-              { src: '/images/sponsorship/scholarship-kids.jpg', alt: 'Kids receiving BISA scholarships', delay: 0.25 },
+              { src: 'https://i.imgur.com/NdYTtCn.jpeg', alt: 'Children playing soccer at BISA', delay: 0.1 },
+              { src: 'https://i.imgur.com/ubhugO0.jpeg', alt: 'Kids receiving BISA scholarships', delay: 0.25 },
             ].map((img) => (
               <motion.div
                 key={img.src}
@@ -236,17 +260,18 @@ export default function SponsorshipClient() {
             ))}
           </div>
 
-          <motion.p
-            className="text-center text-gray-500 font-medium max-w-xl"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+          <motion.div
+            className="mt-20 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.8 }}
           >
-            {t('sp.impact.footer')}
-          </motion.p>
-
-          <SectionPill>BISA · BILU INTERNACIONAL SOCCER ACADEMY</SectionPill>
+            <h3 className="font-[family-name:var(--font-bebas)] text-[#1B3A8C] text-5xl md:text-6xl tracking-widest mb-6">
+              {t('sp.packages.transitionTitle1')} <span className="text-[#22C55E]">{t('sp.packages.transitionTitle2')}</span>
+            </h3>
+            <div className="w-24 h-2 bg-[#22C55E] mx-auto rounded-full" />
+          </motion.div>
         </div>
       </section>
 
@@ -321,17 +346,44 @@ export default function SponsorshipClient() {
           </motion.div>
 
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-stretch justify-center gap-6 mt-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="rounded-full bg-[#1B3A8C] text-white px-8 py-4 font-bold shadow-md text-sm text-center hover:bg-blue-800 transition-colors">
-              Gold (Sleeve): $2,500/yr
+            <div className="rounded-3xl bg-[#1B3A8C] text-white p-6 shadow-md border border-white/10 flex-1 max-w-sm text-center flex flex-col justify-center items-center group hover:bg-[#152e70] transition-colors">
+              <div className="font-bold text-xl mb-1">Gold (Sleeve)</div>
+              <div className="text-white/80 text-sm mb-4">$2,500{t('sp.pkg.perYear')} • {t('sp.pkg.min2years')}</div>
+              <div className="inline-block bg-white/10 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest group-hover:bg-white/20 transition-colors">
+                {t('sp.pkg.total')}: <span className="text-[#22C55E]">$5,000</span>
+              </div>
+              <button
+                onClick={() => openModal('Gold Package (Sleeve)')}
+                className="mt-6 w-full bg-white text-[#1B3A8C] font-black uppercase tracking-widest text-xs py-3.5 rounded-xl hover:bg-gray-100 transition-colors shadow-md"
+              >
+                Select Package
+              </button>
             </div>
-            <div className="rounded-full bg-[#1B3A8C] text-white px-8 py-4 font-bold shadow-md text-sm text-center outline outline-2 outline-offset-2 outline-[#1B3A8C]/30 hover:bg-blue-800 transition-colors">
-              Diamond (Shirt): $5,000/yr
+            
+            <div className="rounded-3xl bg-[#1B3A8C] text-white p-6 shadow-xl border-2 border-yellow-400/50 flex-1 max-w-sm text-center relative overflow-hidden group hover:bg-[#152e70] transition-colors flex flex-col justify-center items-center">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent w-[200%] animate-[shimmer_2s_infinite]" />
+              <div className="relative z-10 w-full">
+                <div className="font-bold text-xl mb-1 flex items-center justify-center gap-2">
+                  Diamond (Shirt)
+                  <Trophy className="w-5 h-5 text-yellow-400" />
+                </div>
+                <div className="text-white/80 text-sm mb-4">$5,000{t('sp.pkg.perYear')} • {t('sp.pkg.min2years')}</div>
+                <div className="inline-block bg-yellow-400/10 border border-yellow-400/20 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest text-yellow-400 group-hover:bg-yellow-400/20 transition-colors">
+                  {t('sp.pkg.total')}: <span className="text-white">$10,000</span>
+                </div>
+                <button
+                  onClick={() => openModal('Diamond Package (Shirt)')}
+                  className="mt-6 w-full bg-yellow-400 text-[#1B3A8C] font-black uppercase tracking-widest text-xs py-3.5 rounded-xl hover:bg-yellow-300 transition-colors shadow-lg"
+                >
+                  Select Package
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -410,41 +462,54 @@ export default function SponsorshipClient() {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className="bg-white border-t border-gray-100"
+                        className="bg-gray-50 border-t border-gray-100 overflow-hidden"
                       >
-                        <div className="px-3 pb-8 pt-2">
-                          <div className="flex flex-row items-center bg-gray-50/50 rounded-[1.5rem] p-5 shadow-inner border border-gray-100 gap-4">
-                            <div className="flex-[1.4] text-left">
-                              <div className="flex items-center gap-2 mb-5 text-[#1B3A8C] font-black text-[12px] uppercase tracking-tighter">
-                                <CheckCircle2 className="w-5 h-5 text-[#22C55E]" />
-                                {t('sp.bundle.asset.checklist')}
-                              </div>
-                              <ul className="space-y-4">
-                                {item.checklist.map((check) => (
-                                  <li key={check} className="flex items-center gap-3">
-                                    <div className="w-5 h-5 rounded-full bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E] shrink-0">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    <span className="text-gray-700 font-black text-[10px] uppercase tracking-tight leading-none">{check}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div className="flex-1 max-w-[140px] flex justify-center">
-                              {item.id === 'hudl' ? (
-                                <div className="bg-[#0F2460] rounded-lg p-2 shadow-xl border border-white/10 w-full aspect-video relative overflow-hidden">
-                                  <div className="absolute top-1.5 left-1.5 z-20 flex items-center bg-red-600 text-white text-[6px] font-bold uppercase rounded-full px-1.5 py-0.5 gap-1">
-                                    <div className="w-1 h-1 rounded-full bg-white opacity-100 animate-pulse" />
+                        <div className="flex flex-col">
+                          {/* Rich Header / Mockup Area */}
+                          <div className="relative p-6 pt-10 pb-16 flex justify-center items-center overflow-hidden bg-[#1B3A8C] text-white">
+                            <div className="absolute inset-0 bg-[url('https://i.imgur.com/0uPLpLd.png')] bg-cover bg-center opacity-[0.08] mix-blend-overlay" />
+                            {item.id === 'hudl' ? (
+                                <div className="bg-[#0F2460] rounded-xl p-3 shadow-2xl border border-white/20 w-[85%] aspect-video relative z-10">
+                                  <div className="absolute top-2 left-2 z-20 flex items-center bg-red-600 text-white text-[8px] font-black uppercase tracking-widest rounded-full px-2 py-1 gap-1.5 shadow-lg">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                                     LIVE
                                   </div>
-                                  <img src={item.img} alt="Hudl" className="w-full h-full object-cover rounded" />
-                                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent pt-3 pb-1 px-1">
-                                    <div className="bg-white/95 rounded py-0.5 px-1 text-center text-[#1B3A8C] text-[6px] font-black w-full uppercase">Your Brand</div>
+                                  <img src={item.img} alt="Hudl" className="w-full h-full object-cover rounded-md" />
+                                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent pt-8 pb-2 px-2">
+                                    <div className="bg-white/95 rounded py-1 px-2 text-center text-[#1B3A8C] text-[8px] tracking-[0.1em] font-black w-full uppercase">Your Brand</div>
                                   </div>
                                 </div>
-                              ) : (
-                                <img src={item.img} className="w-full h-auto object-contain drop-shadow-lg" alt="Preview" />
-                              )}
+                            ) : (
+                                <img src={item.img} className={`w-3/4 max-h-[220px] object-contain drop-shadow-2xl relative z-10 ${item.id === 'banner' ? 'rounded-lg border-[3px] border-white/10' : ''}`} alt="Preview" />
+                            )}
+                            
+                            {/* Decorative glow */}
+                            <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#1B3A8C] to-transparent z-0 pointer-events-none" />
+                          </div>
+
+                          {/* Checklist Section */}
+                          <div className="px-5 py-6 -mt-10 relative z-20">
+                            <div className="bg-white rounded-[2rem] p-6 shadow-[0_-10px_40px_-5px_rgba(0,0,0,0.15)] border border-gray-100">
+                               <div className="flex items-center gap-3 mb-6 font-black text-[#1B3A8C] uppercase tracking-widest text-sm">
+                                 <CheckCircle2 className="w-6 h-6 text-[#22C55E]" />
+                                 {t('sp.bundle.asset.checklist')}
+                               </div>
+                               <ul className="space-y-4">
+                                 {item.checklist.map((check, index) => (
+                                   <li key={index} className="flex items-start gap-4">
+                                     <div className="w-6 h-6 rounded-full bg-[#22C55E]/15 flex items-center justify-center text-[#22C55E] shrink-0 mt-0.5">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                     </div>
+                                     <span className="text-gray-700 font-bold text-sm leading-tight pt-1">{check}</span>
+                                   </li>
+                                 ))}
+                               </ul>
+                               
+                               <div className="mt-8 p-5 bg-gray-50 rounded-2xl border border-gray-100">
+                                 <p className="text-gray-500 font-medium italic text-xs leading-relaxed text-center">
+                                   &quot;{t('sp.bundle.asset.quote')}&quot;
+                                 </p>
+                               </div>
                             </div>
                           </div>
                         </div>
@@ -480,7 +545,7 @@ export default function SponsorshipClient() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
                         {bundleAssets.find(a => a.id === expandedId)?.checklist.map((check, i) => (
                           <motion.div 
-                            key={check} 
+                            key={i} 
                             className="flex items-center gap-5"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -577,13 +642,19 @@ export default function SponsorshipClient() {
             </div>
 
             <div className="relative z-10 text-center md:text-right">
-              <div className="bg-[#22C55E] text-white px-10 py-6 rounded-3xl shadow-xl hover:scale-[1.05] transition-transform cursor-default border-4 border-white/20">
+              <div className="bg-[#22C55E] text-white px-10 py-6 rounded-3xl shadow-xl hover:scale-[1.05] transition-transform flex flex-col border-4 border-white/20">
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] mb-1 opacity-80">{t('sp.pkg.annual')}</div>
                 <div className="text-5xl font-black leading-none tracking-tighter mb-1">$5,000</div>
-                <div className="text-[10px] md:text-[11px] font-extrabold uppercase tracking-widest bg-yellow-400 text-green-900 px-4 py-1.5 rounded-lg mb-4 inline-block shadow-sm border border-white/50">
+                <div className="text-[10px] md:text-[11px] font-extrabold uppercase tracking-widest bg-yellow-400 text-green-900 px-4 py-1.5 rounded-lg mb-4 self-center md:self-end shadow-sm border border-white/50">
                   {t('sp.bundle.save')}
                 </div>
-                <div className="text-xs font-bold opacity-70 tracking-widest whitespace-nowrap block">HUDL + BANNER + FLAG</div>
+                <div className="text-xs font-bold opacity-70 tracking-widest whitespace-nowrap block mb-4">HUDL + BANNER + FLAG</div>
+                <button
+                  onClick={() => openModal('All-In-One Bundle')}
+                  className="w-full bg-white text-[#22C55E] font-black uppercase tracking-widest text-xs py-3.5 rounded-xl hover:bg-gray-100 transition-colors shadow-sm"
+                >
+                  Select Package
+                </button>
               </div>
             </div>
           </motion.div>
@@ -613,39 +684,30 @@ export default function SponsorshipClient() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          SECTION 7 — HUDL LIVE STREAM
+          SECTION 5 — HUDL LIVE STREAM
       ═══════════════════════════════════════════════ */}
-      <section className="bg-[#1B3A8C] py-20 md:py-32 px-6 text-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-400/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
-
-        <div className="max-w-5xl mx-auto relative z-10">
-          <motion.div
-            className="text-center mb-14"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.9 }}
-          >
-            <span className="inline-block bg-yellow-400/15 text-yellow-400 text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full mb-4 border border-yellow-400/20">
-              {t('sp.hudl.badge')}
-            </span>
-            <h2 className="font-[family-name:var(--font-bebas)] text-5xl md:text-7xl tracking-wide leading-none mb-6">
-              {t('sp.hudl.title')}
-            </h2>
-            <p className="text-white/75 max-w-2xl mx-auto text-lg leading-relaxed">
-              {t('sp.hudl.desc')}
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <section className="bg-white py-16 md:py-24 px-4 md:px-6 overflow-hidden border-t border-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch md:min-h-[580px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 bg-[#F8F9FC]">
+            
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
+              className="flex flex-col justify-center p-8 md:p-14 order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.9 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
-              <ul className="space-y-5 mb-10">
+              <span className="inline-flex items-center gap-2 bg-red-600/10 text-red-600 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6 self-start border border-red-600/20">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                {t('sp.hudl.badge')}
+              </span>
+              <h2 className="font-[family-name:var(--font-bebas)] text-[#1B3A8C] text-5xl md:text-7xl mb-4 tracking-wide leading-none">
+                {t('sp.hudl.title')}
+              </h2>
+              <p className="text-gray-500 mb-8 font-medium leading-relaxed max-w-md">
+                {t('sp.hudl.desc')}
+              </p>
+              <ul className="grid grid-cols-1 gap-4 mb-10">
                 {[
                   'Banner placement on all live broadcasts',
                   'Global exposure to remote fans and family',
@@ -653,34 +715,53 @@ export default function SponsorshipClient() {
                   'High-tech community marketing tool',
                   'Repeated visibility every game day',
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-4">
-                    <WhiteCheck />
-                    <span className="text-white font-medium text-lg leading-tight pt-0.5">{item}</span>
+                  <li key={item} className="flex items-center gap-3">
+                     <div className="w-6 h-6 rounded-full bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E] shrink-0">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                     </div>
+                     <span className="text-gray-700 font-semibold text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="rounded-full bg-white text-[#1B3A8C] font-black px-8 py-3 inline-block shadow-lg hover:bg-gray-100 transition-colors text-base">
-                {t('sp.pkg.investment')}: $1,600{t('sp.pkg.perYear')}
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="rounded-2xl bg-[#1B3A8C] text-white px-8 py-4 font-bold shadow-lg shadow-blue-900/20 text-center hover:scale-[1.02] transition-transform cursor-default">
+                  <div className="text-xl">$2,000{t('sp.pkg.perYear')}</div>
+                </div>
+                <button
+                  onClick={() => openModal('Hudl Live Stream Sponsorship')}
+                  className="rounded-2xl bg-[#22C55E] text-white px-8 py-4 font-bold uppercase tracking-widest text-sm shadow-lg shadow-green-500/20 text-center hover:bg-green-400 transition-colors"
+                >
+                  Select Package
+                </button>
               </div>
             </motion.div>
 
             <motion.div
-              className="bg-[#0F2460] rounded-2xl p-4 shadow-2xl border border-white/10"
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.9 }}
+              className="relative order-1 md:order-2 min-h-[250px] md:min-h-0 overflow-hidden bg-[#0F2460] flex items-center justify-center p-6 md:p-12"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
             >
-              <div className="relative rounded-xl overflow-hidden aspect-video mb-3 bg-black">
-                <div className="absolute top-3 left-3 z-20 flex items-center bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-full px-3 py-1.5 gap-2 shadow-lg">
-                  <motion.div className="w-2 h-2 rounded-full bg-white" animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
-                  LIVE
+              <div className="absolute inset-0 bg-[url('https://i.imgur.com/0uPLpLd.png')] bg-cover bg-center opacity-[0.15] mix-blend-overlay pointer-events-none" />
+              <motion.div
+                className="relative z-10 w-full max-w-[480px]"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="relative rounded-xl overflow-hidden aspect-video shadow-2xl border border-white/20 bg-black">
+                   <div className="absolute top-3 left-3 z-20 flex items-center bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-full px-3 py-1.5 gap-2 shadow-lg">
+                     <motion.div className="w-2 h-2 rounded-full bg-white" animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
+                     LIVE
+                   </div>
+                   <img src="https://i.imgur.com/AwXm3Ku.png" alt="Hudl mockup" className="w-full h-full object-cover" />
+                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent pt-10 pb-3 px-3">
+                     <div className="bg-white/95 rounded-md py-2 px-3 text-center text-[#1B3A8C] text-xs font-black tracking-widest w-full uppercase">Your Brand Here</div>
+                   </div>
                 </div>
-                <img src="https://i.imgur.com/AwXm3Ku.png" alt="Hudl mockup" className="w-full h-full object-cover" />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent pt-10 pb-3 px-3">
-                  <div className="bg-white/90 rounded-md py-2 px-3 text-center text-[#1B3A8C] text-xs font-black tracking-widest w-full uppercase">Your Brand Here</div>
-                </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -691,11 +772,11 @@ export default function SponsorshipClient() {
       ═══════════════════════════════════════════════ */}
       <section className="bg-[#F3F4F6] py-16 md:py-24 px-4 md:px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch min-h-[580px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200 bg-white">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch md:min-h-[580px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200 bg-white">
             
             {/* Left — Immersive Mockup Side */}
             <motion.div
-              className="relative min-h-[420px] md:min-h-0 overflow-hidden bg-white flex items-center justify-center p-8 md:p-16"
+              className="relative min-h-[250px] md:min-h-0 overflow-hidden bg-white flex items-center justify-center p-8 md:p-16"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -756,6 +837,12 @@ export default function SponsorshipClient() {
                 <div className="rounded-2xl bg-[#1B3A8C] text-white px-8 py-4 font-bold shadow-lg shadow-blue-900/20 text-center hover:scale-[1.02] transition-transform cursor-default">
                   <div className="text-xl">$2,500 / Season</div>
                 </div>
+                <button
+                  onClick={() => openModal('Tear Drop Flag Sponsorship')}
+                  className="rounded-2xl bg-[#22C55E] text-white px-8 py-4 font-bold uppercase tracking-widest text-sm shadow-lg shadow-green-500/20 text-center hover:bg-green-400 transition-colors"
+                >
+                  Select Package
+                </button>
               </div>
             </motion.div>
           </div>
@@ -767,7 +854,7 @@ export default function SponsorshipClient() {
       ═══════════════════════════════════════════════ */}
       <section className="bg-white py-16 md:py-24 px-4 md:px-6 overflow-hidden border-t border-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch min-h-[580px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 bg-[#F8F9FC]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch md:min-h-[580px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 bg-[#F8F9FC]">
             
             <motion.div
               className="flex flex-col justify-center p-8 md:p-14 order-2 md:order-1"
@@ -806,11 +893,17 @@ export default function SponsorshipClient() {
                 <div className="rounded-2xl bg-[#1B3A8C] text-white px-8 py-4 font-bold shadow-lg shadow-blue-900/20 text-center hover:scale-[1.02] transition-transform cursor-default">
                   <div className="text-xl">$1,500 / Season</div>
                 </div>
+                <button
+                  onClick={() => openModal('Field Banner Sponsorship')}
+                  className="rounded-2xl bg-[#22C55E] text-white px-8 py-4 font-bold uppercase tracking-widest text-sm shadow-lg shadow-green-500/20 text-center hover:bg-green-400 transition-colors"
+                >
+                  Select Package
+                </button>
               </div>
             </motion.div>
 
             <motion.div
-              className="relative order-1 md:order-2 min-h-[420px] md:min-h-0 overflow-hidden bg-white flex items-center justify-center p-6 md:p-12"
+              className="relative order-1 md:order-2 min-h-[250px] md:min-h-0 overflow-hidden bg-white flex items-center justify-center p-6 md:p-12"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -943,103 +1036,6 @@ export default function SponsorshipClient() {
         </div>
       </section>
 
-      <WorldLanguages />
-
-      {/* ═══════════════════════════════════════════════
-          SECTION 9 — PACKAGES OVERVIEW
-      ═══════════════════════════════════════════════ */}
-      <section className="bg-white py-20 md:py-32 px-6 text-center overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.9 }}
-        >
-          <img src="https://i.imgur.com/mHzuZgK.png" alt="BISA Logo" className="w-24 md:w-32 mx-auto mb-8" />
-          <h2 className="font-[family-name:var(--font-bebas)] text-[#1B3A8C] text-5xl md:text-7xl mb-4 tracking-wide leading-none">
-            {t('sp.packages.title1')} <span className="text-[#22C55E]">{t('sp.packages.title2')}</span>
-          </h2>
-          <p className="text-gray-500 text-lg font-medium max-w-2xl mx-auto mb-16 leading-relaxed">
-            {t('sp.packages.desc')}
-          </p>
-        </motion.div>
-
-        <div className="max-w-2xl mx-auto flex flex-col gap-5 text-left">
-          {[
-            {
-              icon: '👕', title: t('sp.pkg.diamond'),
-              items: [`${t('sp.pkg.investment')}: $5,000${t('sp.pkg.perYear')} — ${t('sp.pkg.min2years')}`, `${t('sp.pkg.total')}: $10,000`, 'Max visibility on game day'],
-              delay: 0.1, premium: true,
-            },
-            {
-              icon: '👕', title: t('sp.pkg.gold'),
-              items: [`${t('sp.pkg.investment')}: $2,500${t('sp.pkg.perYear')} — ${t('sp.pkg.min2years')}`, `${t('sp.pkg.total')}: $5,000`, 'Logo prominently on sleeves'],
-              delay: 0.2,
-            },
-            {
-              icon: '💎', title: t('sp.pkg.bundle'),
-              items: [`${t('sp.pkg.investment')}: $5,000${t('sp.pkg.perYear')}`, 'Includes Hudl Broadcast Ads', 'Includes Field Banner (8x4)', 'Includes Official Event Flag'],
-              delay: 0.3, premium: true,
-            },
-            {
-              icon: '🎥', title: t('sp.pkg.hudl'),
-              items: [`${t('sp.pkg.investment')}: $1,600${t('sp.pkg.perYear')}`, 'Digital banner on all game broadcasts'],
-              delay: 0.4,
-            },
-            {
-              icon: '🚩', title: t('sp.pkg.flag'),
-              items: [`${t('sp.pkg.investment')}: $2,500 per season`, 'Custom flag taken to all matches and events'],
-              delay: 0.5,
-            },
-            {
-              icon: '🏟️', title: t('sp.pkg.banner'),
-              items: [`${t('sp.pkg.investment')}: $1,500 first season`, 'Renewal: $1,000/year'],
-              delay: 0.6,
-            },
-          ].map((card) => (
-            <motion.div
-              key={card.title}
-              className="relative rounded-3xl border-2 border-[#1B3A8C] bg-white p-6 md:p-8 hover:bg-[#1B3A8C] hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl hover:-translate-y-1"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: card.delay }}
-            >
-              {card.premium && (
-                <div className="absolute top-0 right-8 -translate-y-1/2 bg-[#22C55E] text-white text-xs font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-sm">
-                  Premium
-                </div>
-              )}
-              <h3 className="font-bold text-xl text-[#1B3A8C] group-hover:text-white mb-4 transition-colors">
-                {card.icon} {card.title}
-              </h3>
-              <ul className="space-y-2">
-                {card.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="text-[#22C55E] font-bold bg-white rounded-full w-5 h-5 flex items-center justify-center shrink-0 shadow-sm border border-gray-100 mt-0.5 text-xs group-hover:bg-[#22C55E] group-hover:text-white transition-colors">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* 501c3 box */}
-        <motion.div
-          className="bg-[#1B3A8C] rounded-3xl p-8 md:p-10 text-white text-center max-w-2xl mx-auto mt-10 shadow-xl"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <p className="font-bold text-xl mb-3">{t('sp.nonprofit.title')}</p>
-          <p className="text-white/75 font-medium leading-relaxed text-sm">
-            {t('sp.nonprofit.desc')}
-          </p>
-        </motion.div>
-      </section>
-
       {/* ═══════════════════════════════════════════════
           SECTION 10 — CTA / CLOSING
       ═══════════════════════════════════════════════ */}
@@ -1134,6 +1130,98 @@ export default function SponsorshipClient() {
           </motion.div>
         </div>
       </section>
+
+
+
+      {/* Sponsorship Focus Modal */}
+      <AnimatePresence>
+        {modalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
+              className="bg-white max-w-md w-full rounded-3xl shadow-2xl overflow-hidden relative"
+            >
+              <button
+                onClick={() => setModalOpen(false)}
+                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors z-10"
+              >
+                <X className="w-5 h-5 text-gray-600" />
+              </button>
+
+              <div className="bg-[#1B3A8C] p-6 text-white pb-8">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] mb-1 opacity-80 text-[#22C55E]">
+                  Sponsorship Request
+                </div>
+                <h3 className="text-2xl font-bold font-[family-name:var(--font-bebas)] tracking-widest leading-none">
+                  {selectedPack}
+                </h3>
+              </div>
+              
+              <form onSubmit={handleModalSubmit} className="p-6 -mt-4 relative bg-white rounded-t-2xl">
+                <p className="text-gray-500 mb-6 text-sm">
+                  Please provide your contact details below. We will reach out to discuss the next steps!
+                </p>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Name / Organization *</label>
+                    <input
+                      required
+                      type="text"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B3A8C] focus:border-transparent transition-all"
+                      placeholder="e.g. Summerville Auto Center"
+                      value={formData.name}
+                      onChange={e => setFormData({ ...formData, name: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone Number *</label>
+                    <input
+                      required
+                      type="tel"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B3A8C] focus:border-transparent transition-all"
+                      placeholder="(843) 000-0000"
+                      value={formData.phone}
+                      onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Email Address *</label>
+                    <input
+                      required
+                      type="email"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B3A8C] focus:border-transparent transition-all"
+                      placeholder="email@example.com"
+                      value={formData.email}
+                      onChange={e => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <button
+                    type="submit"
+                    className="w-full bg-[#1B3A8C] hover:bg-[#152e70] text-white py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-colors shadow-lg shadow-blue-900/20"
+                  >
+                    Send Request
+                  </button>
+                  <p className="text-gray-400 text-center text-xs mt-4">
+                    This will prepare an email addressed to<br />amoreira@bilusoccer.com
+                  </p>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </main>
   );
