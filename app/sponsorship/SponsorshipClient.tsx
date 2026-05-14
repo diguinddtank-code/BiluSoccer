@@ -791,7 +791,7 @@ export default function SponsorshipClient() {
                 transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <img
-                  src="https://i.imgur.com/aYHpbOS.png"
+                  src="https://i.imgur.com/xCvtLP7.png"
                   alt="Flag Mockup"
                   className="h-full max-h-[480px] w-auto object-contain transition-transform duration-700 hover:scale-[1.03]"
                 />
