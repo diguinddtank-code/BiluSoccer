@@ -3,7 +3,6 @@
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { ShieldCheck } from 'lucide-react';
 
 export default function SponsorsSection() {
   const { t } = useLanguage();
@@ -32,22 +31,21 @@ export default function SponsorsSection() {
         </motion.div>
 
         {/* Premium Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
-          {[...Array(4)].map((_, i) => (
+        <div className="flex flex-wrap justify-center gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
+          {[
+            'https://i.imgur.com/lWFqLjy.png',
+            'https://i.imgur.com/0gOfNB4.png',
+            'https://i.imgur.com/XTN9xsB.png'
+          ].map((src, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15, ease: "easeOut" }}
-              className="group relative aspect-[3/2] flex flex-col items-center justify-center rounded-2xl border border-bisa-white/10 bg-gradient-to-br from-bisa-white/5 to-transparent backdrop-blur-sm overflow-hidden hover:border-bisa-gold/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(204,255,0,0.1)] cursor-default"
+              className="group relative w-48 h-32 sm:w-64 sm:h-40 flex flex-col items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm overflow-hidden hover:bg-white/15 transition-all duration-500 hover:shadow-[0_0_30px_rgba(204,255,0,0.2)] p-6"
             >
-              <div className="absolute inset-0 bg-bisa-gold/0 group-hover:bg-bisa-gold/5 transition-colors duration-500 mix-blend-overlay"></div>
-              
-              <ShieldCheck className="w-10 h-10 text-bisa-gold/30 mb-3 group-hover:text-bisa-gold/70 transition-colors duration-500 group-hover:scale-110 transform" />
-              <span className="text-bisa-gold/50 font-bold uppercase tracking-[0.2em] text-xs sm:text-sm group-hover:text-bisa-gold/90 transition-colors duration-500">
-                {t('sponsors.comingSoon') || 'Coming Soon'}
-              </span>
+              <img src={src} alt="Sponsor logo" className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-all duration-500" />
             </motion.div>
           ))}
         </div>
@@ -60,7 +58,7 @@ export default function SponsorsSection() {
           className="mt-16 text-center"
         >
           <Link
-            href="/contact"
+            href="/sponsorship"
             className="inline-flex items-center gap-3 bg-transparent border-2 border-bisa-white/20 text-bisa-white px-8 py-4 rounded font-black text-sm md:text-base uppercase tracking-widest hover:border-bisa-gold hover:text-bisa-gold transition-all duration-300"
           >
             {t('sponsors.becomePartner') || 'Become a Partner'}

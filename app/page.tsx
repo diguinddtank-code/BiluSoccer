@@ -21,6 +21,7 @@ export default function Home() {
       <StatsBar />
       <ElitePathway />
       <OfficialLeagues />
+      <SponsorsSection />
       <ExperienceStrip />
       <ClubGallery />
       <ProgramsGrid />
@@ -29,7 +30,6 @@ export default function Home() {
       <LocationsSection />
       <TryoutsCTA />
       <LeadForm />
-      <SponsorsSection />
       <ProjetoBiluCTA />
       <FinalCTA />
     </>
