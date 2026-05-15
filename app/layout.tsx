@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: 'BISA Soccer Academy',
     images: [
       {
-        url: 'https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png',
+        url: 'https://i.imgur.com/mHzuZgK.png',
         width: 1200,
         height: 630,
         alt: 'BISA Soccer Academy - Premier Youth Soccer Club in Charleston, SC',
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'BISA | Premier Youth Soccer Academy in SC',
     description: 'Elite youth soccer development in Metro Charleston, SC. Join the best soccer academy.',
-    images: ['https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png'],
+    images: ['https://i.imgur.com/mHzuZgK.png'],
     creator: '@bilusoccer',
     site: '@bilusoccer',
   },
@@ -101,8 +101,8 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       name: 'BISA',
       alternateName: 'BISA',
       url: 'https://www.bilusoccer.com',
-      logo: 'https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png',
-      image: 'https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png',
+      logo: 'https://i.imgur.com/mHzuZgK.png',
+      image: 'https://i.imgur.com/mHzuZgK.png',
       description: 'Recognized as the premier youth soccer academy in Charleston and Summerville, SC. BISA (BISA) provides elite Global Elite Methodology training for U4-U18 boys and girls.',
       telephone: '+1-843-304-9414',
       email: 'amoreira@bilusoccer.com',

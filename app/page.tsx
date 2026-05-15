@@ -5,7 +5,7 @@ import OfficialLeagues from '@/components/OfficialLeagues';
 import WorldLanguages from '@/components/WorldLanguages';
 import ProgramsGrid from '@/components/ProgramsGrid';
 import CoachesGrid from '@/components/CoachesGrid';
-import TryoutsCTA from '@/components/TryoutsCTA';
+import AcademyCTA from '@/components/AcademyCTA';
 import ExperienceStrip from '@/components/ExperienceStrip';
 import ClubGallery from '@/components/ClubGallery';
 import LocationsSection from '@/components/LocationsSection';
@@ -33,7 +33,7 @@ export default function Home() {
       <WorldLanguages />
       <CoachesGrid />
       <LocationsSection />
-      <TryoutsCTA />
+      <AcademyCTA />
       <LeadForm />
       <ProjetoBiluCTA />
       <FinalCTA />

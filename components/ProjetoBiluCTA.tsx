@@ -62,18 +62,28 @@ export default function ProjetoBiluCTA() {
 
             <div className="flex flex-wrap gap-6 md:gap-10 mb-10">
               <div className="flex flex-col">
-                <span className="font-bebas text-4xl md:text-5xl text-[#CCFF00] tracking-widest">{t('projetobilu.stat1.value') || '10'}</span>
-                <span className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-widest">{t('projetobilu.stat1.label') || 'Países'}</span>
+                <span className="font-bebas text-4xl md:text-5xl text-[#CCFF00] tracking-widest">{t('projetobilu.stat1.value') || '15K+'}</span>
+                <span className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-widest">{t('projetobilu.stat1.label') || 'Kids Worldwide'}</span>
               </div>
               <div className="w-px h-12 bg-white/10 self-center hidden sm:block"></div>
               <div className="flex flex-col">
-                <span className="font-bebas text-4xl md:text-5xl text-[#CCFF00] tracking-widest">{t('projetobilu.stat2.value') || '23'}</span>
-                <span className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-widest">{t('projetobilu.stat2.label') || 'Núcleos'}</span>
+                <span className="font-bebas text-4xl md:text-5xl text-[#CCFF00] tracking-widest">{t('projetobilu.stat2.value') || '12K+'}</span>
+                <span className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-widest">{t('projetobilu.stat2.label') || 'Kids in Brazil'}</span>
               </div>
               <div className="w-px h-12 bg-white/10 self-center hidden sm:block"></div>
               <div className="flex flex-col">
-                <span className="font-bebas text-4xl md:text-5xl text-[#CCFF00] tracking-widest">{t('projetobilu.stat3.value') || '153+'}</span>
-                <span className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-widest">{t('projetobilu.stat3.label') || 'Voluntários'}</span>
+                <span className="font-bebas text-4xl md:text-5xl text-[#CCFF00] tracking-widest">{t('projetobilu.stat3.value') || '10'}</span>
+                <span className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-widest">{t('projetobilu.stat3.label') || 'Countries'}</span>
+              </div>
+              <div className="w-px h-12 bg-white/10 self-center hidden sm:block"></div>
+              <div className="flex flex-col">
+                <span className="font-bebas text-4xl md:text-5xl text-[#CCFF00] tracking-widest">{t('projetobilu.stat4.value') || '23'}</span>
+                <span className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-widest">{t('projetobilu.stat4.label') || 'Centers'}</span>
+              </div>
+              <div className="w-px h-12 bg-white/10 self-center hidden sm:block"></div>
+              <div className="flex flex-col">
+                <span className="font-bebas text-4xl md:text-5xl text-[#CCFF00] tracking-widest">{t('projetobilu.stat5.value') || '153+'}</span>
+                <span className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-widest">{t('projetobilu.stat5.label') || 'Volunteers'}</span>
               </div>
             </div>
 

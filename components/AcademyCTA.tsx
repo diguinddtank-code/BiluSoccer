@@ -2,8 +2,11 @@
 
 import { motion } from 'motion/react';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function TryoutsCTA() {
+export default function AcademyCTA() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-bisa-navy-dark">
       {/* Diagonal Gold Slash Background */}
@@ -25,29 +28,29 @@ export default function TryoutsCTA() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="bg-bisa-navy-dark/90 backdrop-blur-md p-6 sm:p-10 md:p-16 border-l-4 md:border-l-8 border-bisa-gold inline-block w-full shadow-2xl"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-bisa-white uppercase tracking-tighter mb-3 md:mb-4 leading-none">
-            Ready to Compete?
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-bisa-white uppercase tracking-tighter mb-4 leading-none">
+            {t('academycta.title')}
           </h2>
-          <p className="text-base sm:text-lg md:text-2xl text-bisa-white/90 font-medium tracking-wide mb-8 md:mb-10">
-            Tryouts open for all age groups — U8 through U18
+          <p className="text-base sm:text-lg md:text-2xl text-bisa-white/90 font-medium tracking-wide mb-8 md:mb-10 max-w-3xl mx-auto">
+            {t('academycta.subtitle')}
           </p>
           
           <Link
-            href="/tryouts"
+            href="/programs"
             className="flex items-center justify-center w-full md:inline-flex md:w-auto bg-bisa-gold text-bisa-navy px-8 py-5 rounded-xl font-black text-lg md:text-xl uppercase tracking-widest hover:bg-white transition-all hover:-translate-y-1 shadow-[0_8px_20px_rgba(235,171,4,0.3)] mb-8 md:mb-10 min-h-[56px]"
           >
-            Secure Your Spot
+            {t('academycta.btn')}
           </Link>
 
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
             <span className="bg-white/10 border border-white/20 text-bisa-white px-4 py-3 sm:py-2 md:px-4 md:py-2 rounded-lg sm:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider text-center">
-              Mon Apr 28 · 6:30 PM
+              {t('academycta.badge1')}
             </span>
             <span className="bg-white/10 border border-white/20 text-bisa-white px-4 py-3 sm:py-2 md:px-4 md:py-2 rounded-lg sm:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider text-center">
-              Wed Apr 30 · 6:30 PM
+              {t('academycta.badge2')}
             </span>
             <span className="bg-white/10 border border-white/20 text-bisa-white px-4 py-3 sm:py-2 md:px-4 md:py-2 rounded-lg sm:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider text-center">
-              Sat May 3 · 3:00 PM
+              {t('academycta.badge3')}
             </span>
           </div>
         </motion.div>

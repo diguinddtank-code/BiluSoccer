@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="flex flex-col">
             <Link href="/" className="relative w-56 h-28 mb-6 transition-transform hover:scale-105">
               <Image 
-                src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
+                src="https://i.imgur.com/mHzuZgK.png" 
                 alt="BISA Logo" 
                 fill 
                 className="object-contain object-left" 

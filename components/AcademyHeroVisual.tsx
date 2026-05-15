@@ -88,7 +88,7 @@ export default function AcademyHeroVisual() {
       >
         <div className="relative w-full h-full">
           <Image 
-            src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png"
+            src="https://i.imgur.com/mHzuZgK.png"
             alt="BISA Logo"
             fill
             className="object-contain drop-shadow-lg"
