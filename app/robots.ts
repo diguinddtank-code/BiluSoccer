@@ -5,7 +5,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/api/', '/admin/', '/private/'],
     },
-    sitemap: 'https://bilusoccer.com/sitemap.xml',
+    sitemap: 'https://www.bilusoccer.com/sitemap.xml',
+    host: 'https://www.bilusoccer.com',
   };
 }

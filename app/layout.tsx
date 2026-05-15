@@ -20,28 +20,31 @@ const bebasNeue = Bebas_Neue({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.bilusoccer.com'),
   title: {
-    default: 'BISA (BISA) | Premium Youth Soccer Club in Charleston, SC',
-    template: '%s | BISA',
+    default: 'BISA | Premier Youth Soccer Academy in Charleston, SC',
+    template: '%s | BISA Soccer Academy',
   },
-  description: 'Rated the premier soccer club and academy in Charleston & Summerville, SC. BISA provides elite youth soccer development, Global Elite Methodology, and competitive programs for U4-U18 boys and girls.',
+  description: 'Rated the premier youth soccer academy and club in Charleston & Summerville, SC. BISA provides elite player development, Global Elite Methodology, and competitive programs for U4-U18 boys and girls.',
   keywords: [
-    'best soccer club in Charleston SC',
-    'top soccer academy Summerville',
-    'youth soccer Charleston',
-    'Goose Creek soccer club',
-    'Global Elite soccer training',
-    'BISA',
-    'BISA',
-    'competitive youth soccer',
-    'soccer tryouts SC',
+    'premier soccer academy Charleston SC',
+    'elite youth soccer SC',
+    'best soccer club in Summerville SC',
+    'bisa soccer academy',
+    'bisa youth soccer',
+    'Global Elite Methodology soccer',
+    'Charleston competitive soccer',
+    'Goose Creek soccer development',
+    'youth soccer tryouts SC',
     'summer soccer camps Charleston',
-    'elite soccer academy',
-    'youth soccer development',
-    'soccer coaching Charleston'
+    'elite soccer training South Carolina'
   ],
-  authors: [{ name: 'BISA' }],
-  creator: 'BISA',
-  publisher: 'BISA',
+  authors: [{ name: 'BISA Soccer Academy', url: 'https://www.bilusoccer.com' }],
+  creator: 'BISA Soccer Academy',
+  publisher: 'BISA Soccer Academy',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   alternates: {
     canonical: '/',
     languages: {
@@ -51,16 +54,16 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'BISA | Premium Youth Soccer Club in Charleston, SC',
-    description: 'Rated the premier youth soccer development program in Charleston & Summerville, SC. Expert professional coaching and elite Global Elite Methodology.',
+    title: 'BISA | Premier Youth Soccer Academy in Charleston, SC',
+    description: 'Rated the premier youth soccer development program in Charleston & Summerville, SC. Expert professional coaching and elite Global Elite Methodology for U4-U18 boys and girls.',
     url: 'https://www.bilusoccer.com',
-    siteName: 'BISA',
+    siteName: 'BISA Soccer Academy',
     images: [
       {
         url: 'https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png',
         width: 1200,
         height: 630,
-        alt: 'BISA Logo - Premier Youth Soccer Club',
+        alt: 'BISA Soccer Academy - Premier Youth Soccer Club in Charleston, SC',
         type: 'image/png',
       },
     ],
@@ -69,10 +72,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BISA | Premium Youth Soccer',
+    title: 'BISA | Premier Youth Soccer Academy in SC',
     description: 'Elite youth soccer development in Metro Charleston, SC. Join the best soccer academy.',
     images: ['https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png'],
     creator: '@bilusoccer',
+    site: '@bilusoccer',
   },
   robots: {
     index: true,

@@ -63,7 +63,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: t('nav.programs'), href: '/programs' },
-    { name: t('nav.tryouts'), href: '/tryouts' },
+    { name: t('nav.sponsorship'), href: '/sponsorship' },
     { name: t('nav.about'), href: '/about' },
     { name: t('nav.contact'), href: '/contact' },
   ];
@@ -155,7 +155,7 @@ export default function Navbar() {
                 <Link href="/programs" className="text-[10px] xl:text-[11px] font-bold uppercase tracking-widest text-bisa-white hover:text-[#CCFF00] transition-colors whitespace-nowrap">
                   {navLinks[0].name}
                 </Link>
-                <Link href="/tryouts" className="text-[10px] xl:text-[11px] font-bold uppercase tracking-widest text-bisa-white hover:text-[#CCFF00] transition-colors whitespace-nowrap">
+                <Link href="/sponsorship" className="text-[10px] xl:text-[11px] font-bold uppercase tracking-widest text-bisa-white hover:text-[#CCFF00] transition-colors whitespace-nowrap">
                   {navLinks[1].name}
                 </Link>
                 <Link href="/about" className="text-[10px] xl:text-[11px] font-bold uppercase tracking-widest text-bisa-white hover:text-[#CCFF00] transition-colors whitespace-nowrap">

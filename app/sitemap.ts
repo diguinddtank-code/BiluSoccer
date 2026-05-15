@@ -1,20 +1,20 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://bilusoccer.com';
+  const baseUrl = 'https://www.bilusoccer.com';
 
   // Core pages
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'always',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/programs`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
@@ -49,6 +49,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/tryouts`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/sponsorship`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
