@@ -113,7 +113,7 @@ export default function Navbar() {
             <Link href="/" className="relative z-50 flex items-center shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
               <div className="relative w-24 h-10 mt-2">
                 <Image 
-                  src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
+                  src="https://i.imgur.com/mHzuZgK.png" 
                   alt="BISA" 
                   fill 
                   className="object-contain object-left drop-shadow-md" 
@@ -175,7 +175,7 @@ export default function Navbar() {
                     isScrolled ? 'w-20 h-20 xl:w-24 xl:h-24' : 'w-28 h-28 xl:w-36 xl:h-36'
                   }`}>
                     <Image 
-                      src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
+                      src="https://i.imgur.com/mHzuZgK.png" 
                       alt="BISA" 
                       fill 
                       className="object-contain" 
