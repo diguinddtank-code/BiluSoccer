@@ -21,9 +21,14 @@ export default function Home() {
       <StatsBar />
       <ElitePathway />
       <OfficialLeagues />
-      <SponsorsSection />
+      <div className="hidden lg:block">
+        <SponsorsSection />
+      </div>
       <ExperienceStrip />
       <ClubGallery />
+      <div className="block lg:hidden">
+        <SponsorsSection />
+      </div>
       <ProgramsGrid />
       <WorldLanguages />
       <CoachesGrid />
