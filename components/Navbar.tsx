@@ -66,7 +66,6 @@ export default function Navbar() {
     { name: t('nav.sponsorship'), href: '/sponsorship' },
     { name: t('nav.resources'), href: '/resources' },
     { name: t('nav.about'), href: '/about' },
-    { name: t('nav.contact'), href: '/contact' },
   ];
 
   const menuVariants: Variants = {
@@ -164,9 +163,6 @@ export default function Navbar() {
                 </Link>
                 <Link href="/about" className="text-[10px] xl:text-[11px] font-bold uppercase tracking-widest text-bisa-white hover:text-[#CCFF00] transition-colors whitespace-nowrap">
                   {navLinks[3].name}
-                </Link>
-                <Link href="/contact" className="text-[10px] xl:text-[11px] font-bold uppercase tracking-widest text-bisa-white hover:text-[#CCFF00] transition-colors whitespace-nowrap">
-                  {navLinks[4].name}
                 </Link>
               </div>
 
