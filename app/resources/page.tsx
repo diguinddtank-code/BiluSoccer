@@ -130,31 +130,31 @@ export default function ResourcesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#060913] text-bisa-white overflow-hidden pb-20 md:pb-32 selection:bg-[#CCFF00] selection:text-black">
+    <main className="relative min-h-screen bg-[#060913] text-bisa-white overflow-x-hidden w-full max-w-[100vw] pb-20 md:pb-32 selection:bg-[#CCFF00] selection:text-black">
       {/* Immersive Background Elements */}
-      <div className="absolute top-0 inset-x-0 h-[60vh] bg-gradient-to-b from-[#0a0f1d] via-[#060913] to-transparent pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] md:w-[800px] md:h-[800px] bg-[#CCFF00]/5 rounded-full blur-[80px] md:blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] -translate-x-1/2 pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-[60vh] w-full bg-gradient-to-b from-[#0a0f1d] via-[#060913] to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[800px] md:h-[800px] bg-[#CCFF00]/5 rounded-full blur-[80px] md:blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none max-w-[100vw]" />
+      <div className="absolute top-1/4 left-0 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-blue-500/5 rounded-full blur-[100px] -translate-x-1/2 pointer-events-none max-w-[100vw]" />
 
       {/* Hero Section */}
-      <section className="relative pt-32 md:pt-48 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative pt-32 md:pt-48 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8 w-full">
+        <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
             
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex-1"
+              className="flex-1 w-full"
             >
-              <div className="inline-flex items-center space-x-3 mb-6 md:mb-8 px-4 py-2 border border-white/10 rounded-full bg-white/5 backdrop-blur-md shadow-xl hover:border-white/20 transition-colors">
+              <div className="inline-flex items-center space-x-3 mb-6 md:mb-8 px-4 py-2 border border-white/10 rounded-full bg-white/5 backdrop-blur-md shadow-xl hover:border-white/20 transition-colors w-max max-w-full overflow-hidden">
                 <div className="relative w-5 h-5 shrink-0">
                   <Image src="https://i.imgur.com/mHzuZgK.png" alt="BISA" fill className="object-contain" unoptimized />
                 </div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#CCFF00]">Academy Hub</span>
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#CCFF00] truncate">Academy Hub</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
+              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.9] mb-8 break-words hyphens-auto w-full">
                 Parent & <br className="hidden sm:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-bisa-white via-white/80 to-white/40">Player Hub</span>
               </h1>
