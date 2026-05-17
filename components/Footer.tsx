@@ -61,6 +61,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/resources" className="text-bisa-white/70 hover:text-bisa-gold transition-colors font-medium text-sm uppercase tracking-wider flex items-center group">
+                  <span className="w-2 h-2 bg-bisa-gold rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Resources
+                </Link>
+              </li>
+              <li>
                 <Link href="/tryouts" className="text-bisa-white/70 hover:text-bisa-gold transition-colors font-medium text-sm uppercase tracking-wider flex items-center group">
                   <span className="w-2 h-2 bg-bisa-gold rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Tryouts & Registration

@@ -17,9 +17,19 @@ const translations: Translations = {
     'nav.about': 'About',
     'nav.programs': 'Programs',
     'nav.sponsorship': 'Sponsorship',
+    'nav.resources': 'Resources',
     'nav.tryouts': 'Tryouts',
     'nav.contact': 'Contact',
     'nav.register': 'Register Now',
+
+    // Resources Page
+    'resources.title': 'Parent & Player Resources',
+    'resources.subtitle': 'Important documents, policies, and information for our academy families.',
+    'resources.doc1.title': 'Zero Tolerance Approved',
+    'resources.doc1.desc': 'Our guidelines on behavior, zero tolerance policy, and expectations for players, parents, and coaches.',
+    'resources.doc2.title': 'Age Group Formation',
+    'resources.doc2.desc': 'Information regarding age group formation and player development pathways.',
+    'resources.viewBtn': 'View Document',
     
     // Hero Section
     'hero.title1': 'Where Champions',
@@ -312,9 +322,19 @@ const translations: Translations = {
     'nav.about': 'Sobre',
     'nav.programs': 'Programas',
     'nav.sponsorship': 'Patrocínio',
+    'nav.resources': 'Recursos',
     'nav.tryouts': 'Seletivas',
     'nav.contact': 'Contato',
     'nav.register': 'Inscreva-se',
+
+    // Resources Page
+    'resources.title': 'Recursos para Pais e Jogadores',
+    'resources.subtitle': 'Documentos importantes, políticas e informações para as famílias de nossa academia.',
+    'resources.doc1.title': 'Zero Tolerance Approved',
+    'resources.doc1.desc': 'Nossas diretrizes sobre comportamento, política de tolerância zero e expectativas para jogadores, pais e treinadores.',
+    'resources.doc2.title': 'Age Group Formation',
+    'resources.doc2.desc': 'Informações sobre a formação de grupos por faixa etária e caminhos de desenvolvimento do jogador.',
+    'resources.viewBtn': 'Ver Documento',
     
     // Hero Section
     'hero.title1': 'Onde Campeões',
@@ -607,9 +627,19 @@ const translations: Translations = {
     'nav.about': 'Nosotros',
     'nav.programs': 'Programas',
     'nav.sponsorship': 'Patrocinio',
+    'nav.resources': 'Recursos',
     'nav.tryouts': 'Pruebas',
     'nav.contact': 'Contacto',
     'nav.register': 'Regístrate',
+
+    // Resources Page
+    'resources.title': 'Recursos para Padres y Jugadores',
+    'resources.subtitle': 'Documentos importantes, políticas e información para las familias de nuestra academia.',
+    'resources.doc1.title': 'Zero Tolerance Approved',
+    'resources.doc1.desc': 'Nuestras directrices sobre comportamiento, política de tolerancia cero y expectativas para jugadores, padres y entrenadores.',
+    'resources.doc2.title': 'Age Group Formation',
+    'resources.doc2.desc': 'Información sobre la formación de grupos por edad y los caminos de desarrollo del jugador.',
+    'resources.viewBtn': 'Ver Documento',
     
     // Hero Section
     'hero.title1': 'Donde los Campeones',
