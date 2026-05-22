@@ -45,7 +45,7 @@ export default function CoachOnboardingPage() {
   }
 
   return (
-    <main className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-[#060913] text-bisa-white pb-24 selection:bg-[#CCFF00] selection:text-black">
+    <main className="relative min-h-screen w-full overflow-x-hidden bg-[#060913] text-bisa-white pb-24 selection:bg-[#CCFF00] selection:text-black">
       {/* Immersive Background Elements */}
       <div className="absolute top-0 inset-x-0 h-[60vh] bg-gradient-to-b from-[#0a0f1d] via-[#060913] to-transparent pointer-events-none" />
       <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#CCFF00]/5 rounded-full blur-[80px] md:blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
@@ -73,7 +73,7 @@ export default function CoachOnboardingPage() {
       </header>
 
       {/* Form Container */}
-      <section className="relative px-4 sm:px-6 lg:px-8 w-full max-w-[100vw]">
+      <section className="relative px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
