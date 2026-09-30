@@ -43,6 +43,17 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Canonical host is www (see lib/site.ts). Send the bare domain there so Google sees one version of each page.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'bilusoccer.com' }],
+        destination: 'https://www.bilusoccer.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
   output: 'standalone',
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {

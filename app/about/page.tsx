@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
+import Link from 'next/link';
 import ExperienceStrip from '@/components/ExperienceStrip';
 import CoachesGrid from '@/components/CoachesGrid';
 import LeadForm from '@/components/LeadForm';
@@ -44,6 +45,11 @@ export default function AboutPage() {
               <h2 className="text-3xl font-black text-bisa-gold uppercase tracking-tighter mb-4">Our Philosophy</h2>
               <p className="text-xl text-bisa-white/90 font-medium leading-relaxed">
                 Rooted in Global Elite Methodology, we believe in developing the complete player. We prioritize technical mastery, creative problem-solving, and competitive spirit within a positive, growth-oriented environment.
+              </p>
+              <p className="text-lg text-bisa-white/70 font-medium leading-relaxed mt-6">
+                Explore our <Link href="/programs" className="text-bisa-gold hover:underline">youth soccer programs</Link>, see how{' '}
+                <Link href="/projeto-bilu" className="text-bisa-gold hover:underline">Projeto BILU</Link> uses soccer for human transformation, or{' '}
+                <Link href="/tryouts" className="text-bisa-gold hover:underline">join a tryout</Link>.
               </p>
             </div>
           </motion.div>

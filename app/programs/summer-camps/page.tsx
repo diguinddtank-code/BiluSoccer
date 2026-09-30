@@ -261,8 +261,10 @@ export default function SummerCampsPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="w-full flex-col font-bebas flex mb-4 sm:mb-6 md:mb-8 leading-[0.85]"
           >
-            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-white w-full tracking-tighter m-0 p-0 break-words">{t('sc.hero.title1')}</h1>
-            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-[#CCFF00] w-full tracking-tighter m-0 p-0 break-words">{t('sc.hero.title2')}</h1>
+            <h1 className="m-0 p-0 w-full">
+              <span className="block text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-white w-full tracking-tighter m-0 p-0 break-words">{t('sc.hero.title1')}</span>
+              <span className="block text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-[#CCFF00] w-full tracking-tighter m-0 p-0 break-words">{t('sc.hero.title2')}</span>
+            </h1>
           </motion.div>
 
           <motion.p

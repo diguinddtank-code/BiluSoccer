@@ -1,11 +1,15 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import JsonLd from '@/components/JsonLd';
+import { pageMetadata, pageSchema } from '@/lib/seo';
 import SponsorshipClient from './SponsorshipClient';
 
-export const metadata: Metadata = {
-  title: "Become a Sponsor | BISA – Bilu International Soccer Academy"
-};
+export const metadata: Metadata = pageMetadata('/sponsorship');
 
 export default function SponsorshipPage() {
-  return <SponsorshipClient />;
+  return (
+    <>
+      <JsonLd data={pageSchema('/sponsorship')} />
+      <SponsorshipClient />
+    </>
+  );
 }
-

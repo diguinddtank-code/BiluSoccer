@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { PROGRAM_FAQS } from '@/lib/faqs';
+import { BUSINESS } from '@/lib/site';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const REGISTER_URL = "https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ==";
@@ -141,12 +143,7 @@ export default function JuniorAcademyPage() {
     { num: "04", title: "Accelerate", desc: "Start training with like-minded, ambitious players." }
   ];
 
-  const faqs = [
-    { q: "How does this differ from Academy Development?", a: "Junior Academy is an accelerated track for players demonstrating high potential and commitment at U8-U12." },
-    { q: "What if my child is not selected?", a: "They can continue developing in our Academy program until they are ready to step up." },
-    { q: "Is travel required?", a: "Yes, some regional travel is expected for standardized competitive matches." },
-    { q: "Can girls join?", a: "Absolutely. We have comprehensive tracks for both boys and girls." }
-  ];
+  const faqs = PROGRAM_FAQS['junior-academy'];
 
   return (
     <main className="text-white selection:bg-[#CCFF00] selection:text-black">
@@ -195,8 +192,10 @@ export default function JuniorAcademyPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="w-full flex-col font-bebas flex mb-4 sm:mb-6 md:mb-8 leading-[0.85]"
           >
-            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-white w-full tracking-tighter m-0 p-0 break-words">JUNIOR</h1>
-            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-[#CCFF00] w-full tracking-tighter m-0 p-0 break-words">ACADEMY</h1>
+            <h1 className="m-0 p-0 w-full">
+              <span className="block text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-white w-full tracking-tighter m-0 p-0 break-words">JUNIOR</span>
+              <span className="block text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-[#CCFF00] w-full tracking-tighter m-0 p-0 break-words">ACADEMY</span>
+            </h1>
           </motion.div>
 
           <motion.p
@@ -477,7 +476,7 @@ export default function JuniorAcademyPage() {
             className="mt-16 text-center"
           >
             <p className="text-gray-400 text-lg">
-              Contact us directly at <a href="mailto:info@bilusoccer.com" className="text-[#CCFF00] hover:underline hover:text-white transition-colors">info@bilusoccer.com</a>
+              Contact us directly at <a href={`mailto:${BUSINESS.email}`} className="text-[#CCFF00] hover:underline hover:text-white transition-colors">{BUSINESS.email}</a>
             </p>
           </motion.div>
         </div>

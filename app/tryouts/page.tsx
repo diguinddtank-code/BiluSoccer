@@ -80,6 +80,16 @@ export default function TryoutsPage() {
         </div>
       </section>
 
+      <section className="bg-bisa-navy-dark pb-16 px-6">
+        <p className="max-w-4xl mx-auto text-center text-bisa-white/70 font-medium text-lg">
+          Tryouts place players into the right program:{' '}
+          <Link href="/programs/junior-academy" className="text-bisa-gold hover:underline">Junior Academy (U8–U12)</Link>,{' '}
+          <Link href="/programs/elite" className="text-bisa-gold hover:underline">BISA Elite (U15–U18)</Link> or{' '}
+          <Link href="/programs/academy-development" className="text-bisa-gold hover:underline">Academy Development (U4–U14)</Link>.{' '}
+          Questions? <Link href="/contact" className="text-bisa-gold hover:underline">Contact the club</Link>.
+        </p>
+      </section>
+
       <LeadForm />
 
       {/* Final CTA */}

@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import LocationsSection from '@/components/LocationsSection';
 import LeadForm from '@/components/LeadForm';
+import { BUSINESS, fullAddress } from '@/lib/site';
 
 export default function ContactPage() {
   return (
@@ -38,15 +39,15 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-bisa-navy p-8 border-t-4 border-bisa-gold rounded-lg">
                 <span className="block text-bisa-gold font-bold uppercase tracking-widest text-sm mb-3">Phone</span>
-                <span className="text-xl font-black text-bisa-white">(843) 304-9414</span>
+                <a href={`tel:${BUSINESS.phoneE164}`} className="text-xl font-black text-bisa-white hover:text-bisa-gold transition-colors">{BUSINESS.phone}</a>
               </div>
               <div className="bg-bisa-navy p-8 border-t-4 border-bisa-gold rounded-lg">
                 <span className="block text-bisa-gold font-bold uppercase tracking-widest text-sm mb-3">Email</span>
-                <span className="text-xl font-black text-bisa-white">info@bilusoccer.com</span>
+                <a href={`mailto:${BUSINESS.email}`} className="text-xl font-black text-bisa-white hover:text-bisa-gold transition-colors break-all">{BUSINESS.email}</a>
               </div>
               <div className="bg-bisa-navy p-8 border-t-4 border-bisa-gold rounded-lg">
-                <span className="block text-bisa-gold font-bold uppercase tracking-widest text-sm mb-3">Region</span>
-                <span className="text-xl font-black text-bisa-white">Metro Charleston, SC</span>
+                <span className="block text-bisa-gold font-bold uppercase tracking-widest text-sm mb-3">Training Ground</span>
+                <a href={BUSINESS.venue.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-xl font-black text-bisa-white hover:text-bisa-gold transition-colors">{BUSINESS.venue.name}<span className="block text-base font-medium text-bisa-white/70 mt-1">{fullAddress}</span></a>
               </div>
             </div>
           </motion.div>

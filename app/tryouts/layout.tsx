@@ -1,19 +1,14 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import JsonLd from '@/components/JsonLd';
+import { pageMetadata, pageSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Tryouts & Registration | BISA',
-  description: 'Register for upcoming soccer tryouts at BISA in Charleston, SC. Secure your spot for U8-U18 competitive teams.',
-  openGraph: {
-    title: 'Tryouts & Registration | BISA',
-    description: 'Register for upcoming soccer tryouts at BISA in Charleston, SC.',
-    url: 'https://bilusoccer.com/tryouts',
-  },
-};
+export const metadata: Metadata = pageMetadata('/tryouts');
 
-export default function TryoutsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <>{children}</>;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <JsonLd data={pageSchema('/tryouts')} />
+      {children}
+    </>
+  );
 }

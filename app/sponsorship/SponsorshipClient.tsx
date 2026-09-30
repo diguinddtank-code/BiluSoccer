@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'motion/react';
 import { useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { BUSINESS } from '@/lib/site';
 
 import { Monitor, Layout, Flag as FlagIcon, ChevronDown, Rocket, Trophy, Users, ShieldCheck, CheckCircle2, ChevronUp, X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -60,7 +61,7 @@ export default function SponsorshipClient() {
       `Email: ${formData.email}\n\n` +
       `Please let me know the next steps.\n\nThank you.`
     );
-    window.location.href = `mailto:amoreira@bilusoccer.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${BUSINESS.sponsorshipEmail}?subject=${subject}&body=${body}`;
     setModalOpen(false);
   };
 
@@ -1093,13 +1094,13 @@ export default function SponsorshipClient() {
             transition={{ duration: 0.9, delay: 0.45 }}
           >
             <div className="flex flex-col gap-7">
-              <a href="tel:8433049414" className="flex items-center gap-5 group hover:translate-x-1 transition-transform">
+              <a href={`tel:${BUSINESS.phoneE164}`} className="flex items-center gap-5 group hover:translate-x-1 transition-transform">
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#1B3A8C] shrink-0 shadow-md group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.21 12 19.79 19.79 0 0 1 1.14 3.4 2 2 0 0 1 3.11 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <div>
                   <p className="text-white font-bold">{t('sp.contact.info')}</p>
-                  <p className="text-white/70 text-sm">843-304-9414</p>
+                  <p className="text-white/70 text-sm">{BUSINESS.phone}</p>
                 </div>
               </a>
 
@@ -1214,7 +1215,7 @@ export default function SponsorshipClient() {
                     Send Request
                   </button>
                   <p className="text-gray-400 text-center text-xs mt-4">
-                    This will prepare an email addressed to<br />amoreira@bilusoccer.com
+                    This will prepare an email addressed to<br />{BUSINESS.sponsorshipEmail}
                   </p>
                 </div>
               </form>

@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { PROGRAM_FAQS } from '@/lib/faqs';
+import { BUSINESS } from '@/lib/site';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const REGISTER_URL = "https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ==";
@@ -141,12 +143,7 @@ export default function AcademyDevelopmentPage() {
     { num: "04", title: "Start Training", desc: "Join the sessions and begin your elite journey." }
   ];
 
-  const faqs = [
-    { q: "What ages does Academy Development cover?", a: "This program is tailored specifically for boys and girls from U4 up to U14." },
-    { q: "Do I need previous experience?", a: "Players should have a passion for the game, we will evaluate skill level to place them correctly." },
-    { q: "What is the commitment?", a: "Trainings are held multiple times a week with weekend game opportunities depending on the group." },
-    { q: "How are teams formed?", a: "Teams and training pools are formed objectively based on technical, tactical, physical, and psychological traits." }
-  ];
+  const faqs = PROGRAM_FAQS['academy-development'];
 
   return (
     <main className="text-white selection:bg-[#CCFF00] selection:text-black">
@@ -195,8 +192,10 @@ export default function AcademyDevelopmentPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="w-full flex-col font-bebas flex mb-4 sm:mb-6 md:mb-8 leading-[0.85]"
           >
-            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-white w-full tracking-tighter m-0 p-0 break-words">ACADEMY</h1>
-            <h1 className="text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-[#CCFF00] w-full tracking-tighter m-0 p-0 break-words">DEVELOPMENT</h1>
+            <h1 className="m-0 p-0 w-full">
+              <span className="block text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-white w-full tracking-tighter m-0 p-0 break-words">ACADEMY</span>
+              <span className="block text-[5.5rem] leading-[0.85] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-[#CCFF00] w-full tracking-tighter m-0 p-0 break-words">DEVELOPMENT</span>
+            </h1>
           </motion.div>
 
           <motion.p
@@ -477,7 +476,7 @@ export default function AcademyDevelopmentPage() {
             className="mt-16 text-center"
           >
             <p className="text-gray-400 text-lg">
-              Contact us directly at <a href="mailto:info@bilusoccer.com" className="text-[#CCFF00] hover:underline hover:text-white transition-colors">info@bilusoccer.com</a>
+              Contact us directly at <a href={`mailto:${BUSINESS.email}`} className="text-[#CCFF00] hover:underline hover:text-white transition-colors">{BUSINESS.email}</a>
             </p>
           </motion.div>
         </div>

@@ -1,3 +1,6 @@
+import type { Metadata } from 'next';
+import JsonLd from '@/components/JsonLd';
+import { pageMetadata, pageSchema } from '@/lib/seo';
 import HeroSection from '@/components/HeroSection';
 import StatsBar from '@/components/StatsBar';
 import ElitePathway from '@/components/ElitePathway';
@@ -14,9 +17,12 @@ import SponsorsSection from '@/components/SponsorsSection';
 import ProjetoBiluCTA from '@/components/ProjetoBiluCTA';
 import FinalCTA from '@/components/FinalCTA';
 
+export const metadata: Metadata = pageMetadata('/');
+
 export default function Home() {
   return (
     <>
+      <JsonLd data={pageSchema('/', { programList: true })} />
       <HeroSection />
       <StatsBar />
       <ElitePathway />
