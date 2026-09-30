@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'motion/react';
-import Image from 'next/image';
-import { Trophy, Medal, Target, ChevronRight, ShieldCheck, Star } from 'lucide-react';
+import { Trophy, Medal, Target } from 'lucide-react';
+import ChampionsSection from './ChampionsSection';
 
 const leagues = [
   {
@@ -59,86 +59,12 @@ export default function ElitePathway() {
           </p>
         </motion.div>
 
-        {/* Feature: State Champions Highlight */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="relative rounded-[2rem] overflow-hidden bg-[#0A1020] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] mb-24 group flex flex-col md:block"
-        >
-          {/* ---- MOBILE LAYOUT ---- */}
-          {/* Mobile Image Banner (Only visible on small screens) */}
-          <div className="relative h-[300px] sm:h-[400px] w-full md:hidden">
-            <Image 
-              src="https://i.imgur.com/JBYxTIU.png"
-              alt="BISA State Champions Mobile"
-              fill
-              className="object-cover object-top"
-            />
-            {/* Soft gradient into the background color */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1020] via-transparent to-transparent" />
+      </div>
 
-            {/* Mobile Badge Overlay */}
-            <div className="absolute top-6 left-6 right-6 flex justify-center z-20">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-bisa-gold text-bisa-navy-dark rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_4px_15px_rgba(235,171,4,0.3)]">
-                <ShieldCheck className="w-4 h-4" />
-                Current Title Holders
-              </div>
-            </div>
-          </div>
+      {/* U15 State Champions — trophy moment (full width) */}
+      <ChampionsSection />
 
-          {/* ---- DESKTOP LAYOUT Background ---- */}
-          <div className="absolute inset-0 z-0 hidden md:block">
-            <Image 
-              src="https://i.imgur.com/wZZMCRa.png"
-              alt="BISA State Champions Desktop"
-              fill
-              className="object-cover opacity-90 object-[70%_top] lg:object-right transition-transform duration-1000 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0A1020] via-[#0A1020]/90 lg:via-[#0A1020]/40 to-transparent" />
-          </div>
-          
-          <div className="relative z-10 px-6 pb-10 pt-0 md:p-14 lg:p-20 flex flex-col md:flex-row md:items-center gap-6 md:gap-14 lg:gap-20">
-            {/* Text Content */}
-            <div className="flex-1 space-y-5 sm:space-y-6 md:space-y-8 text-center md:text-left w-full flex flex-col items-center md:items-start z-10">
-              <div className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-bisa-gold text-bisa-navy-dark rounded-xl font-black text-sm uppercase tracking-widest shadow-[0_4px_15px_rgba(235,171,4,0.3)] mt-2 md:mt-0">
-                <ShieldCheck className="w-5 h-5" />
-                Current Title Holders
-              </div>
-              
-              <h4 className="text-[2.75rem] sm:text-6xl md:text-7xl font-black text-bisa-white uppercase tracking-tighter leading-[0.95] drop-shadow-lg">
-                U15 State <br className="hidden md:block" /> 
-                <span className="text-bisa-gold drop-shadow-[0_0_20px_rgba(235,171,4,0.3)]">Champions</span>
-              </h4>
-              
-              <p className="text-base sm:text-lg md:text-2xl text-bisa-white/90 font-medium max-w-xl leading-relaxed drop-shadow-md">
-                Reigning Supreme in the President&apos;s Cup. Our U15 squad demonstrated unmatched tactical discipline and technical mastery to claim the State Title.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pt-4 md:pt-2">
-                <div className="relative group shrink-0 transition-transform duration-700 hover:scale-110 flex items-center justify-center">
-                  {/* Logo Container */}
-                  <div className="relative w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] md:w-[150px] md:h-[150px] z-10 flex items-center justify-center">
-                    <Image 
-                      src="https://i.imgur.com/3Pb5Djj.png"
-                      alt="USYS Presidents Cup"
-                      fill
-                      className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)] md:drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-                    />
-                  </div>
-                </div>
-                <div className="hidden sm:block h-12 w-px bg-white/30" />
-                <div className="flex flex-col items-center sm:items-start gap-2">
-                  <div className="flex gap-1.5">
-                    {[1,2,3,4,5].map((s) => <Star key={s} className="w-5 h-5 md:w-6 md:h-6 text-bisa-gold fill-bisa-gold filter drop-shadow" />)}
-                  </div>
-                  <span className="text-bisa-white/80 font-bold uppercase tracking-widest text-xs sm:text-sm pt-1">USYS Presidents Cup<br className="sm:hidden" /> <span className="hidden sm:inline">•</span> Elite Squad</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10 mt-24">
 
         {/* The League Pathway */}
         <div className="text-center mb-16">
