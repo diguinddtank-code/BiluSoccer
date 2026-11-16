@@ -54,7 +54,7 @@ export default function ClubGallery() {
           >
             {[...row1, ...row1, ...row1].map((src, i) => (
               <div key={i} className="relative w-[280px] h-[200px] sm:w-[350px] sm:h-[250px] md:w-[450px] md:h-[320px] rounded-2xl overflow-hidden group shadow-2xl shrink-0">
-                <Image src={src} alt="Gallery image" fill className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+                <Image src={src} alt="Gallery image" fill sizes="(max-width: 640px) 70vw, 420px" className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
                 <div className="absolute inset-0 bg-bisa-navy/40 group-hover:bg-transparent transition-colors duration-500" />
                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none" />
               </div>
@@ -71,7 +71,7 @@ export default function ClubGallery() {
           >
             {[...row2, ...row2, ...row2].map((src, i) => (
               <div key={i} className="relative w-[280px] h-[200px] sm:w-[350px] sm:h-[250px] md:w-[450px] md:h-[320px] rounded-2xl overflow-hidden group shadow-2xl shrink-0">
-                <Image src={src} alt="Gallery image" fill className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+                <Image src={src} alt="Gallery image" fill sizes="(max-width: 640px) 70vw, 420px" className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
                 <div className="absolute inset-0 bg-bisa-navy/40 group-hover:bg-transparent transition-colors duration-500" />
                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none" />
               </div>

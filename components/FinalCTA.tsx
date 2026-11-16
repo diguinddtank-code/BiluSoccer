@@ -10,9 +10,9 @@ export default function FinalCTA() {
       {/* Dramatic Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+          src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=75" 
           alt="Soccer Stadium Lights" 
-          fill 
+          fill sizes="100vw" 
           className="object-cover object-center opacity-30 mix-blend-luminosity"
           unoptimized
         />

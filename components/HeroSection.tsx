@@ -12,6 +12,15 @@ import { useLanguage } from '@/contexts/LanguageContext';
 export default function HeroSection() {
   const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // One download: the soft copy on desktop, the sharp one on phones.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.src = window.matchMedia('(min-width: 1024px)').matches ? '/media/hero-soft.mp4' : '/media/hero.mp4';
+    v.play().catch(() => {});
+  }, []);
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -77,17 +86,18 @@ export default function HeroSection() {
       {/* Dynamic Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-bisa-navy-dark">
         <div ref={bgRef} className="absolute inset-0 will-change-transform">
+        {/* Served from the site (public/media), compressed. Desktop gets a copy with the
+            soft blur baked into the file, so it looks the same as the old CSS blur
+            without the browser re-blurring every frame. */}
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          // The source is a 480×854 phone clip: sharp on phones, but stretched ~7× on a
-          // wide screen. On desktop a soft blur plus film grain hide the pixels.
-          className="absolute inset-0 w-full h-full object-cover opacity-60 lg:blur-[3px] lg:scale-[1.04]"
-        >
-          <source src="https://i.imgur.com/Mikmi09.mp4" type="video/mp4" />
-        </video>
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 lg:scale-[1.04]"
+        />
         <div className="absolute inset-0 hidden lg:block bg-[url('/noise.png')] bg-[length:160px] opacity-30 mix-blend-overlay" />
         </div>
 

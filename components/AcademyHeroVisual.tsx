@@ -42,7 +42,7 @@ export default function AcademyHeroVisual() {
             key={src}
             src={src} 
             alt={`Youth Soccer Training ${index + 1}`}
-            fill
+            fill sizes="(max-width: 1024px) 80vw, 560px"
             className={`object-cover transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
             priority={index === 0}
             referrerPolicy="no-referrer"
@@ -90,7 +90,7 @@ export default function AcademyHeroVisual() {
           <Image 
             src="https://i.imgur.com/mHzuZgK.png"
             alt="BISA Logo"
-            fill
+            fill sizes="(max-width: 1024px) 80vw, 560px"
             className="object-contain drop-shadow-lg"
           />
         </div>

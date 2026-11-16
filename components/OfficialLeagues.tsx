@@ -35,10 +35,13 @@ export default function OfficialLeagues() {
         .from(badges, { y: 50, scale: 0.4, rotate: (i) => (i % 2 ? 14 : -14), autoAlpha: 0, duration: 0.8, stagger: 0.08, ease: 'back.out(1.8)' }, 0.15)
         .from('[data-ol-rule]', { scaleX: 0, duration: 1, ease: 'expo.inOut' }, 0.2)
         .add(() => {
-          // A slow wave across the strip, forever.
+          // A slow wave across the strip, only while the strip is on screen.
+          const wave = gsap.timeline();
           badges.forEach((b, i) =>
-            gsap.to(b.querySelector('[data-ol-float]'), { y: -7, duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: i * 0.18 }),
+            wave.to(b.querySelector('[data-ol-float]'), { y: -7, duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: -1 }, i * 0.18),
           );
+          const st = ScrollTrigger.create({ trigger: el, start: 'top bottom', end: 'bottom top', onToggle: (self) => wave.paused(!self.isActive) });
+          cleanups.push(() => st.kill());
         });
     }, el);
 

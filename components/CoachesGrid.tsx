@@ -78,7 +78,7 @@ export default function CoachesGrid() {
               <Image
                 src={featuredCoach.photo}
                 alt={featuredCoach.name}
-                fill
+                fill sizes="(max-width: 768px) 100vw, 480px"
                 className="object-cover object-top transition-all duration-700 scale-100 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
@@ -122,7 +122,7 @@ export default function CoachesGrid() {
                   <Image
                     src={coach.photo}
                     alt={coach.name}
-                    fill
+                    fill sizes="(max-width: 768px) 100vw, 480px"
                     className="object-cover object-top transition-all duration-700 scale-100 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />

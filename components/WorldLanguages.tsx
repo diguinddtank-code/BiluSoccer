@@ -61,27 +61,31 @@ export default function WorldLanguages() {
         }
         const row = track.parentElement!;
         let hovering = false;
-        // Scroll speeds the rows up and leans them; they settle back on their own.
+        // One speed value per row, eased with quickTo (no new tweens per scroll
+        // event): scrolling speeds the row up, it settles back once scrolling stops.
+        const speed = { v: 1 };
+        const toSpeed = gsap.quickTo(speed, 'v', { duration: 0.6, ease: 'power2.out', onUpdate: () => void loop.timeScale(speed.v) });
+        const settle = gsap.delayedCall(0.15, () => toSpeed(hovering ? 0 : 1)).pause();
         const st = ScrollTrigger.create({
           trigger: el,
           start: 'top bottom',
           end: 'bottom top',
+          // Rows off screen do not animate at all.
+          onToggle: (self) => loop.paused(!self.isActive),
           onUpdate: (self) => {
             if (hovering) return;
-            const v = gsap.utils.clamp(-1, 1, self.getVelocity() / 1500);
-            gsap.to(loop, { timeScale: 1 + Math.abs(v) * 4, duration: 0.2, overwrite: true });
-            gsap.to(loop, { timeScale: 1, duration: 1.2, delay: 0.2, ease: 'power2.out' });
-            gsap.to(track, { skewX: -v * 6 * dir, duration: 0.3, overwrite: 'auto' });
-            gsap.to(track, { skewX: 0, duration: 1, delay: 0.25, ease: 'power3.out' });
+            toSpeed(1 + Math.min(1, Math.abs(self.getVelocity()) / 1500) * 3);
+            settle.restart(true);
           },
         });
+        loop.paused(!st.isActive);
         const enter = () => {
           hovering = true;
-          gsap.to(loop, { timeScale: 0, duration: 0.6, ease: 'power2.out', overwrite: true });
+          toSpeed(0);
         };
         const leave = () => {
           hovering = false;
-          gsap.to(loop, { timeScale: 1, duration: 0.8, ease: 'power2.in', overwrite: true });
+          toSpeed(1);
         };
         if (window.matchMedia('(hover: hover)').matches) {
           row.addEventListener('pointerenter', enter);

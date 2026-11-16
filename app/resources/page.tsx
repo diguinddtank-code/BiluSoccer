@@ -149,7 +149,7 @@ export default function ResourcesPage() {
             >
               <div className="inline-flex items-center space-x-3 mb-6 md:mb-8 px-4 py-2 border border-white/10 rounded-full bg-white/5 backdrop-blur-md shadow-xl hover:border-white/20 transition-colors w-max max-w-full overflow-hidden">
                 <div className="relative w-5 h-5 shrink-0">
-                  <Image src="https://i.imgur.com/mHzuZgK.png" alt="BISA" fill className="object-contain" unoptimized />
+                  <Image src="https://i.imgur.com/mHzuZgK.png" alt="BISA" fill sizes="(max-width: 768px) 100vw, 480px" className="object-contain" unoptimized />
                 </div>
                 <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#CCFF00] truncate">Academy Hub</span>
               </div>
@@ -178,7 +178,7 @@ export default function ResourcesPage() {
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 className="relative z-20 w-40 h-40 rounded-3xl bg-[#0a0f1d] border border-white/10 shadow-2xl p-6 flex items-center justify-center -ml-16 mt-20 backdrop-blur-xl"
               >
-                 <Image src="https://i.imgur.com/mHzuZgK.png" alt="BISA" fill className="object-contain p-4 drop-shadow-xl" unoptimized />
+                 <Image src="https://i.imgur.com/mHzuZgK.png" alt="BISA" fill sizes="(max-width: 768px) 100vw, 480px" className="object-contain p-4 drop-shadow-xl" unoptimized />
               </motion.div>
 
               <motion.div 
@@ -187,7 +187,7 @@ export default function ResourcesPage() {
                 className="absolute z-10 w-48 h-48 rounded-full bg-[#0a0f1d] border border-white/10 shadow-[0_0_40px_rgba(204,255,0,0.15)] flex items-center justify-center ml-24 -mt-16 overflow-hidden p-1"
               >
                   <div className="relative w-full h-full rounded-full overflow-hidden">
-                     <Image src="https://i.imgur.com/V6cPinz.jpeg" alt="Projeto BILU" fill className="object-cover" />
+                     <Image src="https://i.imgur.com/V6cPinz.jpeg" alt="Projeto BILU" fill sizes="(max-width: 768px) 100vw, 480px" className="object-cover" />
                   </div>
               </motion.div>
             </motion.div>
@@ -229,7 +229,7 @@ export default function ResourcesPage() {
                     <div className="relative z-10 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-lg">
                       {system.isBilu ? (
                         <div className="relative w-10 h-10 rounded-full overflow-hidden">
-                           <Image src="https://i.imgur.com/V6cPinz.jpeg" alt="Projeto BILU" fill className="object-cover" />
+                           <Image src="https://i.imgur.com/V6cPinz.jpeg" alt="Projeto BILU" fill sizes="(max-width: 768px) 100vw, 480px" className="object-cover" />
                         </div>
                       ) : (
                         <system.icon className={`w-7 h-7 md:w-8 md:h-8 ${system.iconColor}`} />

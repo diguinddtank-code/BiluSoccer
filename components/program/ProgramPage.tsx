@@ -125,23 +125,34 @@ export default function ProgramPage({ data }: { data: ProgramData }) {
         const loop = gsap.to(track, { xPercent: -50, duration: 26, ease: 'none', repeat: -1 });
         if (reduce) loop.pause();
         else {
+          // One eased speed value (quickTo), no new tweens per scroll event.
+          const speed = { v: 1 };
+          const toSpeed = gsap.quickTo(speed, 'v', { duration: 0.6, ease: 'power2.out', onUpdate: () => void loop.timeScale(speed.v) });
+          const settle = gsap.delayedCall(0.15, () => toSpeed(1)).pause();
           const st = ScrollTrigger.create({
-            trigger: el,
-            start: 'top top',
-            end: 'bottom bottom',
+            trigger: track,
+            start: 'top bottom',
+            end: 'bottom top',
+            onToggle: (self) => loop.paused(!self.isActive),
             onUpdate: (self) => {
-              const v = Math.min(1, Math.abs(self.getVelocity()) / 1500);
-              gsap.to(loop, { timeScale: 1 + v * 4, duration: 0.2, overwrite: true });
-              gsap.to(loop, { timeScale: 1, duration: 1.2, delay: 0.2 });
+              toSpeed(1 + Math.min(1, Math.abs(self.getVelocity()) / 1500) * 3);
+              settle.restart(true);
             },
           });
+          loop.paused(!st.isActive);
           cleanups.push(() => st.kill());
         }
       }
-      // Flag rows (Global DNA), opposite directions.
+      // Flag rows (Global DNA), opposite directions; paused while off screen.
       gsap.utils.toArray<HTMLElement>('[data-flags]').forEach((row, i) => {
         const loop = gsap.fromTo(row, { xPercent: i ? -50 : 0 }, { xPercent: i ? 0 : -50, duration: 40 + i * 6, ease: 'none', repeat: -1 });
-        if (reduce) loop.pause();
+        if (reduce) {
+          loop.pause();
+          return;
+        }
+        const st = ScrollTrigger.create({ trigger: row, start: 'top bottom', end: 'bottom top', onToggle: (self) => loop.paused(!self.isActive) });
+        loop.paused(!st.isActive);
+        cleanups.push(() => st.kill());
       });
 
       if (reduce) return;

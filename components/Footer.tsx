@@ -40,7 +40,7 @@ export default function Footer() {
               <Image
                 src={BUSINESS.logo}
                 alt={`${BUSINESS.fullName} logo`}
-                fill
+                fill sizes="160px"
                 className="object-contain object-left"
                 unoptimized
               />

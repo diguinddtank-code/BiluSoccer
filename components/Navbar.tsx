@@ -16,21 +16,21 @@ const LanguageSelector = ({ language, setLanguage }: { language: string, setLang
       className={`relative w-7 h-5 sm:w-9 sm:h-6 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'en' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
       title="English"
     >
-      <Image src="https://flagcdn.com/w40/us.png" alt="English" fill className="object-cover" unoptimized />
+      <Image src="https://flagcdn.com/w40/us.png" alt="English" fill sizes="40px" className="object-cover" unoptimized />
     </button>
     <button 
       onClick={() => setLanguage('pt')}
       className={`relative w-7 h-5 sm:w-9 sm:h-6 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'pt' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
       title="Português"
     >
-      <Image src="https://flagcdn.com/w40/br.png" alt="Português" fill className="object-cover" unoptimized />
+      <Image src="https://flagcdn.com/w40/br.png" alt="Português" fill sizes="40px" className="object-cover" unoptimized />
     </button>
     <button 
       onClick={() => setLanguage('es')}
       className={`relative w-7 h-5 sm:w-9 sm:h-6 lg:w-7 lg:h-5 rounded-sm overflow-hidden transition-transform ${language === 'es' ? 'ring-2 ring-[#CCFF00] scale-110 shadow-[0_0_8px_rgba(204,255,0,0.4)]' : 'opacity-60 hover:opacity-100'}`}
       title="Español"
     >
-      <Image src="https://flagcdn.com/w40/es.png" alt="Español" fill className="object-cover" unoptimized />
+      <Image src="https://flagcdn.com/w40/es.png" alt="Español" fill sizes="40px" className="object-cover" unoptimized />
     </button>
   </div>
 );
@@ -115,7 +115,7 @@ export default function Navbar() {
                 <Image 
                   src="https://i.imgur.com/mHzuZgK.png" 
                   alt="BISA" 
-                  fill 
+                  fill sizes="40px" 
                   className="object-contain object-left drop-shadow-md" 
                   unoptimized
                 />
@@ -177,7 +177,7 @@ export default function Navbar() {
                     <Image 
                       src="https://i.imgur.com/mHzuZgK.png" 
                       alt="BISA" 
-                      fill 
+                      fill sizes="40px" 
                       className="object-contain" 
                       unoptimized
                     />
