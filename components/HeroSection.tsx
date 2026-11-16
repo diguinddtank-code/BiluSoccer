@@ -82,10 +82,13 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
+          // The source is a 480×854 phone clip: sharp on phones, but stretched ~7× on a
+          // wide screen. On desktop a soft blur plus film grain hide the pixels.
+          className="absolute inset-0 w-full h-full object-cover opacity-60 lg:blur-[3px] lg:scale-[1.04]"
         >
           <source src="https://i.imgur.com/Mikmi09.mp4" type="video/mp4" />
         </video>
+        <div className="absolute inset-0 hidden lg:block bg-[url('/noise.png')] bg-[length:160px] opacity-30 mix-blend-overlay" />
         </div>
 
         {/* Gradient Overlays for Text Readability */}

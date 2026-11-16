@@ -1,202 +1,157 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Componente de Contador Animado
-function Counter({from, to, duration = 2}: {from: number; to: number; duration?: number}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, {once: true, margin: '0px'});
-  const [count, setCount] = useState(from);
+// "Everyone is welcome": two rows of real flags (with the country name) gliding
+// in opposite directions. GSAP drives the rows: they speed up and lean with
+// the scroll, ease back to cruising speed, and slow to a stop under the cursor.
 
-  useEffect(() => {
-    if (isInView) {
-      let startTimestamp: number | null = null;
-      const step = (timestamp: number) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-        setCount(Math.floor(progress * (to - from) + from));
-        if (progress < 1) {
-          window.requestAnimationFrame(step);
-        }
-      };
-      window.requestAnimationFrame(step);
-    }
-  }, [isInView, from, to, duration]);
+const NATIONS = [
+  ['br', 'Brazil'], ['us', 'USA'], ['mx', 'Mexico'], ['co', 'Colombia'], ['ma', 'Morocco'], ['za', 'South Africa'],
+  ['au', 'Australia'], ['ec', 'Ecuador'], ['hn', 'Honduras'], ['gt', 'Guatemala'], ['ar', 'Argentina'], ['es', 'Spain'],
+  ['pt', 'Portugal'], ['gb', 'United Kingdom'], ['fr', 'France'], ['it', 'Italy'], ['de', 'Germany'], ['jp', 'Japan'],
+  ['kr', 'South Korea'], ['uy', 'Uruguay'], ['cl', 'Chile'], ['pe', 'Peru'], ['cr', 'Costa Rica'], ['py', 'Paraguay'],
+] as const;
+const ROW_A = NATIONS.slice(0, 12);
+const ROW_B = NATIONS.slice(12);
 
-  return <span ref={ref}>{count}</span>;
-}
-
-// Hook de Revelação no Scroll
-function useScrollReveal(options = { threshold: 0.2 }) {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const elementRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsIntersecting(true);
-      }
-    }, options);
-    if (elementRef.current) observer.observe(elementRef.current);
-    return () => observer.disconnect();
-  }, [options]);
-
-  return { elementRef, isIntersecting };
+function Flag({ code, name }: { code: string; name: string }) {
+  return (
+    <li className="group flex shrink-0 items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] py-2 pr-5 pl-2 transition-colors duration-300 hover:border-bisa-gold/50 hover:bg-white/[0.08]">
+      <span className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-white/80 md:h-11 md:w-11">
+        <Image src={`https://flagcdn.com/w160/${code}.png`} alt="" fill sizes="44px" className="object-cover transition-transform duration-500 group-hover:scale-110" unoptimized />
+      </span>
+      <span className="whitespace-nowrap text-sm font-black uppercase tracking-tight text-white md:text-base">{name}</span>
+    </li>
+  );
 }
 
 export default function WorldLanguages() {
-  const { elementRef, isIntersecting } = useScrollReveal();
+  const root = useRef<HTMLElement>(null);
 
-  const headlineLine1 = "EVERYONE".split('');
-  const headlineLine2 = "IS WELCOME".split('');
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const el = root.current;
+    if (!el) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cleanups: (() => void)[] = [];
 
-  const flagCodes = ['br', 'us', 'es', 'fr', 'it', 'de', 'ar', 'mx', 'co', 'gb', 'jp', 'kr', 'pt', 'uy', 'cl', 'pe', 'ec', 'cr', 'hn', 'py'];
-  const flags1 = flagCodes.map(code => ({
-    src: `https://flagcdn.com/w80/${code}.png`,
-    alt: code.toUpperCase()
-  }));
+    const ctx = gsap.context(() => {
+      if (!reduce) {
+        const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 72%', once: true } });
+        tl.from('[data-w-kicker]', { y: 14, autoAlpha: 0, duration: 0.6, ease: 'expo.out' })
+          .from('[data-w-line]', { yPercent: 105, duration: 0.9, stagger: 0.1, ease: 'expo.out' }, 0.05)
+          .from('[data-w-copy]', { y: 20, autoAlpha: 0, duration: 0.7, ease: 'expo.out' }, 0.3)
+          .from('[data-w-row]', { autoAlpha: 0, x: (i) => (i ? 80 : -80), duration: 1, stagger: 0.1, ease: 'expo.out' }, 0.35)
+          .from('[data-w-stat]', { y: 24, autoAlpha: 0, duration: 0.7, stagger: 0.1, ease: 'expo.out' }, 0.6);
+        const n = { v: 0 };
+        tl.to(n, { v: 19, duration: 1.6, ease: 'power2.out', onUpdate: () => { const t = el.querySelector('[data-w-count]'); if (t) t.textContent = String(Math.round(n.v)); } }, 0.6);
+      }
+
+      // Marquees: each row holds its list twice; xPercent -50 is one full loop.
+      gsap.utils.toArray<HTMLElement>('[data-w-track]').forEach((track, i) => {
+        const dir = i % 2 ? 1 : -1;
+        const loop = gsap.fromTo(track, { xPercent: dir < 0 ? 0 : -50 }, { xPercent: dir < 0 ? -50 : 0, duration: 38 + i * 6, ease: 'none', repeat: -1 });
+        if (reduce) {
+          loop.pause();
+          return;
+        }
+        const row = track.parentElement!;
+        let hovering = false;
+        // Scroll speeds the rows up and leans them; they settle back on their own.
+        const st = ScrollTrigger.create({
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          onUpdate: (self) => {
+            if (hovering) return;
+            const v = gsap.utils.clamp(-1, 1, self.getVelocity() / 1500);
+            gsap.to(loop, { timeScale: 1 + Math.abs(v) * 4, duration: 0.2, overwrite: true });
+            gsap.to(loop, { timeScale: 1, duration: 1.2, delay: 0.2, ease: 'power2.out' });
+            gsap.to(track, { skewX: -v * 6 * dir, duration: 0.3, overwrite: 'auto' });
+            gsap.to(track, { skewX: 0, duration: 1, delay: 0.25, ease: 'power3.out' });
+          },
+        });
+        const enter = () => {
+          hovering = true;
+          gsap.to(loop, { timeScale: 0, duration: 0.6, ease: 'power2.out', overwrite: true });
+        };
+        const leave = () => {
+          hovering = false;
+          gsap.to(loop, { timeScale: 1, duration: 0.8, ease: 'power2.in', overwrite: true });
+        };
+        if (window.matchMedia('(hover: hover)').matches) {
+          row.addEventListener('pointerenter', enter);
+          row.addEventListener('pointerleave', leave);
+        }
+        cleanups.push(() => {
+          st.kill();
+          row.removeEventListener('pointerenter', enter);
+          row.removeEventListener('pointerleave', leave);
+        });
+      });
+    }, el);
+
+    return () => {
+      cleanups.forEach((c) => c());
+      ctx.revert();
+    };
+  }, []);
 
   return (
-    <section 
-      ref={elementRef}
-      className="relative bg-bisa-navy-dark overflow-hidden flex flex-col items-center justify-center pt-12 pb-16 md:pt-16 md:pb-20 border-t border-white/5"
-    >
-      {/* World Map SVG Background */}
-      <div 
-        className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-        style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='1000' height='500' viewBox='0 0 1000 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 100h10v10h-10zM120 100h10v10h-10zM140 110h10v10h-10zM160 120h10v10h-10zM180 130h10v10h-10zM200 140h10v10h-10zM220 150h10v10h-10zM240 160h10v10h-10zM260 170h10v10h-10zM280 180h10v10h-10zM300 190h10v10h-10zM320 200h10v10h-10zM340 210h10v10h-10zM360 220h10v10h-10zM380 230h10v10h-10zM400 240h10v10h-10zM420 250h10v10h-10zM440 260h10v10h-10zM460 270h10v10h-10zM480 280h10v10h-10zM500 290h10v10h-10zM520 300h10v10h-10zM540 310h10v10h-10zM560 320h10v10h-10zM580 330h10v10h-10zM600 340h10v10h-10zM620 350h10v10h-10zM640 360h10v10h-10zM660 370h10v10h-10zM680 380h10v10h-10zM700 390h10v10h-10zM720 400h10v10h-10zM740 410h10v10h-10zM760 420h10v10h-10zM780 430h10v10h-10zM800 440h10v10h-10zM820 450h10v10h-10zM840 460h10v10h-10zM860 470h10v10h-10zM880 480h10v10h-10zM900 490h10v10h-10z' fill='%23ffffff' fill-opacity='1'/%3E%3C/svg%3E")`,
-          backgroundSize: '100% auto',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }} 
-      />
+    <section ref={root} className="relative overflow-hidden border-t border-white/5 bg-bisa-navy-dark py-20 md:py-28">
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-bisa-gold/[0.05] blur-[120px]" />
 
-      {/* Atmosfera Radial */}
-      <div className="absolute inset-0 pointer-events-none" 
-           style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 30%, rgba(204,255,0,0.04) 0%, transparent 70%)' }} />
-
-      {/* Glowing Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-bisa-gold/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-bisa-navy-light/50 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="relative z-10 flex flex-col items-center text-center pointer-events-none px-6 sm:px-8 lg:px-12 xl:px-16 w-full">
-        <span 
-          className="font-sans font-bold text-[11px] tracking-[6px] text-bisa-gold uppercase mb-6 transition-all duration-700 ease-out"
-          style={{
-            opacity: isIntersecting ? 1 : 0,
-            transform: isIntersecting ? 'translateY(0)' : 'translateY(8px)',
-            transitionDelay: '100ms'
-          }}
-        >
-          {`// THE WORLD TRAINS HERE`}
-        </span>
-
-        <h2 className="font-sans font-black text-[clamp(44px,10vw,130px)] leading-[0.85] tracking-tight flex flex-col items-center mb-8 drop-shadow-lg">
-          <div className="overflow-hidden flex">
-            {headlineLine1.map((char, i) => (
-              <span 
-                key={i} 
-                className="inline-block text-bisa-white transition-all duration-500"
-                style={{
-                  opacity: isIntersecting ? 1 : 0,
-                  transform: isIntersecting ? 'translateY(0)' : 'translateY(-40px)',
-                  transitionDelay: `${100 + (i * 20)}ms`
-                }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </span>
-            ))}
-          </div>
-          <div className="overflow-hidden flex">
-            {headlineLine2.map((char, i) => (
-              <span 
-                key={i} 
-                className="inline-block text-bisa-gold transition-all duration-500"
-                style={{
-                  opacity: isIntersecting ? 1 : 0,
-                  transform: isIntersecting ? 'translateY(0)' : 'translateY(-40px)',
-                  transitionDelay: `${100 + (headlineLine1.length * 20) + (i * 20)}ms`
-                }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </span>
-            ))}
-          </div>
-        </h2>
-
-        <p 
-          className="text-lg text-bisa-white/80 max-w-lg text-center transition-all duration-700 ease-out mb-12 drop-shadow-md"
-          style={{
-            opacity: isIntersecting ? 1 : 0,
-            transform: isIntersecting ? 'translateY(0)' : 'translateY(16px)',
-            transitionDelay: '300ms'
-          }}
-        >
-          USA, Brazil, Morocco, South Africa, Australia, Mexico, Colombia, Ecuador, Honduras, Guatemala, and beyond — our pitch is home to athletes from over 19 nations. Soccer is the only language that matters.
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-6 text-center sm:px-8 lg:px-12 xl:px-16">
+        <p data-w-kicker className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-bisa-gold">
+          <span className="h-px w-8 bg-bisa-gold" /> The world trains here <span className="h-px w-8 bg-bisa-gold" />
         </p>
+        <h2 className="font-bebas text-[clamp(64px,10vw,140px)] leading-[0.84] text-white">
+          <span className="block overflow-hidden">
+            <span data-w-line className="block">Everyone</span>
+          </span>
+          <span className="block overflow-hidden">
+            <span data-w-line className="block text-bisa-gold">is welcome</span>
+          </span>
+        </h2>
+        <p data-w-copy className="mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
+          USA, Brazil, Morocco, South Africa, Australia, Mexico, Colombia, Ecuador, Honduras, Guatemala and beyond: our pitch is home to athletes from over 19 nations. Soccer is the only language that matters.
+        </p>
+      </div>
 
-        {/* Marquee de Bandeiras */}
-        <div className="w-full overflow-hidden flex flex-col gap-4 sm:gap-6 mb-16 relative"
-             style={{
-               opacity: isIntersecting ? 1 : 0,
-               transform: isIntersecting ? 'translateY(0)' : 'translateY(20px)',
-               transition: 'all 1s ease-out 400ms'
-             }}>
-          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-40 bg-bisa-gold/10 blur-[50px] -z-10 pointer-events-none" />
-          
-          {/* Row 1: Normal Marquee */}
-          <div className="flex whitespace-nowrap animate-marquee py-2" style={{ animationDuration: '40s' }}>
-            {[...flags1, ...flags1].map((flag, i) => (
-              <div key={i} className="mx-4 sm:mx-8 relative w-12 h-8 sm:w-20 sm:h-12 flex-shrink-0 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                <Image src={flag.src} alt={flag.alt} fill className="object-cover rounded-sm" unoptimized />
-              </div>
-            ))}
+      {/* Flags */}
+      <div className="relative z-10 mt-12 space-y-3 md:mt-16 md:space-y-4" style={{ maskImage: 'linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)', WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)' }}>
+        {[ROW_A, ROW_B].map((row, i) => (
+          <div key={i} data-w-row className="overflow-hidden">
+            <ul data-w-track className="flex w-max gap-3 md:gap-4">
+              {[...row, ...row].map(([code, name], k) => (
+                <Flag key={`${code}-${k}`} code={code} name={name} />
+              ))}
+            </ul>
           </div>
+        ))}
+      </div>
 
-          {/* Row 2: Reverse Marquee */}
-          <div className="flex whitespace-nowrap animate-marquee-reverse py-2" style={{ animationDuration: '45s' }}>
-            {[...flags1].reverse().concat([...flags1].reverse()).map((flag, i) => (
-              <div key={i} className="mx-4 sm:mx-8 relative w-12 h-8 sm:w-20 sm:h-12 flex-shrink-0 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                <Image src={flag.src} alt={flag.alt} fill className="object-cover rounded-sm" unoptimized />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Grid de Estatísticas */}
-        <div 
-          className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center text-left pointer-events-auto"
-          style={{
-            opacity: isIntersecting ? 1 : 0,
-            transform: isIntersecting ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 1s ease-out 500ms'
-          }}
-        >
-          <div className="grid grid-cols-2 gap-6 sm:gap-8 bg-white/5 p-6 sm:p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-bisa-gold/5 to-transparent pointer-events-none" />
-            <div className="flex flex-col relative z-10">
-              <span className="font-black text-4xl sm:text-5xl text-bisa-gold mb-1 drop-shadow-[0_0_10px_rgba(245,166,35,0.3)]">
-                <Counter from={0} to={19} />+
-              </span>
-              <span className="text-[10px] sm:text-xs font-bold text-bisa-white/60 uppercase tracking-[0.08em]">
-                Countries of experience
-              </span>
-            </div>
-            <div className="flex flex-col relative z-10">
-              <span className="font-black text-4xl sm:text-5xl text-bisa-gold mb-1 drop-shadow-[0_0_10px_rgba(245,166,35,0.3)]">U4-U18</span>
-              <span className="text-[10px] sm:text-xs font-bold text-bisa-white/60 uppercase tracking-[0.08em]">Age Groups</span>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-8">
-            <p className="text-lg sm:text-xl leading-relaxed font-medium text-bisa-white/90 drop-shadow-md">
-              BISA is built on global experience. Led by Sports Director Paulo, who has coached athletes from over 19 nations, BISA brings a world-class methodology to the Charleston metro area.
+      {/* Stats */}
+      <div className="relative z-10 mx-auto mt-14 grid max-w-7xl grid-cols-1 items-center gap-10 px-6 sm:px-8 md:mt-16 lg:grid-cols-[auto_1fr] lg:gap-16 lg:px-12 xl:px-16">
+        <div className="flex gap-10 border-white/10 lg:border-r lg:pr-16">
+          <div data-w-stat>
+            <p className="font-bebas text-[64px] leading-none text-bisa-gold">
+              <span data-w-count>19</span>+
             </p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-white/55">Nations on our pitch</p>
+          </div>
+          <div data-w-stat>
+            <p className="font-bebas text-[64px] leading-none text-white">U4–U18</p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-white/55">Age groups</p>
           </div>
         </div>
+        <p data-w-stat className="max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
+          BISA is built on global experience. Led by Sports Director Paulo, who has coached athletes from over 19 nations, BISA brings a world-class methodology to the Charleston metro area.
+        </p>
       </div>
     </section>
   );
