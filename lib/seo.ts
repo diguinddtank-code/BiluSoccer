@@ -9,8 +9,9 @@ const WEBSITE_ID = `${SITE_URL}/#website`;
 export function pageMetadata(path: string): Metadata {
   const route = getRoute(path);
   const url = absoluteUrl(path);
-  const image = { url: BUSINESS.ogImage, alt: `${BUSINESS.fullName} logo` };
-
+  // The share card is app/opengraph-image.tsx (1200×630). Pages that set their
+  // own openGraph lose the inherited file image, so it is named here too.
+  const image = { url: '/opengraph-image', width: 1200, height: 630, alt: `${BUSINESS.fullName} · ${BUSINESS.tagline}` };
   return {
     // The home title already carries the brand, so skip the "%s | BISA Soccer Academy" template there.
     title: path === '/' ? { absolute: route.title } : route.title,
@@ -29,7 +30,7 @@ export function pageMetadata(path: string): Metadata {
       card: 'summary_large_image',
       title: route.title,
       description: route.description,
-      images: [BUSINESS.ogImage],
+      images: [image.url],
     },
     ...(route.noindex ? { robots: { index: false, follow: true } } : {}),
   };

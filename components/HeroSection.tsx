@@ -1,6 +1,9 @@
 'use client';
 
 import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Image from 'next/image';
 import AcademyHeroVisual from './AcademyHeroVisual';
@@ -8,6 +11,50 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HeroSection() {
   const { t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // GSAP: the video drifts and zooms as you scroll past the hero (depth), the
+  // text lifts away, and the two buttons lean toward the cursor (desktop).
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const section = sectionRef.current;
+    if (!section) return;
+    const ctx = gsap.context(() => {
+      const st = { trigger: section, start: 'top top', end: 'bottom top', scrub: true };
+      gsap.to(bgRef.current, { yPercent: 22, scale: 1.12, ease: 'none', scrollTrigger: st });
+      gsap.to(contentRef.current, { yPercent: -14, opacity: 0.15, ease: 'none', scrollTrigger: { ...st, start: 'top+=60 top' } });
+    }, section);
+
+    const cleanups: (() => void)[] = [];
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      section.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
+        const x = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3.out' });
+        const y = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3.out' });
+        const move = (e: PointerEvent) => {
+          const r = el.getBoundingClientRect();
+          x((e.clientX - (r.left + r.width / 2)) * 0.25);
+          y((e.clientY - (r.top + r.height / 2)) * 0.35);
+        };
+        const leave = () => {
+          x(0);
+          y(0);
+        };
+        el.addEventListener('pointermove', move);
+        el.addEventListener('pointerleave', leave);
+        cleanups.push(() => {
+          el.removeEventListener('pointermove', move);
+          el.removeEventListener('pointerleave', leave);
+        });
+      });
+    }
+    return () => {
+      cleanups.forEach((c) => c());
+      ctx.revert();
+    };
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -26,9 +73,10 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[100svh] lg:min-h-screen flex flex-col justify-center overflow-hidden bg-bisa-navy-dark pt-28 md:pt-20 lg:pt-32 pb-16 lg:pb-24">
+    <section ref={sectionRef} className="relative min-h-[100svh] lg:min-h-screen flex flex-col justify-center overflow-hidden bg-bisa-navy-dark pt-28 md:pt-20 lg:pt-32 pb-16 lg:pb-24">
       {/* Dynamic Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-bisa-navy-dark">
+        <div ref={bgRef} className="absolute inset-0 will-change-transform">
         <video
           autoPlay
           loop
@@ -38,13 +86,14 @@ export default function HeroSection() {
         >
           <source src="https://i.imgur.com/Mikmi09.mp4" type="video/mp4" />
         </video>
+        </div>
 
         {/* Gradient Overlays for Text Readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-bisa-navy-dark/90 via-bisa-navy-dark/40 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-bisa-navy-dark/90 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full mt-4 md:mt-0">
+      <div ref={contentRef} className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full mt-4 md:mt-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-10 xl:gap-12 items-center">
           <motion.div
             variants={containerVariants}
@@ -72,12 +121,14 @@ export default function HeroSection() {
                 href="https://playmetrics.com/signup?clubToken=TG9naW4tQ2x1Yi52MS05OTEtMTc4MTkwNTQwNXxvL1ZERU5WK3NXeVh6eWFNTFBtdUZIS2pOZUVWM0ZnTmlIdnhocTJHV2pvPQ=="
                 target="_blank"
                 rel="noopener noreferrer"
+                data-magnetic
                 className="flex items-center justify-center min-h-[56px] bg-bisa-gold text-bisa-navy px-6 py-4 rounded-xl font-black text-base uppercase tracking-widest text-center hover:bg-white transition-colors w-full sm:w-auto shadow-[0_8px_20px_rgba(235,171,4,0.3)] hover:-translate-y-1"
               >
                 {t('hero.cta.primary')}
               </Link>
               <Link
                 href="/programs"
+                data-magnetic
                 className="flex items-center justify-center min-h-[56px] bg-bisa-navy/60 backdrop-blur-md border border-white/20 text-bisa-white px-6 py-4 rounded-xl font-black text-base uppercase tracking-widest text-center hover:bg-white hover:text-bisa-navy transition-all w-full sm:w-auto hover:-translate-y-1"
               >
                 {t('hero.cta.secondary')}

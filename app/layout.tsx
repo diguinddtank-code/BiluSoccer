@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import SmoothScrolling from '@/components/SmoothScrolling';
+import ScrollProgress from '@/components/ScrollProgress';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -35,9 +36,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: BUSINESS.fullName,
-    images: [{ url: BUSINESS.ogImage, alt: `${BUSINESS.fullName} logo` }],
+    // Image: app/opengraph-image.tsx (the 1200×630 share card).
   },
-  twitter: { card: 'summary_large_image', images: [BUSINESS.ogImage] },
+  twitter: { card: 'summary_large_image' },
   robots: {
     index: true,
     follow: true,
@@ -54,10 +55,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${inter.variable} ${bebasNeue.variable} font-sans scroll-smooth`}>
+    <html lang="en" className={`${inter.variable} ${bebasNeue.variable} font-sans`}>
       <body className="bg-bisa-navy-dark text-bisa-white antialiased flex flex-col min-h-screen" suppressHydrationWarning>
         <SmoothScrolling>
           <LanguageProvider>
+            <ScrollProgress />
             <Navbar />
             <main className="flex-grow">
               {children}
