@@ -200,6 +200,15 @@ export const ROUTES: RouteInfo[] = [
     changeFrequency: 'monthly',
   },
   {
+    path: '/programs/girls-futsal',
+    title: 'Girls Futsal in Ladson, SC · First Session Free',
+    label: 'Girls Futsal',
+    description:
+      'Girls Futsal (Fútbol de las Niñas) at BISA: Fridays 6:30–7:30 PM at Sangaree Middle School, Ladson, SC, starting December 4, 2026. No experience needed, first session free.',
+    priority: 0.9,
+    changeFrequency: 'monthly',
+  },
+  {
     path: '/tryouts',
     title: 'Youth Soccer Tryouts & Registration',
     label: 'Tryouts',

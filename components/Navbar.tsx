@@ -66,6 +66,7 @@ export default function Navbar() {
     { name: t('nav.sponsorship'), href: '/sponsorship' },
     { name: t('nav.resources'), href: '/resources' },
     { name: t('nav.about'), href: '/about' },
+    { name: 'Girls Futsal', href: '/programs/girls-futsal' },
   ];
 
   const menuVariants: Variants = {
@@ -187,6 +188,14 @@ export default function Navbar() {
 
               {/* Right Links */}
               <div className="flex-1 flex items-center justify-start space-x-4 lg:space-x-6 xl:space-x-10 pl-28 xl:pl-32">
+                {/* Girls Futsal launch */}
+                <Link
+                  href="/programs/girls-futsal"
+                  className="relative shrink-0 rounded-full bg-[#EC0B63] px-3 py-1.5 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-white whitespace-nowrap shadow-[0_4px_14px_rgba(236,11,99,.45)] transition-transform hover:-translate-y-0.5"
+                >
+                  Girls Futsal
+                  <span className="absolute -top-2 -right-2 rotate-12 rounded-sm bg-[#F5C400] px-1 text-[8px] font-black leading-[14px] text-[#1D2A5C]">NEW</span>
+                </Link>
                 {/* Desktop Language Selector */}
                 <div className="shrink-0 flex items-center">
                   <LanguageSelector language={language} setLanguage={setLanguage as any} />
@@ -235,9 +244,12 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-between border-b border-bisa-white/10 pb-4 text-3xl font-black uppercase tracking-widest text-bisa-white active:text-[#CCFF00] transition-colors"
+                    className={`flex items-center justify-between border-b border-bisa-white/10 pb-4 text-3xl font-black uppercase tracking-widest active:text-[#CCFF00] transition-colors ${link.href.includes('girls') ? 'text-[#EC0B63]' : 'text-bisa-white'}`}
                   >
-                    <span>{link.name}</span>
+                    <span>
+                      {link.name}
+                      {link.href.includes('girls') && <span className="ml-3 align-middle rounded-sm bg-[#F5C400] px-1.5 py-0.5 text-[11px] text-[#1D2A5C]">NEW</span>}
+                    </span>
                     <ChevronRight className="w-8 h-8 text-[#CCFF00] opacity-50" />
                   </Link>
                 </motion.div>

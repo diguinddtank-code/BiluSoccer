@@ -20,6 +20,7 @@ const PROGRAMS = [
   { title: 'Elite', age: 'U15–U18', from: 15, to: 18, desc: 'Top-tier development with college and pro exposure.', href: '/programs/elite' },
   { title: 'Futsal', age: 'All ages', from: 4, to: 18, desc: 'Small court, big skills: technique and decision making.', href: '/programs/futsal' },
   { title: 'Summer Camps', age: 'Seasonal', from: 4, to: 18, desc: 'A full summer of soccer and fun at Sangaree Middle School.', href: '/programs/summer-camps', soft: true },
+  { title: 'Girls Futsal', age: 'New · Fridays', from: 4, to: 18, desc: 'Fútbol de las Niñas: no experience needed, first session free.', href: '/programs/girls-futsal', soft: true, isNew: true },
 ];
 
 const pct = (a: number) => ((a - MIN) / (MAX - MIN)) * 100;
@@ -131,7 +132,10 @@ export default function ProgramsGrid() {
                   <span data-p-fill className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-bisa-gold" />
                   <span className="ink-soft ink relative font-mono text-[12px] text-white/40">0{i + 1}</span>
                   <span className="relative min-w-0">
-                    <span className="ink font-bebas block text-[34px] leading-none text-white md:text-[42px]">{p.title}</span>
+                    <span className="ink font-bebas block text-[34px] leading-none text-white md:text-[42px]">
+                      {p.title}
+                      {'isNew' in p && <span className="ml-3 inline-block -rotate-3 rounded-sm bg-[#EC0B63] px-2 py-0.5 align-middle font-mono text-[11px] tracking-[0.15em] text-white">NEW</span>}
+                    </span>
                     <span className="ink-soft ink mt-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-bisa-gold lg:hidden">{p.age}</span>
                   </span>
 
@@ -140,7 +144,7 @@ export default function ProgramsGrid() {
                     <span className="ruler-base relative block h-[6px] rounded-full bg-white/10">
                       <span
                         data-p-range
-                        className={`absolute top-0 h-full rounded-full ${p.soft ? 'bg-bisa-gold/45' : 'bg-bisa-gold'}`}
+                        className={`absolute top-0 h-full rounded-full ${'isNew' in p ? 'hidden' : p.soft ? 'bg-bisa-gold/45' : 'bg-bisa-gold'}`}
                         style={{ left: `${pct(p.from)}%`, width: `${pct(p.to) - pct(p.from)}%` }}
                       />
                       {age !== null && <span className="absolute top-1/2 h-4 w-[2px] -translate-y-1/2 bg-white" style={{ left: `calc(${pct(age)}% - 1px)` }} />}
