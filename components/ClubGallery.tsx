@@ -36,7 +36,7 @@ export default function ClubGallery() {
           <span className="font-sans font-bold text-[11px] tracking-[6px] text-bisa-gold uppercase mb-6 block">
             {`// CLUB LIFE`}
           </span>
-          <h2 className="font-sans font-black text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.85] tracking-tighter uppercase text-bisa-white mb-8 italic drop-shadow-2xl flex flex-col items-center">
+          <h2 className="font-sans font-black text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-tighter uppercase text-bisa-white mb-8 italic drop-shadow-2xl flex flex-col items-center">
             <span className="block">MORE THAN A TEAM.</span>
             <span className="block text-bisa-gold drop-shadow-[0_0_30px_rgba(245,166,35,0.3)]">A FAMILY.</span>
           </h2>

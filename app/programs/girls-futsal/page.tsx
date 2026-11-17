@@ -19,7 +19,7 @@ const YELLOW = '#F5C400';
 const PAPER = '#F4F0E6';
 const SKY = '#7FD3F5';
 
-const head = 'font-[family-name:var(--font-anton)] uppercase leading-[0.86] tracking-[0.005em]';
+const head = 'font-[family-name:var(--font-anton)] uppercase leading-[0.95] tracking-[0.005em]';
 const body = 'font-[family-name:var(--font-mont)]';
 
 function Tape({ color, className = '', rotate = -4 }: { color: string; className?: string; rotate?: number }) {

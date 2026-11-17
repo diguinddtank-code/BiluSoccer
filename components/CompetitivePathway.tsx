@@ -140,7 +140,7 @@ export default function CompetitivePathway() {
             <p className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-white/45">
               <span className="h-px w-8 bg-bisa-gold" /> Three levels · one ladder
             </p>
-            <h3 className="font-bebas text-[60px] leading-[0.86] text-white sm:text-[80px] lg:text-[clamp(52px,10vh,100px)]">
+            <h3 className="font-bebas text-[60px] leading-[0.95] text-white sm:text-[80px] lg:text-[clamp(52px,10vh,100px)]">
               The competitive <br className="hidden lg:block" />
               <span className="text-bisa-gold">pathway</span>
             </h3>
@@ -184,7 +184,7 @@ export default function CompetitivePathway() {
                     <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">
                       0{i + 1} · {l.age}
                     </p>
-                    <p className="code font-bebas mt-1 text-[clamp(44px,min(6vw,10vh),92px)] leading-[0.85]">{l.code}</p>
+                    <p className="code font-bebas mt-1 text-[clamp(44px,min(6vw,10vh),92px)] leading-[0.95]">{l.code}</p>
                     <p className="mt-1.5 text-[11px] font-bold uppercase leading-snug tracking-[0.14em] text-white/70">{l.name}</p>
                     {l.badge && (
                       <span className="mt-2 inline-block rounded-sm bg-bisa-gold px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-bisa-navy-dark">{l.badge}</span>
@@ -204,7 +204,7 @@ export default function CompetitivePathway() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">
                     0{i + 1} · {l.role} · {l.age}
                   </p>
-                  <p className="code font-bebas mt-1 text-[64px] leading-[0.85]">{l.code}</p>
+                  <p className="code font-bebas mt-1 text-[64px] leading-[0.95]">{l.code}</p>
                   <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">{l.name}</p>
                   <p className="mt-2 text-[15px] leading-snug text-white/55">{l.text}</p>
                   {l.badge && (

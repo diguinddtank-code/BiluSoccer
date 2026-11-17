@@ -89,7 +89,7 @@ export default function ProgramsGrid() {
             <p className="mb-3 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-bisa-gold">
               <span className="h-px w-8 bg-bisa-gold" /> Our programs
             </p>
-            <h2 className="font-bebas text-[clamp(56px,7vw,96px)] leading-[0.86] text-white">
+            <h2 className="font-bebas text-[clamp(56px,7vw,96px)] leading-[0.95] text-white">
               Find your <span className="text-bisa-gold">level</span>
             </h2>
           </div>

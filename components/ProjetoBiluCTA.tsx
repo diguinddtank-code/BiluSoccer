@@ -52,7 +52,7 @@ export default function ProjetoBiluCTA() {
               </span>
             </div>
 
-            <h2 className="font-bebas text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-widest leading-[0.9] mb-6 drop-shadow-lg">
+            <h2 className="font-bebas text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-widest leading-[0.95] mb-6 drop-shadow-lg">
               {t('projetobilu.title') || 'O FUTEBOL QUE TRANSFORMA VIDAS'}
             </h2>
 

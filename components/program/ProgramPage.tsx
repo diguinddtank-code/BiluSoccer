@@ -221,7 +221,7 @@ export default function ProgramPage({ data }: { data: ProgramData }) {
             <p data-h-kicker className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] text-bisa-gold">
               <span className="h-px w-8 shrink-0 bg-bisa-gold" /> {data.kicker}
             </p>
-            <h1 className="font-bebas leading-[0.84]">
+            <h1 className="font-bebas leading-[0.95]">
               {data.titleTop && (
                 <span className="block overflow-hidden">
                   <span data-h-line className="block text-[clamp(72px,11vw,168px)] text-white">{data.titleTop}</span>
@@ -305,7 +305,7 @@ export default function ProgramPage({ data }: { data: ProgramData }) {
               <p data-r className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-bisa-gold">
                 <span className="h-px w-8 bg-bisa-gold" /> {L.overview}
               </p>
-              <h2 data-r className="font-bebas max-w-3xl text-[clamp(48px,6vw,88px)] leading-[0.88] text-white">{L.features}</h2>
+              <h2 data-r className="font-bebas max-w-3xl text-[clamp(48px,6vw,88px)] leading-[0.95] text-white">{L.features}</h2>
             </div>
           </div>
           <div className="grid grid-cols-1 border-t border-white/10 sm:grid-cols-2 lg:grid-cols-3">
@@ -324,7 +324,7 @@ export default function ProgramPage({ data }: { data: ProgramData }) {
       {/* 4 · Global DNA */}
       <section data-reveal className="border-y border-white/5 bg-black/20 py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-6 text-center sm:px-8">
-          <h2 data-r className="font-bebas text-[clamp(44px,5.5vw,76px)] leading-[0.9] text-white">
+          <h2 data-r className="font-bebas text-[clamp(44px,5.5vw,76px)] leading-[0.95] text-white">
             {L.globalA} <span className="text-bisa-gold">{L.globalB}</span>
           </h2>
           <p data-r className="mx-auto mt-4 max-w-xl text-base text-white/60 md:text-lg">{L.globalDesc}</p>
@@ -350,7 +350,7 @@ export default function ProgramPage({ data }: { data: ProgramData }) {
       {/* 5 · How to join */}
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
-          <h2 className="font-bebas mb-14 text-[clamp(48px,6vw,88px)] leading-[0.88] text-white">
+          <h2 className="font-bebas mb-14 text-[clamp(48px,6vw,88px)] leading-[0.95] text-white">
             {L.joinA} <span className="text-bisa-gold">{L.joinB}</span>
           </h2>
           <div data-join className="relative">
@@ -385,7 +385,7 @@ export default function ProgramPage({ data }: { data: ProgramData }) {
       <section data-reveal className="border-t border-white/5 py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:px-12 xl:px-16">
           <div>
-            <h2 data-r className="font-bebas text-[clamp(48px,5.5vw,80px)] leading-[0.88] text-white">{L.faq}</h2>
+            <h2 data-r className="font-bebas text-[clamp(48px,5.5vw,80px)] leading-[0.95] text-white">{L.faq}</h2>
             <p data-r className="mt-5 text-base text-white/60">
               {L.contact}{' '}
               <a href={`mailto:${BUSINESS.email}`} className="text-bisa-gold underline-offset-4 hover:underline">
@@ -406,7 +406,7 @@ export default function ProgramPage({ data }: { data: ProgramData }) {
         <section data-reveal className="relative overflow-hidden bg-bisa-gold py-20 text-bisa-navy-dark md:py-28">
           <div className="mx-auto max-w-5xl px-6 text-center sm:px-8">
             <p data-r className="font-mono text-[11px] font-bold uppercase tracking-[0.3em]">{data.cta.badge}</p>
-            <h2 data-r className="font-bebas mt-4 text-[clamp(52px,7vw,104px)] leading-[0.88]">{data.cta.title}</h2>
+            <h2 data-r className="font-bebas mt-4 text-[clamp(52px,7vw,104px)] leading-[0.95]">{data.cta.title}</h2>
             <p data-r className="mx-auto mt-5 max-w-xl text-lg font-medium text-bisa-navy-dark/75">{data.cta.subtitle}</p>
             <div data-r className="mt-9">
               <Link href={REGISTER_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[60px] items-center justify-center rounded-md bg-bisa-navy-dark px-10 text-lg font-black uppercase tracking-widest text-bisa-gold transition-colors hover:bg-black">

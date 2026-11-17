@@ -113,7 +113,7 @@ export default function WorldLanguages() {
         <p data-w-kicker className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-bisa-gold">
           <span className="h-px w-8 bg-bisa-gold" /> The world trains here <span className="h-px w-8 bg-bisa-gold" />
         </p>
-        <h2 className="font-bebas text-[clamp(64px,10vw,140px)] leading-[0.84] text-white">
+        <h2 className="font-bebas text-[clamp(64px,10vw,140px)] leading-[0.95] text-white">
           <span className="block overflow-hidden">
             <span data-w-line className="block">Everyone</span>
           </span>

@@ -154,7 +154,7 @@ export default function ResourcesPage() {
                 <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#CCFF00] truncate">Academy Hub</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.9] mb-8 break-words hyphens-auto w-full">
+              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.95] mb-8 break-words hyphens-auto w-full">
                 Parent & <br className="hidden sm:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-bisa-white via-white/80 to-white/40">Player Hub</span>
               </h1>

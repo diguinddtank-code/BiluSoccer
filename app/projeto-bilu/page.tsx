@@ -120,7 +120,7 @@ export default function ProjetoBiluPage() {
             />
           </div>
           
-          <h1 className="font-bebas text-7xl md:text-9xl text-[#CCFF00] uppercase tracking-widest leading-[0.9] drop-shadow-2xl">
+          <h1 className="font-bebas text-7xl md:text-9xl text-[#CCFF00] uppercase tracking-widest leading-[0.95] drop-shadow-2xl">
             Projeto BILU
           </h1>
           <div className="h-1 w-24 bg-[#CCFF00] my-6 md:my-8 rounded-full"></div>
